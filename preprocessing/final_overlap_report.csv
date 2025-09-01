@@ -1,8 +1,0 @@
-check,count
-dup_internal_inflampred,0
-dup_internal_aismpred_final,0
-dup_internal_inflamnat_final,0
-overlap_inflampred__aismpred_final,0
-overlap_inflampred__inflamnat_final,0
-overlap_aismpred_final__inflamnat_final,0
-overlap_all_three,0

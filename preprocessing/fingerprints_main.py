@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Draw, Descriptors, rdMolDescriptors, AllChem, MACCSkeys
-from rdkit.Chem.EState import Fingerprinter               # 👈 THÊM import Fingerprinter
+from rdkit.Chem.EState import Fingerprinter  # E-State
 import os
 
 # ------------------------- 1.  ECFP (Morgan) ------------------------- #
@@ -30,6 +30,8 @@ def calculate_rdkit(df, smiles_col, nBits=2048):
     def get_rdkit(smi):
         try:
             mol = Chem.MolFromSmiles(smi)
+            if mol is None:
+                return [None] * nBits
             fp = Chem.RDKFingerprint(mol)
             return [int(x) for x in fp.ToBitString()]
         except Exception:
@@ -43,6 +45,8 @@ def calculate_maccs(df, smiles_col):
     def get_maccs(smi):
         try:
             mol = Chem.MolFromSmiles(smi)
+            if mol is None:
+                return [None] * 167
             fp = MACCSkeys.GenMACCSKeys(mol)
             return [int(x) for x in fp.ToBitString()]
         except Exception:
@@ -51,20 +55,7 @@ def calculate_maccs(df, smiles_col):
     maccs_df.columns = [f"MACCS{i}" for i in range(167)]
     return maccs_df
 
-# ------------------------- 4.  Atom-Pair (topological) --------------- #
-def calculate_atom_pair(df, smiles_col, nBits=2048):
-    def get_ap(smi):
-        try:
-            mol = Chem.MolFromSmiles(smi)
-            fp = Chem.GetAtomPairFingerprintAsBitVect(mol, nBits)
-            return [int(x) for x in fp.ToBitString()]
-        except Exception:
-            return [None] * nBits
-    ap_df = df[smiles_col].apply(get_ap).apply(pd.Series)
-    ap_df.columns = [f"AtomPair{i}" for i in range(nBits)]
-    return ap_df
-
-# ------------------------- 5.  E-State (79 continuous) --------------- #
+# ------------------------- 4.  E-State (79 continuous) --------------- #
 def calculate_estate(df, smiles_col):
     """79-dimensional E-State indices (continuous values, rounded to 3 dp)."""
     def get_estate(smi):
@@ -80,7 +71,7 @@ def calculate_estate(df, smiles_col):
     est_df.columns = [f"EState_{i+1}" for i in range(79)]
     return est_df
 
-# ------------------------- 6.  Physicochemical descriptors ----------- #
+# ------------------------- 5.  Physicochemical descriptors ----------- #
 def calculate_phychem(df, smiles_col):
     descriptor_funcs = {
         "MolWt": Descriptors.MolWt,
@@ -99,6 +90,8 @@ def calculate_phychem(df, smiles_col):
     def get_desc(smi):
         try:
             mol = Chem.MolFromSmiles(smi)
+            if mol is None:
+                return [None] * len(descriptor_funcs)
             return [func(mol) for func in descriptor_funcs.values()]
         except Exception:
             return [None] * len(descriptor_funcs)
@@ -107,14 +100,14 @@ def calculate_phychem(df, smiles_col):
     return desc_df
 
 # --------------------------------------------------------------------- #
-# 7. Helper: add index & save
+# 6. Helper: add index & save
 # --------------------------------------------------------------------- #
 def add_index_and_save(df_fps, df_src_index, filename):
     df_fps.insert(0, "Index", df_src_index)
     df_fps.to_csv(filename, index=False)
 
 # --------------------------------------------------------------------- #
-# 8. Main processing function
+# 7. Main processing function (NO Atom Pair)
 # --------------------------------------------------------------------- #
 def process_and_save_features(df, smiles_col, prefix):
     # ECFP
@@ -123,8 +116,6 @@ def process_and_save_features(df, smiles_col, prefix):
     add_index_and_save(calculate_rdkit(df, smiles_col), df.index, f"{prefix}_rdkit.csv")
     # MACCS
     add_index_and_save(calculate_maccs(df, smiles_col), df.index, f"{prefix}_maccs.csv")
-    # Atom Pair
-    add_index_and_save(calculate_atom_pair(df, smiles_col), df.index, f"{prefix}_atompair.csv")
     # E-State
     add_index_and_save(calculate_estate(df, smiles_col), df.index, f"{prefix}_estate.csv")
     # Physicochemical
@@ -133,11 +124,11 @@ def process_and_save_features(df, smiles_col, prefix):
 
 # --------------------------------------------------------------------- #
 def main():
-    x_train = pd.read_csv("capsule_x_train_full.csv", index_col=0)
-    x_test  = pd.read_csv("capsule_x_test_subset.csv",       index_col=0)
+    x_train = pd.read_csv("AISMPred_x_test_preprocess.csv", index_col=0)
+    x_test  = pd.read_csv("AISMPred_x_test_preprocess.csv", index_col=0)
 
-    process_and_save_features(x_train, "canonical_smiles", "capsule_x_train_full")
-    process_and_save_features(x_test,  "canonical_smiles", "capsule_x_test_subset")
+    process_and_save_features(x_train, "canonical_smiles", "AISMPred_x_test")
+    process_and_save_features(x_test,  "canonical_smiles", "AISMPred_x_test")
 
 if __name__ == "__main__":
     main()
