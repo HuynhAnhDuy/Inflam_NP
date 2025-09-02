@@ -95,9 +95,9 @@ def run_all_fingerprints(fingerprints, num_runs=3, base_prefix="3.InFlamNat"):
 
         try:
             x_train = pd.read_csv(f"{base_prefix}_x_train_{fp_file}.csv", index_col=0).values
-            x_test = pd.read_csv(f"{base_prefix}_x_test_{fp_file}.csv", index_col=0).values
+            x_test = pd.read_csv(f"AISMPred_x_test_{fp_file}.csv", index_col=0).values
             y_train = pd.read_csv(f"{base_prefix}_y_train.csv", index_col=0).values.ravel()
-            y_test = pd.read_csv(f"{base_prefix}_y_test.csv", index_col=0).values.ravel()
+            y_test = pd.read_csv(f"AISMPred_y_test.csv", index_col=0).values.ravel()
         except FileNotFoundError as e:
             print(f"[SKIP] ❌ Thiếu file cho {fp}: {e}")
             continue

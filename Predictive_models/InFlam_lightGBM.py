@@ -18,7 +18,7 @@ def train_lightgbm(
     class_weight='balanced', n_jobs=-1,
     # Tham số LGBM hay dùng
     num_leaves=31, learning_rate=0.05, subsample=0.8, colsample_bytree=0.8,
-    reg_alpha=0.0, reg_lambda=0.0
+    reg_alpha=0.0, reg_lambda=0.0 
 ):
     # Chuẩn hóa input
     x_train = np.asarray(x_train)
@@ -85,7 +85,7 @@ def train_lightgbm(
         "F1 Test": f1
     }
 
-def run_all_fingerprints(fingerprints, num_runs=3, base_prefix="1.Inflampred"):
+def run_all_fingerprints(fingerprints, num_runs=3, base_prefix="3.InFlamNat"):
     results_all = {}
 
     for fp in fingerprints:
@@ -139,8 +139,8 @@ def main():
         fp.upper(): {metric: f"{mean:.3f} ± {std:.3f}" for metric, (mean, std) in metrics.items()}
         for fp, metrics in results_by_fp.items()
     }).T
-    df_export.to_csv("1.Inflampred_LGBM_fingerprint_metrics.csv")
-    print("\nSaved results: 1.Inflampred (LGBM)")
+    df_export.to_csv("3.InFlamNat_LGBM_fingerprint_metrics.csv")
+    print("\nSaved results: 3.InFlamNat (LGBM)")
 
 if __name__ == "__main__":
     main()

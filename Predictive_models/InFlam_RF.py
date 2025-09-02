@@ -10,7 +10,7 @@ from sklearn.metrics import (
 def train_random_forest(
     x_train, x_test, y_train, y_test,
     n_estimators=500, max_depth=None, random_state=42,
-    class_weight='balanced', n_jobs=-1
+    class_weight='balanced', n_jobs=-1 
 ):
     # Chuẩn hóa input
     x_train = np.asarray(x_train)
@@ -67,7 +67,7 @@ def train_random_forest(
         "F1 Test": f1
     }
 
-def run_all_fingerprints(fingerprints, num_runs=3, base_prefix="1.Inflampred"):
+def run_all_fingerprints(fingerprints, num_runs=3, base_prefix="3.InFlamNat"):
     results_all = {}
 
     for fp in fingerprints:
@@ -121,8 +121,8 @@ def main():
         fp.upper(): {metric: f"{mean:.3f} ± {std:.3f}" for metric, (mean, std) in metrics.items()}
         for fp, metrics in results_by_fp.items()
     }).T
-    df_export.to_csv("1.Inflampred_RF_fingerprint_metrics.csv")
-    print("\nSaved results: 1.Inflampred (RF)")
+    df_export.to_csv("3.InFlamNat_RF_fingerprint_metrics.csv")
+    print("\nSaved results: 3.InFlamNat (RF)")
 
 if __name__ == "__main__":
     main()
