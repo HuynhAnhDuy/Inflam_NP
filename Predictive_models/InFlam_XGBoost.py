@@ -1,5 +1,10 @@
-import numpy as np
+import numpy as np 
 import pandas as pd
+from datetime import datetime
+import os
+
+# ==== Chỉ cần chỉnh 1 dòng này ====
+BASE_PREFIX = "InFlam_full"
 
 # XGBoost
 try:
@@ -13,35 +18,28 @@ from sklearn.metrics import (
     balanced_accuracy_score, 
 )
 
+# === Huấn luyện model ===
 def train_xgboost(
     x_train, x_test, y_train, y_test,
     n_estimators=500, max_depth=None, random_state=42,
     class_weight='balanced', n_jobs=-1,
-    # Tham số XGBoost thường dùng
     learning_rate=0.05, subsample=0.8, colsample_bytree=0.8,
     reg_alpha=0.0, reg_lambda=0.0, gamma=0.0, min_child_weight=1.0 
 ):
-    # Chuẩn hóa input
     x_train = np.asarray(x_train)
     x_test  = np.asarray(x_test)
     y_train = np.asarray(y_train).ravel()
     y_test  = np.asarray(y_test).ravel()
 
-    # max_depth: nếu None -> dùng default 6 của XGB
     if max_depth is None:
-        max_depth = 6
+        max_depth = 6  # default của XGBoost
 
-    # Map class_weight='balanced' -> scale_pos_weight = #neg/#pos
     scale_pos_weight = None
     if class_weight == 'balanced':
         pos = np.sum(y_train == 1)
         neg = np.sum(y_train == 0)
-        if pos > 0:
-            scale_pos_weight = float(neg) / float(pos)
-        else:
-            scale_pos_weight = 1.0
+        scale_pos_weight = float(neg) / float(pos) if pos > 0 else 1.0
 
-    # Tạo classifier (dùng 'hist' cho tốc độ; có thể đổi 'gpu_hist' nếu có GPU)
     params = dict(
         objective="binary:logistic",
         n_estimators=n_estimators,
@@ -55,7 +53,7 @@ def train_xgboost(
         min_child_weight=min_child_weight,
         random_state=random_state,
         n_jobs=n_jobs,
-        tree_method="hist",
+        tree_method="hist",  # hoặc 'gpu_hist' nếu dùng GPU
         eval_metric="logloss",
     )
     if scale_pos_weight is not None:
@@ -65,17 +63,16 @@ def train_xgboost(
     clf.fit(x_train, y_train)
 
     y_pred = clf.predict(x_test)
-    y_prob = clf.predict_proba(x_test)[:, 1]
+    y_prob_test = clf.predict_proba(x_test)[:, 1]
+    y_prob_train = clf.predict_proba(x_train)[:, 1]
 
-    # Metrics
-    accuracy      = accuracy_score(y_test, y_pred)
-    balanced_acc  = balanced_accuracy_score(y_test, y_pred)
-    mcc           = matthews_corrcoef(y_test, y_pred)
-    precision     = precision_score(y_test, y_pred, zero_division=0)
-    recall        = recall_score(y_test, y_pred, zero_division=0)
-    f1            = f1_score(y_test, y_pred, zero_division=0)
+    accuracy     = accuracy_score(y_test, y_pred)
+    balanced_acc = balanced_accuracy_score(y_test, y_pred)
+    mcc          = matthews_corrcoef(y_test, y_pred)
+    precision    = precision_score(y_test, y_pred, zero_division=0)
+    recall       = recall_score(y_test, y_pred, zero_division=0)
+    f1           = f1_score(y_test, y_pred, zero_division=0)
 
-    # Specificity
     labels = np.unique(y_test)
     if set(labels) == {0, 1}:
         tn, fp, fn, tp = confusion_matrix(y_test, y_pred, labels=[0, 1]).ravel()
@@ -83,82 +80,122 @@ def train_xgboost(
     else:
         specificity = np.nan
 
-    # ROC AUC
-    fpr, tpr, _ = roc_curve(y_test, y_prob)
+    fpr, tpr, _ = roc_curve(y_test, y_prob_test)
     roc_auc = auc(fpr, tpr)
 
-    # PR AUC
-    prec_arr, rec_arr, _ = precision_recall_curve(y_test, y_prob)
+    prec_arr, rec_arr, _ = precision_recall_curve(y_test, y_prob_test)
     pr_auc = auc(rec_arr, prec_arr)
 
     return {
-        "Accuracy Test": accuracy,
-        "Balanced Accuracy Test": balanced_acc,
-        "ROC AUC Test": roc_auc,
-        "PR AUC Test": pr_auc,
-        "MCC Test": mcc,
-        "Precision Test": precision,
-        "Sensitivity Test": recall,
-        "Specificity Test": specificity,
-        "F1 Test": f1
+        "metrics": {
+            "Accuracy Test": accuracy,
+            "Balanced Accuracy Test": balanced_acc,
+            "ROC AUC Test": roc_auc,
+            "PR AUC Test": pr_auc,
+            "MCC Test": mcc,
+            "Precision Test": precision,
+            "Sensitivity Test": recall,
+            "Specificity Test": specificity,
+            "F1 Test": f1
+        },
+        "y_prob_train": y_prob_train,
+        "y_prob_test": y_prob_test,
+        "y_train_true": y_train,
+        "y_test_true": y_test
     }
 
-def run_all_fingerprints(fingerprints, num_runs=3, base_prefix="3.InFlamNat"):
+# === Chạy qua tất cả fingerprint ===
+def run_all_fingerprints(fingerprints, num_runs=3):
     results_all = {}
+    all_metrics_raw = []
+
+    # === Tạo thư mục chứa y_prob theo timestamp ===
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    prob_folder = f"Prob_InFlam_full/Prob_{timestamp}"
+    os.makedirs(prob_folder, exist_ok=True)
+    print(f"\n📁 Sẽ lưu y_prob vào: {prob_folder}")
 
     for fp in fingerprints:
         print(f"\n=== Evaluating fingerprint: {fp.upper()} ===")
-
-        # Đồng bộ hóa tên file theo lowercase để tránh lệch chữ hoa/thường
         fp_file = fp.lower()
 
         try:
-            x_train = pd.read_csv(f"{base_prefix}_x_train_{fp_file}.csv", index_col=0).values
+            x_train = pd.read_csv(f"{BASE_PREFIX}_x_train_{fp_file}.csv", index_col=0).values
             x_test  = pd.read_csv(f"AISMPred_x_test_{fp_file}.csv", index_col=0).values
-            y_train = pd.read_csv(f"{base_prefix}_y_train.csv", index_col=0).values.ravel()
+            y_train = pd.read_csv(f"{BASE_PREFIX}_y_train.csv", index_col=0).values.ravel()
             y_test  = pd.read_csv(f"AISMPred_y_test.csv", index_col=0).values.ravel()
         except FileNotFoundError as e:
-            print(f"[SKIP] Thiếu file cho {fp}: {e}")
+            print(f"[SKIP] Thiếu file cho {fp.upper()}: {e}")
             continue
 
         metrics_keys = [
-            "Accuracy Test", "Balanced Accuracy Test", "ROC AUC Test", "PR AUC Test",
+            "Accuracy Test", "Balanced Accuracy Test", "AUROC Test", "AUPRC Test",
             "MCC Test", "Precision Test", "Sensitivity Test", "Specificity Test", "F1 Test"
         ]
         metrics_summary = {k: [] for k in metrics_keys}
 
         for run in range(num_runs):
-            seed = 42 + run  # thay seed cho mỗi run
-            metrics = train_xgboost(
+            seed = 42 + run
+            result = train_xgboost(
                 x_train, x_test, y_train, y_test,
                 n_estimators=500, max_depth=None, random_state=seed,
                 class_weight='balanced', n_jobs=-1
             )
+
+            metrics = result["metrics"]
             for k in metrics_keys:
                 metrics_summary[k].append(metrics[k])
 
-        # Trung bình ± SD (đối với NaN, dùng nanmean/nanstd)
+            metrics["Fingerprint"] = fp.upper()
+            metrics["Run"] = run + 1
+            metrics["Seed"] = seed
+            all_metrics_raw.append(metrics)
+
+            # === Lưu y_prob train/test ===
+            train_df = pd.DataFrame({
+                "y_true": result["y_train_true"],
+                "y_prob": result["y_prob_train"]
+            })
+            test_df = pd.DataFrame({
+                "y_true": result["y_test_true"],
+                "y_prob": result["y_prob_test"]
+            })
+
+            train_path = f"{prob_folder}/{BASE_PREFIX}_train_prob_{fp_file}_run{run+1}.csv"
+            test_path = f"{prob_folder}/{BASE_PREFIX}_test_prob_{fp_file}_run{run+1}.csv"
+
+            train_df.to_csv(train_path, index=False)
+            test_df.to_csv(test_path, index=False)
+
+            print(f"💾 Đã lưu: {train_path}, {test_path}")
+
+        # Mean ± SD
         summary = {k: (np.nanmean(v), np.nanstd(v)) for k, v in metrics_summary.items()}
         results_all[fp] = summary
 
-        print(f"--- {fp.upper()} Results (Mean ± SD over {num_runs} runs) ---")
+        print(f"\n📊 --- {fp.upper()} Results (Mean ± SD over {num_runs} runs) ---")
         for k, (mean_val, std_val) in summary.items():
             print(f"{k}: {mean_val:.3f} ± {std_val:.3f}")
 
+    # Xuất file raw từng run
+    df_raw = pd.DataFrame(all_metrics_raw)
+    df_raw.to_csv(f"{BASE_PREFIX}_XGB_fingerprint_metrics_raw.csv", index=False)
+    print(f"\n✅ Saved raw results: {BASE_PREFIX}_XGB_fingerprint_metrics_raw.csv")
+
     return results_all
 
+# === Hàm chính ===
 def main():
-    # Đổi 'Estate' -> 'estate' cho chắc khớp tên file
     fingerprints = ["ecfp", "estate", "maccs", "phychem", "rdkit"]
     results_by_fp = run_all_fingerprints(fingerprints, num_runs=3)
 
-    # Export to CSV (bảng hiển thị Mean ± SD dưới dạng text)
+    # Xuất bảng Mean ± SD
     df_export = pd.DataFrame({
         fp.upper(): {metric: f"{mean:.3f} ± {std:.3f}" for metric, (mean, std) in metrics.items()}
         for fp, metrics in results_by_fp.items()
     }).T
-    df_export.to_csv("3.InFlamNat_XGB_fingerprint_metrics.csv")
-    print("\nSaved results: 3.InFlamNat (XGB).")
+    df_export.to_csv(f"{BASE_PREFIX}_XGB_fingerprint_metrics.csv")
+    print(f"\n✅ Saved summary: {BASE_PREFIX}_XGB_fingerprint_metrics.csv")
 
 if __name__ == "__main__":
     main()

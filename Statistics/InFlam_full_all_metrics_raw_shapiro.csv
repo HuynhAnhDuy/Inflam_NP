@@ -1,0 +1,6 @@
+Dependent Variable,N,Alpha,Shapiro-Wilk Statistic,p-value,Assessment
+Accuracy,60,0.05,0.944019,0.0082267375,Non-normal
+MCC,60,0.05,0.941735,0.0064799199,Non-normal
+Sensitivity,60,0.05,0.876929,2.0959e-05,Non-normal
+Specificity,60,0.05,0.771951,2.88e-08,Non-normal
+AUROC,60,0.05,0.895231,8.85547e-05,Non-normal

@@ -3,7 +3,7 @@ import pandas as pd
 # ====== Đường dẫn các tập cuối ======
 f1 = "1.Inflampred_modified.csv"
 f2 = "2.AISMPred_modified.csv"
-f3 = "3.InFlamNat_modified.csv"
+f3 = "3.InFlamNat_preprocess.csv"
 
 key_col = "canonical_smiles"
 

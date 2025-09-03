@@ -1,0 +1,6 @@
+Dependent Variable,Kruskal-Wallis H Statistic,p-value,Significance
+Accuracy,58.48950401126493,6.691751872612559e-06,Significant differnence
+MCC,58.43169398907105,6.832808199310771e-06,Significant differnence
+Sensitivity,55.883287011302585,1.700683778026898e-05,Significant differnence
+Specificity,54.082786490193925,3.208448861879266e-05,Significant differnence
+AUROC,58.49726775956282,6.673027652743641e-06,Significant differnence

@@ -1,7 +1,7 @@
 import pandas as pd
 
 # đọc file
-df = pd.read_csv("Full_data.csv")
+df = pd.read_csv("full.csv")
 
 # đếm số lượng mỗi nhãn
 counts = df["Label"].value_counts()

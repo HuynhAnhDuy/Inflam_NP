@@ -124,11 +124,11 @@ def process_and_save_features(df, smiles_col, prefix):
 
 # --------------------------------------------------------------------- #
 def main():
-    x_train = pd.read_csv("3.InFlamNat_preprocess.csv", index_col=0)
-    x_test  = pd.read_csv("2.AISMPred_preprocess.csv", index_col=0)
+    x_train = pd.read_csv("/home/andy/andy/Inflam_NP/preprocessing/InFlam_full_x_train.csv", index_col=0)
+    x_test  = pd.read_csv("/home/andy/andy/Inflam_NP/preprocessing/InFlam_full_x_test.csv", index_col=0)
 
-    process_and_save_features(x_train, "canonical_smiles", "3.InFlamNat_x_full")
-    process_and_save_features(x_test,  "canonical_smiles", "2.AISMPred_x_full")
+    process_and_save_features(x_train, "canonical_smiles", "InFlam_full_x_train")
+    process_and_save_features(x_test,  "canonical_smiles", "InFlam_full_x_test")
 
 if __name__ == "__main__":
     main()
