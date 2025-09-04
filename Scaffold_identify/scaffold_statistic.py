@@ -8,7 +8,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # === 1) Đọc dữ liệu ===
-input_file = "InFlam_full.csv"   # 👈 thay bằng tên file của bạn
+input_file = "3.InFlamNat_preprocess.csv"   # 👈 thay bằng tên file của bạn
 df = pd.read_csv(input_file)
 
 # --- Chuẩn hoá tên cột ---
@@ -81,14 +81,14 @@ scaffold_df['Significant'] = (
 
 # === 6) Xuất full kết quả ===
 scaffold_df = scaffold_df.sort_values(by='p_value', ascending=True)
-full_out = "InFlam_full_scaffold_statistic.csv"
+full_out = "3.InFlamNat_preprocess_scaffold_statistic.csv"
 scaffold_df.to_csv(full_out, index=True)
 
 # === 7) Xuất danh sách scaffold Significant ===
 sig_pos_only = scaffold_df[scaffold_df['Significant']].copy()
 sig_pos_only = sig_pos_only.sort_values(['p_value','Pos'], ascending=[True, False])
 
-pos_out = "InFlam_full_scaffold_POSonly_sig.csv"
+pos_out = "3.InFlamNat_preprocess_scaffold_POSonly_sig.csv"
 sig_pos_only.to_csv(pos_out, index=True)
 
 print(f"✅ Phân tích xong.")

@@ -3,12 +3,13 @@ import numpy as np
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from rdkit.Chem import AllChem
-from xgboost import XGBClassifier
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import (
-    classification_report, confusion_matrix, matthews_corrcoef,
-    roc_auc_score, accuracy_score
+    accuracy_score, confusion_matrix, matthews_corrcoef,
+    roc_auc_score, precision_score, precision_recall_curve,
+    balanced_accuracy_score, auc
 )
+from xgboost import XGBClassifier
 
 # === 1. Load data ===
 df_train = pd.read_csv("InFlam_full_x_train.csv")
@@ -18,8 +19,7 @@ df_test = pd.read_csv("InFlam_full_x_test.csv")
 def get_scaffold(smiles):
     mol = Chem.MolFromSmiles(smiles)
     if mol:
-        scaffold = MurckoScaffold.GetScaffoldForMol(mol)
-        return Chem.MolToSmiles(scaffold)
+        return Chem.MolToSmiles(MurckoScaffold.GetScaffoldForMol(mol))
     return "None"
 
 def mol_to_ecfp(smiles, radius=2, nBits=2048):
@@ -48,38 +48,79 @@ X_test = np.hstack([X_ecfp_test, X_scaffold_test])
 y_train = df_train['Label'].values
 y_test = df_test['Label'].values
 
-# === 6. Train XGBoost ===
-model = XGBClassifier(
-    use_label_encoder=False,  # tránh warning khi huấn luyện
-    eval_metric='logloss',    # cần thiết khi use_label_encoder=False
-    scale_pos_weight=(y_train == 0).sum() / (y_train == 1).sum(),  # xử lý imbalance
-    random_state=42,
-    n_jobs=-1
+# === 6. Training function ===
+def train_xgboost(X_train, y_train, X_test, seed):
+    model = XGBClassifier(
+        n_estimators=500,
+        learning_rate=0.05,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        reg_alpha=1.0,
+        reg_lambda=1.0,
+        gamma=0,
+        min_child_weight=1,
+        max_depth=6,
+        objective="binary:logistic",
+        use_label_encoder=False,
+        eval_metric="logloss",
+        random_state=seed,
+        n_jobs=-1
+    )
+    model.fit(X_train, y_train)
+    y_proba = model.predict_proba(X_test)[:, 1]
+    y_pred = (y_proba >= 0.5).astype(int)
+    return y_pred, y_proba
+
+# === 7. Run 3 seeds ===
+results = []
+for run, seed in enumerate([42, 43, 44], start=1):
+    y_pred, y_proba = train_xgboost(X_train, y_train, X_test, seed)
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+
+    specificity = tn / (tn + fp) if (tn + fp) > 0 else np.nan
+    sensitivity = tp / (tp + fn) if (tp + fn) > 0 else np.nan
+    precision = precision_score(y_test, y_pred, zero_division=0)
+    balanced_acc = balanced_accuracy_score(y_test, y_pred)
+
+    prec_arr, rec_arr, _ = precision_recall_curve(y_test, y_proba)
+    pr_auc = auc(rec_arr, prec_arr)
+
+    results.append({
+        "Run": run,
+        "Seed": seed,
+        "Accuracy": accuracy_score(y_test, y_pred),
+        "Balanced Accuracy": balanced_acc,
+        "AUROC": roc_auc_score(y_test, y_proba),
+        "AUPRC": pr_auc,
+        "MCC": matthews_corrcoef(y_test, y_pred),
+        "Precision": precision,
+        "Sensitivity": sensitivity,
+        "Specificity": specificity
+    })
+
+# === 8. Save raw results
+df_raw = pd.DataFrame(results)
+df_raw.to_csv("xgb_metrics_ecfp+scaffold_raw.csv", index=False)
+print("✅ Đã lưu kết quả từng lần chạy → xgb_metrics_ecfp+scaffold_raw.csv")
+
+# === 9. Tính trung bình ± SD và lưu
+metrics_order = [
+    "Accuracy", "Balanced Accuracy", "AUROC", "AUPRC",
+    "MCC", "Precision", "Sensitivity", "Specificity"
+]
+
+df_summary_stats = df_raw[metrics_order].agg(['mean', 'std']).T
+df_summary_stats["Scaffold"] = (
+    df_summary_stats["mean"].round(3).astype(str) + " ± " + df_summary_stats["std"].round(3).astype(str)
 )
-model.fit(X_train, y_train)
 
-y_pred = model.predict(X_test)
-y_proba = model.predict_proba(X_test)[:, 1]
+# Đưa về format: hàng = Scaffold, cột = các metric
+df_summary = df_summary_stats[["Scaffold"]].T
+df_summary.index = ["Scaffold"]
 
-# === 7. Metrics ===
-report = classification_report(y_test, y_pred, output_dict=True)
-conf_matrix = confusion_matrix(y_test, y_pred)
-mcc = matthews_corrcoef(y_test, y_pred)
-auc = roc_auc_score(y_test, y_proba)
-accuracy = accuracy_score(y_test, y_pred)
+df_summary.to_csv("xgb_metrics_ecfp+scaffold_summary.csv")
+print("✅ Đã lưu summary → xgb_metrics_ecfp+scaffold_summary.csv")
 
-# Confusion matrix unpack
-tn, fp, fn, tp = conf_matrix.ravel()
-specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
-sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0  # same as recall of class 1
-
-# === 8. In kết quả ===
-print("\n📊 Classification Report:")
-print(classification_report(y_test, y_pred))
-
-print(f"\n✅ Accuracy:      {accuracy:.3f}")
-print(f"✅ MCC:           {mcc:.3f}")
-print(f"✅ Sensitivity:   {sensitivity:.3f}")
-print(f"✅ Specificity:   {specificity:.3f}")
-print(f"✅ AUC:           {auc:.3f}")
-print(f"✅ Confusion Matrix:\n{conf_matrix}")
+# === 10. Print to terminal
+print("\n📊 Trung bình ± SD trên 3 lần chạy (XGBoost):")
+print(df_summary)

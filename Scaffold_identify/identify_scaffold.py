@@ -3,7 +3,7 @@ from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
 
 # Đọc file CSV
-df = pd.read_csv('InFlam_full.csv')  # thay thế bằng đường dẫn thực tế
+df = pd.read_csv('3.InFlamNat_preprocess.csv')  # thay thế bằng đường dẫn thực tế
 
 # Giả sử cột SMILES tên là 'canonical_smiles'
 def get_murcko_scaffold(smiles):
@@ -18,4 +18,4 @@ def get_murcko_scaffold(smiles):
 df['murcko_scaffold'] = df['canonical_smiles'].apply(get_murcko_scaffold)
 
 # Lưu kết quả ra file mới (tuỳ chọn)
-df.to_csv('InFlam_full_scaffold.csv', index=False)
+df.to_csv('3.InFlamNat_preprocess_scaffold.csv', index=False)

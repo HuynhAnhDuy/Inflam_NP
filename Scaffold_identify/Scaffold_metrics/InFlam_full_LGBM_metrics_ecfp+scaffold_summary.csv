@@ -1,0 +1,2 @@
+,Accuracy,Balanced Accuracy,AUROC,AUPRC,MCC,Precision,Sensitivity,Specificity
+Scaffold,0.803 ± 0.0,0.803 ± 0.0,0.879 ± 0.0,0.883 ± 0.0,0.605 ± 0.0,0.811 ± 0.0,0.788 ± 0.0,0.817 ± 0.0

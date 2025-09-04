@@ -1,4 +1,4 @@
-,canonical_smiles
+Index,canonical_smiles
 7599,OC/C=C/c1ccc(O)c(/C=C/[C@]23CCC(CO)=C[C@H]2c2cc(/C=C/CO)ccc2O[C@H]3O)c1
 7600,OC/C=C/c1ccc(O)c(/C=C/[C@@]23CCC(CO)=C[C@H]2c2cc(/C=C/CO)ccc2O[C@H]3O)c1
 7601,CC1=C[C@H]2c3cc(/C=C/CO)ccc3O[C@@H](O)[C@@]2(/C=C/c2cc(/C=C/CO)ccc2O)CC1
