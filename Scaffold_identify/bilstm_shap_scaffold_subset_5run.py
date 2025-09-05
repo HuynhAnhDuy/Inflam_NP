@@ -12,7 +12,6 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Bidirectional, Dropout
 from tensorflow.keras.optimizers import Adam
-import time
 
 # ==== 1. Set seed for reproducibility ====
 def set_seed(seed=42):
@@ -67,8 +66,7 @@ def main(num_runs=5):
     all_scaffold_shap = []
 
     for run_index in range(num_runs):
-        print(f"\n🔁 Run {run_index + 1}/{num_runs}")
-        start_time = time.time()
+        print(f"🔁 Run {run_index + 1}/{num_runs}")
 
         # === Train model on full data ===
         model = build_model(input_dim=X_df.shape[1])
@@ -78,26 +76,18 @@ def main(num_runs=5):
         def predict_fn(x):
             return model.predict(x.reshape((x.shape[0], 1, x.shape[1])))
 
-        # Keep background small (200), but explain entire dataset
-        background = X_df.sample(n=200, random_state=100 + run_index)
-        explain_data = X_df  # full 3100 samples
-
+        background = X_df.sample(n=min(200, len(X_df)), random_state=100 + run_index)
         explainer = shap.KernelExplainer(predict_fn, background)
-        shap_values = explainer.shap_values(explain_data, nsamples=100)
+        shap_values = explainer.shap_values(background, nsamples=100)
         expected_value = explainer.expected_value
 
         shap_values = shap_values[0] if isinstance(shap_values, list) else shap_values
         shap_values = np.array(shap_values).squeeze()
 
-        background_scaffold = df['scaffold'].values  # all scaffolds
-
+        background_scaffold = df.iloc[background.index]['scaffold'].values
         for i, scaffold in enumerate(background_scaffold):
             shap_score = shap_values[i].mean()
             all_scaffold_shap.append((scaffold, shap_score))
-
-        elapsed = time.time() - start_time
-        print(f"✅ SHAP done for {len(explain_data)} molecules in {elapsed:.2f} seconds")
-        print(f"📌 Unique scaffolds analyzed: {df['scaffold'].nunique()}")
 
     # === Scaffold-level SHAP summary ===
     df_shap = pd.DataFrame(all_scaffold_shap, columns=["scaffold", "mean_shap"])
@@ -105,8 +95,7 @@ def main(num_runs=5):
     df_summary = df_summary.sort_values(by="mean_shap", ascending=False)
     df_summary["effect"] = df_summary["mean_shap"].apply(lambda x: "positive" if x > 0 else "negative")
     df_summary.to_csv(f"{output_dir}/scaffold_shap_summary.csv", index=False)
-
-    print(f"\n✅ Saved scaffold SHAP summary → {output_dir}/scaffold_shap_summary.csv")
+    print(f"✅ Saved scaffold SHAP summary → {output_dir}/scaffold_shap_summary.csv")
 
 if __name__ == "__main__":
     main(num_runs=5)

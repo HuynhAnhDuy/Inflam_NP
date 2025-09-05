@@ -11,10 +11,10 @@ except Exception:
     _HAS_STD = False
 
 # ------------- CẤU HÌNH -------------
-INPUT_CSV   = "3.InFlamNat.csv"          # Đổi thành file của bạn
+INPUT_CSV   = "preprocessing/coconut_csv-09-2025.csv"          # Đổi thành file của bạn
 SMILES_COL  = "SMILES"             # Đổi thành tên cột SMILES của bạn
-OUTPUT_OK   = "smiles_ok.csv"      # (tuỳ chọn) file chỉ gồm dòng hợp lệ
-OUTPUT_BAD  = "smiles_bad.csv"     # (tuỳ chọn) file ghi lại dòng hỏng
+OUTPUT_OK   = "coconut_clean.csv"      # (tuỳ chọn) file chỉ gồm dòng hợp lệ
+OUTPUT_BAD  = "coconut_smiles_bad.csv"     # (tuỳ chọn) file ghi lại dòng hỏng
 
 # Tắt bớt log RDKit
 RDLogger.DisableLog('rdApp.error')

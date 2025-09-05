@@ -5,10 +5,10 @@ import pandas as pd
 import os
 
 # ========= CẤU HÌNH =========
-CSV_PATH = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_analysis_20250904_150634/scaffold_shap_summary.csv"   # <-- Đổi thành đường dẫn file CSV của bạn
+CSV_PATH = "/home/andy/andy/Inflam_NP/Scaffold_identify/Scaffold_structure_pos_scaffold_full/prioritized_scaffolds_diverse_topN_fulldata.csv"   # <-- Đổi thành đường dẫn file CSV của bạn
 SCAFFOLD_COL = "scaffold"             # <-- Đặt đúng tên cột trong CSV
 N = 10                                # Số scaffold muốn vẽ
-OUT_DIR = "Scaffold_structure"        # Thư mục output
+OUT_DIR = "Scaffold_structure_pos_scaffold_full"        # Thư mục output
 IMG_SIZE = (500, 250)                 # Kích thước SVG (width, height)
 
 # ========= ĐỌC CSV =========
