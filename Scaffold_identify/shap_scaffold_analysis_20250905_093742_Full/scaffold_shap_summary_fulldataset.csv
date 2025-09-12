@@ -2136,4 +2136,4 @@ O=C(Nc1ccc(NC(=O)C2CC2)nc1)c1ccncc1,-0.000242104,negative
 c1ccc(CNc2ccccc2)cc1,-0.000244141,negative
 C(=C1Nc2ccccc2S1)c1ccncn1,-0.000289306,negative
 O=C1c2cc3c(cc2[C@]2(C=CCCC2)C(=O)N1CCc1ccccc1)OCO3,-0.000776878,negative
-O=c1cc(-c2ccccc2)oc2c3c(ccc12)OCCC3,-8.90771E+12,negative
+O=c1cc(-c2ccccc2)oc2c3c(ccc12)OCCC3,-8.91E+12,negative
