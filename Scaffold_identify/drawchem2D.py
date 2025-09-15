@@ -8,12 +8,19 @@ from rdkit.Chem import AllChem
 import os
 
 # === 1. Load dữ liệu chứa SMILES ===
-df = pd.read_csv("matched_Thiazolyl-triazine-phenyl_compounds.csv",encoding='latin-1')
+df = pd.read_csv(
+    "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119/molecules_scaffold_O=c1c2ccccc2oc2ccccc12.csv",
+    encoding='latin-1'
+)
 smiles_list = df['canonical_smiles'].dropna().unique()[:50]
 
-# === 2. Vẽ SMILES với scaffold được tô màu===
-def draw_smiles_with_highlighted_scaffold(smiles, name, output_dir="Thiazolyl-triazine-phenyl_highlighted", 
-                                          img_size=(500, 250)):
+# === 2. Vẽ SMILES với scaffold được tô màu ===
+def draw_smiles_with_highlighted_scaffold(
+    smiles,
+    name,
+    output_dir="/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119",
+    img_size=(500, 250)
+):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         print(f"⚠️ Invalid SMILES: {smiles}")
@@ -37,15 +44,17 @@ def draw_smiles_with_highlighted_scaffold(smiles, name, output_dir="Thiazolyl-tr
         if a1 in atom_set and a2 in atom_set:
             match_bonds.append(bond.GetIdx())
 
-    bond_colors = {b: (1.0, 0.41, 0.71) for b in match_bonds}
+    # === Dùng màu cam ambient ===
+    color = (0.1, 0.6, 1.0)
+    bond_colors = {b: color for b in match_bonds}
 
     os.makedirs(output_dir, exist_ok=True)
 
     drawer = rdMolDraw2D.MolDraw2DSVG(*img_size)
     drawer.drawOptions().clearBackground = True
-    drawer.drawOptions().highlightBondWidthMultiplier = 4 
-    drawer.drawOptions().fillHighlights = True  
-    drawer.drawOptions().highlightColour = (1.0, 0.2, 0.2)
+    drawer.drawOptions().highlightBondWidthMultiplier = 4
+    drawer.drawOptions().fillHighlights = True
+    drawer.drawOptions().highlightColour = color # fallback nếu không truyền bond_colors
 
     rdMolDraw2D.PrepareAndDrawMolecule(
         drawer,
@@ -59,11 +68,11 @@ def draw_smiles_with_highlighted_scaffold(smiles, name, output_dir="Thiazolyl-tr
     with open(os.path.join(output_dir, f"{name}.svg"), "w") as f:
         f.write(svg)
 
-    print(f"✅ Saved: {name}.svg with scaffold bonds in color")
+    print(f"✅ Saved: {name}.svg with scaffold bonds highlighted in color")
 
 # === 3. Chạy cho toàn bộ danh sách SMILES ===
 for i, smiles in enumerate(smiles_list):
     name = f"compound_{i+1}"
     draw_smiles_with_highlighted_scaffold(smiles, name)
 
-print("🎯 Done: All scaffold bonds are highlighted.")
+print("🎯 Done: All scaffold bonds are highlighted in color.")

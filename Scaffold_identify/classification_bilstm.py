@@ -1,107 +1,136 @@
-import pandas as pd
+import os
+import random
 import numpy as np
+import pandas as pd
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
-from rdkit.Chem import AllChem
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.metrics import (
-    classification_report, confusion_matrix, matthews_corrcoef,
-    roc_auc_score, accuracy_score
-)
+from rdkit.Chem import AllChem, DataStructs
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Bidirectional, LSTM, Dense, Dropout
+from tensorflow.keras.layers import Dense, LSTM, Bidirectional, Dropout
 from tensorflow.keras.optimizers import Adam
-import random
-import os
+from sklearn.metrics import (
+    accuracy_score, matthews_corrcoef, roc_auc_score, average_precision_score,
+    confusion_matrix
+)
 
-# === 1. Load data ===
-df_train = pd.read_csv("InFlam_full_x_train.csv")
-df_test = pd.read_csv("InFlam_full_x_test.csv")
-
-# === 2. Scaffold & fingerprint functions ===
-def get_scaffold(smiles):
-    mol = Chem.MolFromSmiles(smiles)
-    if mol:
-        return Chem.MolToSmiles(MurckoScaffold.GetScaffoldForMol(mol))
-    return "None"
-
-def mol_to_ecfp(smiles, radius=2, nBits=2048):
-    mol = Chem.MolFromSmiles(smiles)
-    if not mol:
-        return np.zeros((nBits,))
-    fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius, nBits)
-    return np.array(fp)
-
-# === 3. Tính scaffold và ECFP ===
-for df in [df_train, df_test]:
-    df['scaffold'] = df['canonical_smiles'].apply(get_scaffold)
-    df['ecfp'] = df['canonical_smiles'].apply(mol_to_ecfp)
-
-X_ecfp_train = np.stack(df_train['ecfp'].values)
-X_ecfp_test = np.stack(df_test['ecfp'].values)
-
-# === 4. Encode scaffold ===
-ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
-X_scaffold_train = ohe.fit_transform(df_train[['scaffold']])
-X_scaffold_test = ohe.transform(df_test[['scaffold']])
-
-# === 5. Combine ECFP + Scaffold ===
-X_train = np.hstack([X_ecfp_train, X_scaffold_train])
-X_test = np.hstack([X_ecfp_test, X_scaffold_test])
-y_train = df_train['Label'].values
-y_test = df_test['Label'].values
-
-# === 6. Reshape for BiLSTM ===
-X_train = X_train.reshape((X_train.shape[0], 1, X_train.shape[1]))
-X_test = X_test.reshape((X_test.shape[0], 1, X_test.shape[1]))
-
-# === 7. Function to build and train model ===
-def set_seed(seed):
+# ==== 1. Set seed ====
+def set_seed(seed=42):
     os.environ['PYTHONHASHSEED'] = str(seed)
     tf.random.set_seed(seed)
     np.random.seed(seed)
     random.seed(seed)
 
-def build_and_train_model(X_train, y_train, X_test, seed):
-    set_seed(seed)
+# ==== 2. Scaffold + ECFP ==== 
+def get_scaffold(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    return Chem.MolToSmiles(MurckoScaffold.GetScaffoldForMol(mol)) if mol else None
+
+def smiles_to_ecfp(smiles, n_bits=2048):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol:
+        fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=n_bits)
+        arr = np.zeros((n_bits,), dtype=int)
+        DataStructs.ConvertToNumpyArray(fp, arr)
+        return arr
+    return np.zeros(n_bits)
+
+def smiles_to_ecfp_with_scaffold(smiles, n_bits=2048):
+    # ECFP của molecule
+    ecfp_mol = smiles_to_ecfp(smiles, n_bits)
+    # ECFP của scaffold
+    scaffold = get_scaffold(smiles)
+    ecfp_scaffold = smiles_to_ecfp(scaffold, n_bits) if scaffold else np.zeros(n_bits)
+    # Concatenate (molecule + scaffold)
+    return np.concatenate([ecfp_mol, ecfp_scaffold])
+
+# ==== 3. Build BiLSTM model ====
+def build_model(input_dim):
     model = Sequential([
-        Bidirectional(LSTM(64, return_sequences=True, input_shape=(1, X_train.shape[2]))),
+        Bidirectional(LSTM(64, return_sequences=True, input_shape=(1, input_dim))),
         Dropout(0.3),
         Bidirectional(LSTM(32)),
         Dropout(0.3),
         Dense(100, activation='relu'),
         Dense(1, activation='sigmoid')
     ])
-    model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['accuracy'])
-    model.fit(X_train, y_train, epochs=30, batch_size=32, validation_split=0.1, verbose=0)
-    y_proba = model.predict(X_test).flatten()
-    y_pred = (y_proba >= 0.5).astype(int)
-    return y_pred, y_proba
+    model.compile(optimizer=Adam(learning_rate=0.001),
+                  loss='binary_crossentropy',
+                  metrics=['accuracy'])
+    return model
 
-# === 8. Run 3 independent training rounds ===
-metrics = {
-    'accuracy': [], 'mcc': [], 'sensitivity': [], 'specificity': [],'auc' : []
-}
+# ==== 4. Load train/test dataset có sẵn ====
+df_train = pd.read_csv("InFlam_full_x_train.csv")
+df_test = pd.read_csv("InFlam_full_x_test.csv")
 
-for seed in [42, 43, 44]:
-    y_pred, y_proba = build_and_train_model(X_train, y_train, X_test, seed)
-    conf_matrix = confusion_matrix(y_test, y_pred)
-    mcc = matthews_corrcoef(y_test, y_pred)
-    auc = roc_auc_score(y_test, y_proba)
+df_train = df_train.dropna(subset=["canonical_smiles", "Label"])
+df_test = df_test.dropna(subset=["canonical_smiles", "Label"])
+df_train["Label"] = df_train["Label"].astype(int)
+df_test["Label"] = df_test["Label"].astype(int)
+
+X_train = np.array([smiles_to_ecfp_with_scaffold(s) for s in df_train["canonical_smiles"]])
+y_train = df_train["Label"].values
+X_test = np.array([smiles_to_ecfp_with_scaffold(s) for s in df_test["canonical_smiles"]])
+y_test = df_test["Label"].values
+
+# Reshape cho BiLSTM
+X_train = X_train.reshape((X_train.shape[0], 1, X_train.shape[1]))
+X_test = X_test.reshape((X_test.shape[0], 1, X_test.shape[1]))
+
+# ==== 5. Train & evaluate 1 lần ====
+def run_once(seed):
+    set_seed(seed)
+
+    model = build_model(X_train.shape[2])
+    model.fit(
+        X_train, y_train,
+        validation_split=0.2,
+        epochs=20,
+        batch_size=32,
+        verbose=1
+    )
+
+    y_prob = model.predict(X_test).ravel()
+    y_pred = (y_prob > 0.5).astype(int)
+
     acc = accuracy_score(y_test, y_pred)
-    tn, fp, fn, tp = conf_matrix.ravel()
-    specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
-    sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
-    metrics['accuracy'].append(acc)
-    metrics['mcc'].append(mcc)    
-    metrics['specificity'].append(specificity)
-    metrics['sensitivity'].append(sensitivity)
-    metrics['auc'].append(auc)
+    mcc = matthews_corrcoef(y_test, y_pred)
+    auroc = roc_auc_score(y_test, y_prob)
+    auprc = average_precision_score(y_test, y_prob)
 
-# === 9. Print mean ± std for each metric ===
-print("\n📊 Mean ± SD over 3 runs:")
-for name, values in metrics.items():
-    mean = np.mean(values)
-    std = np.std(values)
-    print(f"{name.capitalize():<12}: {mean:.3f} ± {std:.3f}")
+    tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+    sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0
+    specificity = tn / (tn + fp) if (tn + fp) > 0 else 0
+
+    return {
+        "Accuracy": acc,
+        "MCC": mcc,
+        "AUROC": auroc,
+        "AUPRC": auprc,
+        "Sensitivity": sensitivity,
+        "Specificity": specificity
+    }
+
+# ==== 6. Chạy 3 lần ====
+all_metrics = []
+for seed in [42, 43, 44]:
+    result = run_once(seed)
+    all_metrics.append(result)
+    print(f"🔁 Run {seed}: {result}")
+
+# ==== 7. Mean ± SD ====
+df_metrics = pd.DataFrame(all_metrics)
+mean_metrics = df_metrics.mean()
+std_metrics = df_metrics.std()
+
+summary = {metric: [f"{mean_metrics[metric]:.4f} ± {std_metrics[metric]:.4f}"]
+           for metric in mean_metrics.index}
+summary_df = pd.DataFrame(summary)
+
+# Lưu file
+out_file = "/home/andy/andy/Inflam_NP/Scaffold_identify/Scaffold_metrics/InFlam_full_BiLSTM_metrics_ecfp+scaffold_summary.csv"
+summary_df.to_csv(out_file, index=False)
+
+print("\n✅ Đã lưu file:", out_file)
+print("\n📊 Kết quả mean ± SD:")
+print(summary_df)

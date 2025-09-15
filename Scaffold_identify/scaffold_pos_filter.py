@@ -5,11 +5,11 @@ from rdkit.Chem import AllChem
 from rdkit.DataStructs.cDataStructs import TanimotoSimilarity
 
 # ======= Tham số =======
-SHAP_CSV       = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_analysis_20250905_093742_Full/scaffold_shap_summary_fulldataset.csv"  # cột: scaffold, mean_shap
+SHAP_CSV       = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119/scaffold_positive_overlap.csv"  # cột: scaffold, mean_shap
 DATA_CSV       = "3.InFlamNat_SHAP_with_scaffolds.csv"   # có: canonical_smiles, scaffold (hoặc scaffold_generic)
 SCAFF_COL      = "scaffold"          # đổi thành "scaffold_generic" nếu SHAP dùng generic
 MIN_COVERAGE   = 5
-TOPN           = 5
+TOPN           = 10
 SIM_THRESHOLD  = 0.8
 N_BITS         = 2048
 RADIUS         = 2
@@ -79,11 +79,11 @@ df["diversity_flag"] = div_flags
 
 # ======= 6) Xuất file =======
 # File FULL: giữ nguyên toàn bộ danh sách với flag đã cố định
-out_full = "prioritized_scaffolds_with_diversity_flag_fulldata.csv"
+out_full = "xgb_prioritized_scaffolds_with_diversity_flag_fulldata.csv"
 df.drop(columns=["fp"]).to_csv(out_full, index=False)
 
 # File TopN: chỉ lấy N dòng đầu TIÊN TỪ BẢNG ĐÃ SẮP XẾP (flag giữ nguyên, không tính lại)
-out_topn = "prioritized_scaffolds_diverse_topN_fulldata.csv"
+out_topn = "xgb_prioritized_scaffolds_diverse_topN_fulldata.csv"
 df_topn = df.head(TOPN).drop(columns=["fp"])
 df_topn.to_csv(out_topn, index=False)
 

@@ -1,0 +1,4 @@
+scaffold,mean_shap,coverage,priority,diversity_flag
+O=c1c2ccccc2oc2ccccc12,0.004014415,9,0.009243532136091692,True
+O=c1cc(-c2ccc3c(c2)OCO3)oc2c1ccc1occc12,0.002832016,5,0.0050742914850053595,True
+c1ccc(-c2cc3ccccc3o2)cc1,0.000955533,15,0.0026493000195279446,True

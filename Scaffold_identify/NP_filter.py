@@ -16,7 +16,7 @@ from tqdm import tqdm
 RDLogger.DisableLog('rdApp.*')  # giảm log RDKit
 
 # ================== CONFIG ==================
-POS_SCAFFOLDS_CSV = "/home/andy/andy/Inflam_NP/Scaffold_identify/Scaffold_structure_pos_scaffold_full/prioritized_scaffolds_diverse_topN_fulldata.csv"  # cột: scaffold
+POS_SCAFFOLDS_CSV = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_analysis_XGB_20250915_143444/scaffold_shap_summary.csv"  # cột: scaffold
 POS_SCAFF_COL     = "scaffold"
 
 NP_INPUT_PATHS = [

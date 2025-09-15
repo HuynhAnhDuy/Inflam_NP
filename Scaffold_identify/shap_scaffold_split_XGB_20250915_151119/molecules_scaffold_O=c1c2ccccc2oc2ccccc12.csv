@@ -1,0 +1,10 @@
+Index,Label,canonical_smiles,scaffold,scaffold_generic
+82,1,COc1c(O)cc2oc3cc(O)c(CC=C(C)C)c(O)c3c(=O)c2c1CC=C(C)C,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+83,1,CC(C)=CCc1c(O)cc2oc3cc(O)c(O)c(CC=C(C)C)c3c(=O)c2c1O,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+187,1,COc1cc(C)c2c(=O)c3c(O)cc(OC)cc3oc2c1,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+188,1,O=c1c2cc(O)c(O)cc2oc2cc(O)cc(O)c12,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+189,1,O=c1c2ccc(O)c(O)c2oc2cc(O)cc(O)c12,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+1192,1,CC(C)=CCC/C(C)=C/CCC(C)(O)CCc1c(O)c(O)cc2oc3cc(O)cc(O)c3c(=O)c12,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+1193,1,C/C=C\CC/C(C)=C/CC/C(C)=C/CCC(C)(O)CCc1c(O)c(O)cc2oc3cc(O)c(O)cc3c(=O)c12,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+1194,1,COc1c(O)cc2oc3cc(O)c(C/C=C(\C)CO)c(O)c3c(=O)c2c1C/C=C(\C)CCC=C(C)C,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
+1196,1,COc1c(O)cc2oc3cc(O)c(CCC(C)(C)O)c(O)c3c(=O)c2c1CC=C(C)C,O=c1c2ccccc2oc2ccccc12,CC1C2CCCCC2CC2CCCCC21
