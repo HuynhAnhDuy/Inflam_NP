@@ -1,6 +1,0 @@
-scaffold,scaffold_rank,compound_count
-O=C(/C=C/C=C/c1ccccc1)/C=C/c1ccccc1,1,1
-O=c1cccc2c1c1cc[nH]c3ccc(=O)n2c31,2,1
-O=C(NCCc1ccc2c(c1)OCCO2)c1cc2ccccc2o1,3,2
-c1ccc2c(c1)CCCC21Oc2cccc3cccc(c23)O1,4,3
-c1ccc(CCc2ccccc2)cc1,5,4
