@@ -9,16 +9,16 @@ import os
 
 # === 1. Load dữ liệu chứa SMILES ===
 df = pd.read_csv(
-    "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119/molecules_scaffold_O=c1c2ccccc2oc2ccccc12.csv",
+    "/home/andy/andy/Inflam_NP/Scaffold_identify/NPASS_scaffold_hopping_ecfp_annotated.csv",
     encoding='latin-1'
 )
-smiles_list = df['canonical_smiles'].dropna().unique()[:50]
+smiles_list = df['smiles1'].dropna().unique()[:50]
 
 # === 2. Vẽ SMILES với scaffold được tô màu ===
 def draw_smiles_with_highlighted_scaffold(
     smiles,
     name,
-    output_dir="/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119",
+    output_dir="/home/andy/andy/Inflam_NP/NP_predictions/Structure_9_scaffold_hopping",
     img_size=(500, 250)
 ):
     mol = Chem.MolFromSmiles(smiles)
@@ -72,7 +72,7 @@ def draw_smiles_with_highlighted_scaffold(
 
 # === 3. Chạy cho toàn bộ danh sách SMILES ===
 for i, smiles in enumerate(smiles_list):
-    name = f"compound_{i+1}"
+    name = f"original_{i+1}"
     draw_smiles_with_highlighted_scaffold(smiles, name)
 
 print("🎯 Done: All scaffold bonds are highlighted in color.")

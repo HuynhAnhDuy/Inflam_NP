@@ -1,0 +1,4 @@
+smiles1,scaffold1,source1,canonical_smiles,scaffold2,source2,similarity
+COc1cc(O)cc(/C=C/c2ccccc2)c1,C(=C/c1ccccc1)\c1ccccc1,file1 (original),COc1cc(O)cc(C=Cc2ccccc2)c1,C(=Cc1ccccc1)c1ccccc1,file2 (candidate),1
+COc1ccc(-c2coc3cc(O)ccc3c2=O)cc1,O=c1c(-c2ccccc2)coc2ccccc12,file1 (original),COc1ccc(-[13c]2coc3[13cH]c(O)ccc3[13c]2=O)cc1,O=[13c]1c2ccc[13cH]c2oc[13c]1-c1ccccc1,file2 (candidate),1
+COc1cc(/C=C/c2ccc(O)cc2)cc(OC)c1,C(=C/c1ccccc1)\c1ccccc1,file1 (original),COc1cc(C=Cc2ccc(O)cc2)cc(OC)c1,C(=Cc1ccccc1)c1ccccc1,file2 (candidate),1

@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 # ========= CẤU HÌNH =========
-CSV_PATH = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119/scaffold_positive_overlap.csv"   # <-- Đổi thành đường dẫn file CSV của bạn
+CSV_PATH = "/home/andy/andy/Inflam_NP/Scaffold_identify/NPASS_scaffold_hopping_ecfp_annotated.csv"   # <-- Đổi thành đường dẫn file CSV của bạn
 SCAFFOLD_COL = "scaffold"             # <-- Đặt đúng tên cột trong CSV
 N = 10                               # Số scaffold muốn vẽ
 OUT_DIR = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250915_151119"        # Thư mục output

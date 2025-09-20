@@ -1,4 +1,4 @@
-ID,canonical_smiles,lipinski_rule_of_five_violations,sa_score,y_pred
+ID,canonical_smiles,lipinski_rule_of_five_violations,sa_score,Label
 723,COc1ccc2c(=O)c(-c3ccc(O)cc3)coc2c1,0,1.956955472,1
 1229,COc1ccc(C=O)cc1O,0,1.873494182,1
 1641,COc1cc(/C=C/C(=O)OCc2ccccc2)ccc1O,0,1.80775362,1
