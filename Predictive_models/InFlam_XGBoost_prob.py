@@ -5,7 +5,7 @@ import pandas as pd
 from datetime import datetime
 
 # ===== CONFIG =====
-BASE_PREFIX    = "Coconut_NP_similar_modified"     # tiền tố file
+BASE_PREFIX    = "NPASS"     # tiền tố file
 FINGERPRINTS   = ["ecfp","rdkit","maccs"]        # 3 FP -> 3 CSV
 RUN_SEEDS      = [42, 43, 44]                    # số lần chạy để ensemble
 PRED_THRESHOLD = 0.5

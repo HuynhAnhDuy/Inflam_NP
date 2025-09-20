@@ -124,8 +124,8 @@ def process_and_save_features(df, smiles_col, prefix):
 
 # --------------------------------------------------------------------- #
 def main():
-    x_train = pd.read_csv("/home/andy/andy/Inflam_NP/preprocessing/NPASS_x_train.csv", index_col=0)
-    x_test  = pd.read_csv("/home/andy/andy/Inflam_NP/preprocessing/NPASS_x_test.csv", index_col=0)
+    x_train = pd.read_csv("/home/andy/andy/Inflam_NP/preprocessing/InFlam_full.csv", index_col=0)
+    x_test  = pd.read_csv("/home/andy/andy/Inflam_NP/preprocessing/NPASS_filtered.csv", index_col=0)
 
     process_and_save_features(x_train, "canonical_smiles", "NPASS_x_train")
     process_and_save_features(x_test,  "canonical_smiles", "NPASS_x_test")

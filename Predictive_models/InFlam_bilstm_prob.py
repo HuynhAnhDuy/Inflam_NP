@@ -9,7 +9,7 @@ from tensorflow.keras.optimizers import Adam
 from datetime import datetime
 
 # ===== CONFIG =====
-BASE_PREFIX    = "Coconut_NP_similar_modified"
+BASE_PREFIX    = "NPASS"
 FINGERPRINTS   = ["ecfp","rdkit","maccs"]   # 3 FP -> 3 CSV
 EPOCHS         = 30
 BATCH_SIZE     = 32
