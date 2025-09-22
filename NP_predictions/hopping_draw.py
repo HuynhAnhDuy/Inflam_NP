@@ -13,11 +13,11 @@ df = pd.read_csv(
     encoding='latin-1'
 )
 
-# Giữ tất cả canonical_smiles (không drop_duplicates nữa)
-df_all = df.dropna(subset=['canonical_smiles'])
+# Drop_duplicates (nếu cần)
+df_all = df.dropna(subset=['canonical_smiles2']).drop_duplicates(subset=['canonical_smiles2'])
 
 # Lấy tối đa 50 mẫu
-smiles_list = df_all[['canonical_smiles', 'smiles2_name']].values[:50]
+smiles_list = df_all[['canonical_smiles2', 'smiles2_name_ID']].values[:50]
 
 # === 2. Vẽ SMILES với scaffold được tô màu và thêm chú thích ===
 def draw_smiles_with_highlighted_scaffold(
@@ -50,14 +50,14 @@ def draw_smiles_with_highlighted_scaffold(
         if a1 in atom_set and a2 in atom_set:
             match_bonds.append(bond.GetIdx())
 
-    # === Dùng màu xanh nhạt highlight scaffold ===
-    color = (0.1, 0.6, 1.0)
+    # === Highlight scaffold ===
+    color = (0, 0, 0)  # đen
     bond_colors = {b: color for b in match_bonds}
 
     os.makedirs(output_dir, exist_ok=True)
 
     drawer = rdMolDraw2D.MolDraw2DSVG(*img_size)
-    drawer.drawOptions().clearBackground = True
+    drawer.drawOptions().clearBackground = False
     drawer.drawOptions().highlightBondWidthMultiplier = 4
     drawer.drawOptions().fillHighlights = True
     drawer.drawOptions().highlightColour = color
@@ -82,7 +82,7 @@ def draw_smiles_with_highlighted_scaffold(
 
 # === 3. Chạy cho toàn bộ danh sách SMILES duy nhất ===
 for i, (smiles, compound_name) in enumerate(smiles_list, start=1):
-    file_name = f"compound_hopping_{i}"  # tên file chỉ số thứ tự
+    file_name = f"C_{i}"  # tên file chỉ số thứ tự
     draw_smiles_with_highlighted_scaffold(smiles, compound_name, file_name)
 
 print("🎯 Done: All scaffold bonds are highlighted in color with legends (unique SMILES only).")
