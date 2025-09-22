@@ -3,19 +3,30 @@ from rdkit import Chem
 from rdkit.Chem import Draw
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem.Scaffolds import MurckoScaffold
+from rdkit.Chem import rdDepictor
 from rdkit.Chem import AllChem
 import os
 
-# === 1. Load dữ liệu chứa SMILES ===
+# === 1. Load dữ liệu chứa SMILES, loại trùng ===
 df = pd.read_csv(
-    "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_common_scaffold_hopping.csv",
+    "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_common_scaffold_hopping_annotated.csv",
     encoding='latin-1'
-).dropna(subset=["smiles1_can", "smiles2_can"])
+)
 
-pairs = df[["smiles1_can", "smiles2_can"]].drop_duplicates().values[:13]  # lấy 20 cặp đầu
+# Giữ tất cả canonical_smiles (không drop_duplicates nữa)
+df_all = df.dropna(subset=['canonical_smiles'])
 
-# === 2. Hàm vẽ 1 SMILES với scaffold highlight ===
-def draw_molecule_with_scaffold(smiles, name, output_dir, color=(0.1, 0.6, 1.0)):
+# Lấy tối đa 50 mẫu
+smiles_list = df_all[['canonical_smiles', 'smiles2_name']].values[:50]
+
+# === 2. Vẽ SMILES với scaffold được tô màu và thêm chú thích ===
+def draw_smiles_with_highlighted_scaffold(
+    smiles,
+    legend_text,   # dùng để hiển thị dưới hình
+    file_name,     # dùng làm tên file SVG
+    output_dir="/home/andy/andy/Inflam_NP/NP_predictions/structures_output",
+    img_size=(500, 250)
+):
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         print(f"⚠️ Invalid SMILES: {smiles}")
@@ -24,47 +35,54 @@ def draw_molecule_with_scaffold(smiles, name, output_dir, color=(0.1, 0.6, 1.0))
     AllChem.Compute2DCoords(mol)
 
     scaffold = MurckoScaffold.GetScaffoldForMol(mol)
-    if scaffold:
-        scaffold_smiles = Chem.MolToSmiles(scaffold)
-        scaffold = Chem.MolFromSmiles(scaffold_smiles)
+    scaffold_smiles = Chem.MolToSmiles(scaffold)
+    scaffold = Chem.MolFromSmiles(scaffold_smiles)
 
-        match_atoms = mol.GetSubstructMatch(scaffold)
-        atom_set = set(match_atoms)
-        match_bonds = [
-            bond.GetIdx() for bond in mol.GetBonds()
-            if bond.GetBeginAtomIdx() in atom_set and bond.GetEndAtomIdx() in atom_set
-        ]
-    else:
-        match_bonds = []
+    match_atoms = mol.GetSubstructMatch(scaffold)
+    if not match_atoms:
+        print(f"⚠️ No scaffold match for: {smiles}")
+        return
 
-    drawer = rdMolDraw2D.MolDraw2DSVG(300, 300)
+    atom_set = set(match_atoms)
+    match_bonds = []
+    for bond in mol.GetBonds():
+        a1, a2 = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
+        if a1 in atom_set and a2 in atom_set:
+            match_bonds.append(bond.GetIdx())
+
+    # === Dùng màu xanh nhạt highlight scaffold ===
+    color = (0.1, 0.6, 1.0)
+    bond_colors = {b: color for b in match_bonds}
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    drawer = rdMolDraw2D.MolDraw2DSVG(*img_size)
     drawer.drawOptions().clearBackground = True
     drawer.drawOptions().highlightBondWidthMultiplier = 4
     drawer.drawOptions().fillHighlights = True
+    drawer.drawOptions().highlightColour = color
+    drawer.drawOptions().legendFontSize = 20  # chỉnh cỡ chữ chú thích
 
-    bond_colors = {b: color for b in match_bonds}
-
+    # legend = tên hợp chất (smiles1_name)
     rdMolDraw2D.PrepareAndDrawMolecule(
-        drawer, mol,
+        drawer,
+        mol,
         highlightBonds=match_bonds,
-        highlightBondColors=bond_colors
+        highlightBondColors=bond_colors,
+        legend=legend_text
     )
     drawer.FinishDrawing()
 
     svg = drawer.GetDrawingText()
-
-    os.makedirs(output_dir, exist_ok=True)
-    filepath = os.path.join(output_dir, f"{name}.svg")
-    with open(filepath, "w") as f:
+    out_path = os.path.join(output_dir, f"{file_name}.svg")
+    with open(out_path, "w") as f:
         f.write(svg)
 
-    print(f"✅ Saved: {filepath}")
+    print(f"✅ Saved: {file_name}.svg (legend = {legend_text})")
 
-# === 3. Vẽ cho từng cặp ===
-OUTPUT_DIR = "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_common_hopping"
+# === 3. Chạy cho toàn bộ danh sách SMILES duy nhất ===
+for i, (smiles, compound_name) in enumerate(smiles_list, start=1):
+    file_name = f"compound_hopping_{i}"  # tên file chỉ số thứ tự
+    draw_smiles_with_highlighted_scaffold(smiles, compound_name, file_name)
 
-for i, (smi1, smi2) in enumerate(pairs, 1):
-    draw_molecule_with_scaffold(smi1, f"pair{i}_compound1", OUTPUT_DIR)
-    draw_molecule_with_scaffold(smi2, f"pair{i}_compound2", OUTPUT_DIR)
-
-print("🎯 Done: All compounds drawn with scaffold highlight.")
+print("🎯 Done: All scaffold bonds are highlighted in color with legends (unique SMILES only).")
