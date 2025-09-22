@@ -13,17 +13,28 @@ df = pd.read_csv(
     encoding='latin-1'
 )
 
-# Drop_duplicates (nếu cần)
-df_all = df.dropna(subset=['canonical_smiles2']).drop_duplicates(subset=['canonical_smiles2'])
+df_all = df.dropna(subset=['canonical_smiles1']).drop_duplicates(subset=['canonical_smiles1'])
+smiles_list = df_all[['canonical_smiles1', 'smiles1_name_ID']].values[:50]
 
-# Lấy tối đa 50 mẫu
-smiles_list = df_all[['canonical_smiles2', 'smiles2_name_ID']].values[:50]
+# === 2. Khai báo scaffold templates chuẩn ===
+templates = {
+    "flavonoid": Chem.MolFromSmiles("O=C1C=CC(=O)C2=CC=CC=C2O1"),   # flavone core
+    "chalcone": Chem.MolFromSmiles("O=C(/C=C/C1=CC=CC=C1)C2=CC=CC=C2")  # chalcone
+}
+for tpl in templates.values():
+    rdDepictor.Compute2DCoords(tpl)
 
-# === 2. Vẽ SMILES với scaffold được tô màu và thêm chú thích ===
+# === 3. SMARTS cho flavonoid core (nhiều cách viết để match linh hoạt)
+flavonoid_cores = [
+    Chem.MolFromSmarts("O=C1C=CC(=O)C2=CC=CC=C2O1"),   # kekulized
+    Chem.MolFromSmarts("O=C1C=CC(=O)c2ccccc2O1")       # aromatic
+]
+
+# === 4. Hàm vẽ SMILES với scaffold được tô màu ===
 def draw_smiles_with_highlighted_scaffold(
     smiles,
-    legend_text,   # dùng để hiển thị dưới hình
-    file_name,     # dùng làm tên file SVG
+    legend_text,
+    file_name,
     output_dir="/home/andy/andy/Inflam_NP/NP_predictions/structures_output",
     img_size=(500, 250)
 ):
@@ -32,8 +43,38 @@ def draw_smiles_with_highlighted_scaffold(
         print(f"⚠️ Invalid SMILES: {smiles}")
         return
 
-    AllChem.Compute2DCoords(mol)
+    # Nhận diện template
+    template_used = None
 
+    # Thử so SMARTS flavonoid
+    for core in flavonoid_cores:
+        if core is not None and mol.HasSubstructMatch(core):
+            template_used = templates["flavonoid"]
+            break
+
+    # Nếu SMARTS không nhận, fallback bằng tên chứa 'flavone'
+    if template_used is None and "flavone" in legend_text.lower():
+        template_used = templates["flavonoid"]
+
+    # Check chalcone
+    if template_used is None and mol.HasSubstructMatch(templates["chalcone"]):
+        template_used = templates["chalcone"]
+
+    # Áp dụng orientation với atomMap
+    if template_used:
+        match = mol.GetSubstructMatch(template_used)
+        if match:
+            rdDepictor.GenerateDepictionMatching2DStructure(
+                mol,
+                template_used,
+                atomMap=list(enumerate(match))
+            )
+        else:
+            AllChem.Compute2DCoords(mol)
+    else:
+        AllChem.Compute2DCoords(mol)
+
+    # Lấy scaffold thực tế để highlight
     scaffold = MurckoScaffold.GetScaffoldForMol(mol)
     scaffold_smiles = Chem.MolToSmiles(scaffold)
     scaffold = Chem.MolFromSmiles(scaffold_smiles)
@@ -44,26 +85,22 @@ def draw_smiles_with_highlighted_scaffold(
         return
 
     atom_set = set(match_atoms)
-    match_bonds = []
-    for bond in mol.GetBonds():
-        a1, a2 = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
-        if a1 in atom_set and a2 in atom_set:
-            match_bonds.append(bond.GetIdx())
+    match_bonds = [bond.GetIdx() for bond in mol.GetBonds()
+                   if bond.GetBeginAtomIdx() in atom_set and bond.GetEndAtomIdx() in atom_set]
 
-    # === Highlight scaffold ===
-    color = (0, 0, 0)  # đen
+    # Highlight màu xanh dương đậm
+    color = (0, 0, 0.8)
     bond_colors = {b: color for b in match_bonds}
 
+    # Vẽ SVG
     os.makedirs(output_dir, exist_ok=True)
-
     drawer = rdMolDraw2D.MolDraw2DSVG(*img_size)
     drawer.drawOptions().clearBackground = False
     drawer.drawOptions().highlightBondWidthMultiplier = 4
     drawer.drawOptions().fillHighlights = True
     drawer.drawOptions().highlightColour = color
-    drawer.drawOptions().legendFontSize = 20  # chỉnh cỡ chữ chú thích
+    drawer.drawOptions().legendFontSize = 20
 
-    # legend = tên hợp chất (smiles1_name)
     rdMolDraw2D.PrepareAndDrawMolecule(
         drawer,
         mol,
@@ -78,11 +115,11 @@ def draw_smiles_with_highlighted_scaffold(
     with open(out_path, "w") as f:
         f.write(svg)
 
-    print(f"✅ Saved: {file_name}.svg (legend = {legend_text})")
+    print(f"✅ Saved: {file_name}.svg (legend = {legend_text}, template = {template_used is not None})")
 
-# === 3. Chạy cho toàn bộ danh sách SMILES duy nhất ===
+# === 5. Chạy toàn bộ ===
 for i, (smiles, compound_name) in enumerate(smiles_list, start=1):
-    file_name = f"C_{i}"  # tên file chỉ số thứ tự
+    file_name = f"T_{i}"
     draw_smiles_with_highlighted_scaffold(smiles, compound_name, file_name)
 
-print("🎯 Done: All scaffold bonds are highlighted in color with legends (unique SMILES only).")
+print("🎯 Done: Flavonoid và Chalcone được nhận diện & align bằng template (SMARTS + fallback tên + atomMap).")

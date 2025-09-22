@@ -33,11 +33,11 @@ def combine_svgs(svg_files, out_file, ncols=4, cell_size=(300,300), scale_factor
 
 # --- Đọc tất cả file SVG trong folder ---
 input_folder = "/home/andy/andy/Inflam_NP/NP_predictions/structures_output"
-svg_files = glob.glob(os.path.join(input_folder, "C_*.svg"))
+svg_files = glob.glob(os.path.join(input_folder, "T_*.svg"))
 
 # Sắp xếp theo số trong tên file (T_1, T_2, ..., T_20)
 def extract_num(fname):
-    m = re.search(r"C_(\d+)\.svg", os.path.basename(fname))
+    m = re.search(r"T_(\d+)\.svg", os.path.basename(fname))
     return int(m.group(1)) if m else 9999
 
 svg_files = sorted(svg_files, key=extract_num)
@@ -47,6 +47,6 @@ part1 = svg_files[:8]    # T1–T8
 part2 = svg_files[8:16]  # T9–T16
 part3 = svg_files[16:]   # T17–T20
 
-combine_svgs(part1, "C_merged_part1.svg", ncols=4, cell_size=(350,200), scale_factor=0.72)
-combine_svgs(part2, "C_merged_part2.svg", ncols=4, cell_size=(350,200), scale_factor=0.72)
-combine_svgs(part3, "C_merged_part3.svg", ncols=4, cell_size=(300,200), scale_factor=0.6)
+combine_svgs(part1, "T_merged_part1.svg", ncols=4, cell_size=(350,200), scale_factor=0.72)
+combine_svgs(part2, "T_merged_part2.svg", ncols=4, cell_size=(350,200), scale_factor=0.72)
+combine_svgs(part3, "T_merged_part3.svg", ncols=4, cell_size=(300,250), scale_factor=0.65)
