@@ -1,0 +1,366 @@
+LigandID,canonical_smiles
+CHEMBL3983491,CN1CCN(CCCOc2ccc(-c3cc4c(C(=O)O)c[nH]c4cc3Cl)cc2)CC1=O
+CHEMBL4108810,C=CCOC1COC2C(Oc3nc4nc(-c5ccc(-c6ccccc6)cc5)c(Cl)cc4[nH]3)COC12
+CHEMBL4108349,CN=S(=O)(NC)c1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4111692,CN(C)S(=N)(=O)c1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+Berberine,COc1ccc2cc3[n+](cc2c1OC)CCc1cc2c(cc1-3)OCO2
+CHEMBL3933251,COc1nc(-c2cc3c(C(=O)O)c[nH]c3cc2Cl)ccc1N1CCC(O)C1
+CHEMBL3954907,CC(=O)N1CC(COc2ccc(-c3cc4c(C(=O)O)c[nH]c4cc3Cl)cc2)C1
+CHEMBL4108309,CCN(CC)c1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+Pseudoberberine,COc1cc2cc3[n+](cc2cc1OC)CCc1cc2c(cc1-3)OCO2
+CHEMBL4115276,CN(C)CCOc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL3948897,CN1CCC(c2ccc(-c3cc4c(C(=O)O)c[nH]c4cc3Cl)cc2)C1
+CHEMBL3921896,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(OCc4cccnc4)cc3)cc12
+CHEMBL4112187,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(OCCCN4CCC(F)C4)cc3)cc12
+CHEMBL4112959,OC1COC2C(Oc3nc4nc(-c5ccc(-c6ccc(Cn7ccnc7)cc6)cc5)c(Cl)cc4[nH]3)COC12
+CHEMBL4112013,CN=S(=O)(c1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1)N(C)C
+CHEMBL3917205,COC1CCN(CCCOc2ccc(-c3cc4c(C(=O)O)c[nH]c4cc3Cl)cc2)CC1
+CHEMBL4109776,CNS(C)(=O)=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4106759,CS(=O)(=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1)N1CCC1
+CHEMBL3942706,N#Cc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)c(F)c1
+CHEMBL4115651,O=C(O)C1CCC(c2ccc(-c3ccc(-c4nc5nc(OC6COC7C(O)COC67)[nH]c5cc4Cl)cc3)cc2)=N1
+CHEMBL4107904,CN(C)S(C)(=O)=NCc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+MK-8722,OC1COC2C(Oc3nc4nc(-c5ccc(-c6ccccc6)cc5)c(Cl)cc4[nH]3)COC12
+CHEMBL4115139,CS(=O)(=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1)NC1CCC1
+CHEMBL4111464,CC(C)NS(C)(=O)=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4109595,O=C(OC1CCC(c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)CC1)N1CCOCC1
+CHEMBL4110796,O=c1ccn(-c2ccc(-c3ccc(-c4nc5nc(OC6COC7C(O)COC67)[nH]c5cc4Cl)cc3)cc2)[nH]1
+CHEMBL3974541,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(OCCCN4CCOCC4=O)cc3)cc12
+CHEMBL2323522,COc1ccc2c(c1)c1c(n2C(=O)c2ccc(Cl)cc2)CCC(C(=O)O)C1
+CHEMBL4109888,CN(C)S(C)(=O)=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4114253,CCNS(C)(=O)=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4071175,O=C(O)c1cc(Oc2nc3cc(Cl)c(C#Cc4ccccc4)cc3[nH]2)ccc1Cl
+CHEMBL4108236,CCN(C)S(C)(=O)=Nc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4109999,CC(CO)(CO)c1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL4107245,O=C(O)CCCc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL3893471,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc4c(c3)OCC4)cc12
+Kazinol C,C=CC(C)(C)c1cc(CCCc2cc(O)c(O)c(CC=C(C)C)c2CC=C(C)C)c(O)cc1O
+CHEMBL4112726,OCc1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+CHEMBL3985364,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(OCC4CCO4)cc3)cc12
+CHEMBL4212217,O=C(O)C1CCc2c(c3cc(OCc4ccccc4)ccc3n2Cc2ccc(Cl)cc2)C1
+CHEMBL3927536,O=C(O)c1n[nH]c2cc(Cl)c(-c3ccc4c(c3)CCC4)cc12
+Adenosine monophosphate,C[n+]1cccc(C(=O)O)c1
+CHEMBL4212772,O=C(O)C1CCc2c(c3cc(OCc4ccccc4)ccc3n2Cc2ccccc2)C1
+Chelidonin,CN1Cc2c(ccc3c2OCO3)C2C(O)Cc3cc4c(cc3C21)OCO4
+CHEMBL4104303,Cc1ccc(Oc2nc3cc(Cl)c(C#Cc4ccccc4)cc3[nH]2)cc1C(=O)O
+CHEMBL4203380,O=C(O)C1CCc2[nH]c3ccc(OCc4ccccc4)cc3c2C1
+beta-lapachone,CC1(C)CCC2=C(O1)c1ccccc1C(=O)C2=O
+CHEMBL3927673,COc1cc(-c2cc3c(C(=O)O)n[nH]c3cc2Cl)ccc1C1(O)CCC1
+CHEMBL3950813,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(C4(C(=O)O)CC4)cc3)cc12
+CHEMBL4217199,O=C(O)C1CCc2c(c3cc(OCc4ccccc4)ccc3n2Cc2ccc(F)cc2)C1
+CHEMBL3936111,O=C(O)c1n[nH]c2cc(Cl)c(-c3ccc(C4(O)CCC4)cc3)cc12
+CHEMBL3975968,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(OCC4CCCN4)cc3)cc12
+CHEMBL3895195,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(OCCCC4COC4)cc3)cc12
+CHEMBL3978662,COc1nc(N(C)CCO)ccc1-c1cc2c(C(=O)O)c[nH]c2cc1Cl
+CHEMBL4216662,Cc1ccc(Cn2c3c(c4cc(OCc5ccccc5)ccc42)CC(C(=O)O)CC3)cc1
+Kahweol ,CC12C=Cc3occc3C1CCC13CC(CCC12)C(O)(CO)C3
+CHEMBL3741589,O=C(O)C1CN(Cc2ccc(OCc3ccc(Cl)c(Cl)c3)cc2)C1
+CHEMBL3894037,O=C(O)c1n[nH]c2cc(Cl)c(-c3ccc(C4CCOC4)cc3)cc12
+PF-249,COc1nc(N(C)C)ccc1-c1cc2c(C(=O)O)c[nH]c2cc1Cl
+Obovatol,C=CCc1ccc(Oc2cc(CC=C)cc(O)c2O)cc1
+Pronuciferine,COc1cc2c3c(c1OC)C1(C=CC(=O)C=C1)CC3N(C)CC2
+Scopoletin,COc1cc2ccc(=O)oc2cc1O
+CHEMBL3986249,O=C(O)c1c[nH]c2cc(Cl)c(-c3ccc(C4(CO)CC4)cc3)cc12
+CHEMBL3940764,O=C(O)c1c[nH]c2cc(F)c(-c3ccc(C4(CO)CC4)cc3)c(F)c12
+Esculetin,O=c1ccc2cc(O)c(O)cc2o1
+CHEMBL3971682,O=C(O)c1n[nH]c2cc(Cl)c(-c3ccc(C4CC(O)C4)cc3)cc12
+Abscisic Acid,CC(C=CC1(O)C(C)=CC(=O)CC1(C)C)=CC(=O)O
+CHEMBL3972626,COc1cc(-c2cc3c(cc2Cl)N=CC3C(=O)O)ccc1C(C)(C)CO
+Lutein,CC(C=CC=C(C)C=CC1=C(C)CC(O)CC1(C)C)=CC=CC=C(C)C=CC=C(C)C=CC1C(C)=CC(O)CC1(C)C
+Donepezil ,COc1cc2c(cc1OC)C(=O)C(CC1CCN(Cc3ccccc3)CC1)C2
+CHEMBL3968290,CC(C)(O)c1ccc(-c2cc3nc(OC4COC(CO)C(O)C4)[nH]c3cc2Cl)cc1
+Calebin A,COc1cc(C=CC(=O)COC(=O)C=Cc2ccc(O)c(OC)c2)ccc1O
+Lysophosphatidic acid,CCCCCCCCC=CCCCCCCCC(=O)OCC(O)COP(=O)(O)O
+Berteroin ,CSCCCCCN=C=S
+Amarogentin,C=CC1C(OC2OC(CO)C(O)C(O)C2OC(=O)c2c(O)cc(O)cc2-c2cccc(O)c2)OC=C2C(=O)OCCC21
+Bisphenol A,CC(C)(c1ccc(O)cc1)c1ccc(O)cc1
+CHEMBL3931764,N#Cc1cc2[nH]cc(C(=O)O)c2cc1-c1ccc(C2(CO)CC2)cc1
+Rohitukine,Cc1cc(=O)c2c(O)cc(O)c(C3CCN(C)CC3O)c2o1
+Myricanol,COc1c2cc(c(O)c1OC)CCCCC(O)CCc1ccc(O)c-2c1
+Daphnetin,O=c1ccc2ccc(O)c(O)c2o1
+Osthole,COc1ccc2ccc(=O)oc2c1CC=C(C)C
+okadaic acid,C=C1C(O)C2OC3(CCC(C=CC(C)C4CC(C)=CC5(OC(CC(C)(O)C(=O)O)CCC5O)O4)O3)CCC2OC1C(O)CC(C)C1OC2(CCCCO2)CCC1C
+Deguelin,COc1cc2c(cc1OC)C1C(=O)c3ccc4c(c3OC1CO2)C=CC(C)(C)O4
+Diethylstilbestrol,CCC(=C(CC)c1ccc(O)cc1)c1ccc(O)cc1
+CHEMBL4211146,Cc1nc(C)c(COc2ccc3c(c2)c2c(n3C(=O)c3ccc(Cl)cc3)CCC(C(=O)O)C2)nc1C
+Homocysteine sulfinic acid,NC(CCS(=O)O)C(=O)O
+Combretastatin A4,COc1ccc(C=Cc2cc(OC)c(OC)c(OC)c2)cc1O
+Roflupram,CC(C)CC(=O)c1ccc(OC(F)F)c(OC2CCOC2)c1
+Dibenzoylmethane,O=C(CC(=O)c1ccccc1)c1ccccc1
+NAcetyl-L-cysteine,CC(=O)NC(CS)C(=O)O
+Schizandrin B,COc1cc2c(c(OC)c1OC)-c1c(cc3c(c1OC)OCO3)CC(C)C(C)C2
+beta-patchoulene,CC1CCC2=C1CC1CCC2(C)C1(C)C
+Andrographolide ,C=C1CCC2C(C)(CO)C(O)CCC2(C)C1CC=C1C(=O)OCC1O
+Rottlerin,CC(=O)c1c(O)c(C)c(O)c(Cc2c(O)c3c(c(C(=O)C=Cc4ccccc4)c2O)OC(C)(C)C=C3)c1O
+Palmitate,CCCCCCCCCCCCCCCC(=O)O
+Pterostilbene,COc1cc(C=Cc2ccc(O)cc2)cc(OC)c1
+Oleic acis,CCCCCCCCC=CCCCCCCCC(=O)O
+CHEMBL4249790,O=C(OC1OC(C(=O)O)C(O)C(O)C1O)c1c[nH]c2cc(Cl)c(-c3ccc(C4(O)CCC4)cc3)cc12
+alpha linoleic acid,CCCCCC=CCC=CCCCCCCCC(=O)O
+Creatine,CN(CC(=O)O)C(=N)N
+Gamma linolenic acid,CCCCCC=CCC=CCC=CCCCCC(=O)O
+alpha linolenic acid,CCC=CCC=CCC=CCCCCCCCC(=O)O
+Micheliolide,C=C1C(=O)OC2C1CCC(C)=C1CCC(C)(O)C12
+CHEMBL3918226,Cc1cc2[nH]cc(C(=O)O)c2cc1-c1ccc(C2(CO)CC2)cc1
+S-Petasin,C=C(C)C1CC2(C)C(=CC1=O)CCC(OC(=O)C=CSC)C2C
+Piceatannol,Oc1cc(O)cc(C=Cc2ccc(O)c(O)c2)c1
+Artemether,COC1OC2OC3(C)CCC4C(C)CCC(C1C)C24OO3
+Tiliroside,O=C(C=Cc1ccc(O)cc1)OCC1OC(Oc2c(-c3ccc(O)cc3)oc3cc(O)cc(O)c3c2=O)C(O)C(O)C1O
+Compound 127,COc1ccc(CC2COCC2Cc2ccc(OCCC3CCC(OC)C(OC)C3)c(OC)c2)cc1OC
+Chicoric acid,O=C(C=Cc1ccc(O)c(O)c1)OC(C(=O)O)C(OC(=O)C=Cc1ccc(O)c(O)c1)C(=O)O
+Resveratrol,Oc1ccc(C=Cc2cc(O)cc(O)c2)cc1
+Alisol A,CC(CC(O)C(O)C(C)(C)O)C1=C2CC(O)C3C4(C)CCC(=O)C(C)(C)C4CCC3(C)C2(C)CC1
+Damulin B,C=C(CCC=C(C)C)C1CCC2(C)C1C(O)CC1C3(C)CC(O)C(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C
+Kudinoside D,CC1OC(OC2C(OC3CCC4(C)C(CCC5(C)C4C=CC4=C6C7(CCC(C)(OC7=O)C6(C)O)CCC45C)C3(C)C)OCC(O)C2OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O
+Farnesol,CC(C)=CCCC(C)=CCCC(C)=CCO
+calcitriol,C=C1C(=CC=C2CCCC3(C)C2CCC3C(C)CCCC(C)(C)O)CC(O)CC1O
+Tormentic acid,CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C)C5CCC43C)C2C1(C)O
+Ilexgenin A,CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C(=O)O)C5CCC43C)C2C1(C)O
+Ginsenoide Rh2,CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C
+eicosapentaenoic acid,CCC=CCC=CCC=CCC=CCC=CCCCC(=O)O
+Damulin A,CC(C)=CCC=C(C)C1CCC2(C)C1C(O)CC1C3(C)CC(O)C(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C
+Fridamycin A,CC1OC(c2ccc3c(c2O)C(=O)c2ccc(CC(C)(O)CC(=O)O)c(O)c2C3=O)CC(O)C1O
+Ginsenoide Rg3,CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C
+Entagenic acid,CC1(C)CCC2(C(=O)O)C(C1)C1=CCC3C4(C)CCC(O)C(C)(C)C4CCC3(C)C1(C)C(O)C2O
+Bryodulcosigenin,CC(CCC(O)C(C)(C)O)C1CCC2(C)C3CC=C4C(CCC(O)C4(C)C)C3(C)C(=O)CC12C
+Gnetol,Oc1cc(O)cc(C=Cc2c(O)cccc2O)c1
+Maslinic acid,CC1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C)C5CCC43C)C2C1
+4a-Isoalantolactone,C=C1C(=O)OC2CC3(C)CCCC(=C)C3CC12
+trans-caryophyllene,C=C1CCC=C(C)CCC2C1CC2(C)C
+EMCD,COC(C)(C)/C=C/CCC1CCC2C1CCC13C(O)OC4(C=CC21)CC(O)CCC43
+Corosolic acid,CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C)C5CCC43C)C2C1C
+Pomolic acid,CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1(C)O
+Oleanolic acid,CC1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1
+Ginsenoide Rc,CC(C)=CCCC(C)(OC1OC(COC2OC(CO)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C
+Nootkatone,C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1
+Ginsenoside mRc,CC(C)=CCCC(C)(OC1OC(COC2OC(CO)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(COC(=O)CC(=O)O)C(O)C(O)C4O)C(C)(C)C3CCC12C
+Vitamin D3,C=C1CCC(O)CC1=CC=C1CCCC2(C)C1CCC2C(C)CCCC(C)C
+Solasonine ,CC1CCC2(NC1)OC1CC3C4CC=C5CC(OC6OC(CO)C(O)C(OC7OC(CO)C(O)C(O)C7O)C6OC6OC(C)C(O)C(O)C6O)CCC5(C)C4CCC3(C)C1C2C
+Astragaloside IV,CC(C)(O)C1CCC(C)(C2C(O)CC3(C)C4CC(OC5OC(CO)C(O)C(O)C5O)C5C(C)(C)C(OC6OCC(O)C(O)C6O)CCC56CC46CCC23C)O1
+beta-hydroxy-beta-methylbutyrate,CC(C)(O)CC(=O)O
+fatsiaside A,CC(C)C(=O)CCC1(C)CC(O)C2(C)C(C(=O)CC3C4(C)CCC(OC5OC(CO)C(O)C(O)C5OC5OC(CO)C(O)C(O)C5O)C(C)(C)C4CCC32C)C1O
+ 2-arachidonoylglycerol,CCCCCC=CCC=CCC=CCC=CCCCC(=O)OC(CO)CO
+cimiracemoside C,CC1CC2OC3(OC2C(C)(C)O)C1C1(C)CCC24CC25CCC(OC2OCC(O)C(O)C2O)C(C)(C)C5CCC4C1(C)C3O
+Petasin,C=C(C)C1CC2(C)C(=CC1=O)CCC(OC(=O)C(C)=CC)C2C
+verbascoside,CC1OC(OC2C(O)C(OCCc3ccc(O)c(O)c3)OC(CO)C2OC(=O)C=Cc2ccc(O)c(O)c2)C(O)C(O)C1O
+Timosaponin AIII,CC1CCC2(OC1)OC1CC3C4CCC5CC(OC6OC(CO)C(O)C(O)C6OC6OC(CO)C(O)C(O)C6O)CCC5(C)C4CCC3(C)C1C2C
+Bryogenin,CC(C)C(=O)CCC(C)C1CCC2(C)C3CC=C4C(CCC(O)C4(C)C)C3(C)C(=O)CC12C
+eugenyl beta-D-glucopyranoside,C=CCc1ccc(OC2OC(CO)C(O)C(O)C2O)c(OC)c1
+Ursolic acid,CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1C
+plectranthoic acid,CC1C(C(=O)O)CCC2(C)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C12
+testosterone,CC12CCC(=O)C=C1CCC1C2CCC2(C)C(O)CCC12
+Maresin 1 ,CCC=CCC=CCC(O)C=CC=CC=CC(O)CC=CCCC(=O)O
+20(S)-protopanaxadiol,CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3CCC12C
+Kinsenoside,O=C1CC(OC2OC(CO)C(O)C(O)C2O)CO1
+Resolvin D1,CCC=CCC(O)C=CC=CC=CC=CC(O)C(O)CC=CCCC(=O)O
+Pinocembrin-7-O-beta-d-glucoside,O=C1CC(c2ccccc2)Oc2cc(OC3OC(CO)C(O)C(O)C3O)cc(O)c21
+protectin DX,CCC=CCC(O)C=CC=CC=CC(O)CC=CCC=CCCC(=O)O
+Crocetin,CC(C=CC=C(C)C(=O)O)=CC=CC=C(C)C=CC=C(C)C(=O)O
+(+)-antroquinonol,COC1=C(OC)C(O)C(CC=C(C)CCC=C(C)CCC=C(C)C)C(C)C1=O
+Valproic acid,CCCC(CCC)C(=O)O
+dibutyltin ,CCCC[Sn]CCCC
+beta-aminoisobutyric acid,CC(CN)C(=O)O
+(-)-Hydroxycitric acid,O=C(O)CC(O)(C(=O)O)C(O)C(=O)O
+Galegine,CC(C)=CCN=C(N)N
+Ceramide C6,CCCCCCCCCCCCCC=CC(O)C(CO)NC(=O)CCCCC
+Diallyl trisulfide,C=CCSSSCC=C
+Temsirolimus,COC1CC2CCC(C)C(O)(O2)C(=O)C(=O)N2CCCCC2C(=O)OC(C(C)CC2CCC(OC(=O)C(C)(CO)CO)C(OC)C2)CC(=O)C(C)C=C(C)C(O)C(OC)C(=O)C(C)CC(C)C=CC=CC=C1C
+Evorolimus,COC1CC2CCC(C)C(O)(O2)C(=O)C(=O)N2CCCCC2C(=O)OC(C(C)CC2CCC(OCCO)C(OC)C2)CC(=O)C(C)C=C(C)C(O)C(OC)C(=O)C(C)CC(C)C=CC=CC=C1C
+Icariin,CCCCCCCC(C)C(C)CCCCCCC
+2-Deoxyglucose,O=CCC(O)C(O)C(O)CO
+Trehalose ,OCC1OC(OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O
+Salicin,OCc1ccccc1OC1OC(CO)C(O)C(O)C1O
+SB-431542-A,NC(=O)c1ccc(-c2nc(-c3ccc4c(c3)OCO4)c(-c3ccccn3)[nH]2)cc1
+CHEMBL3746293,Cc1c(-c2cc(Nc3cc4n(n3)CCN(C)C4)c(=O)[nH]n2)ccc(F)c1NC(=O)c1cc2ccccc2s1
+AKOS007866543,COc1ccc(-c2n[nH]c(CNC(=O)CCCCc3nc4ccccc4s3)n2)cc1
+CHEMBL3798256,CN(C)S(=O)(=O)Nc1ccc(F)c(Nc2ncccc2-c2ncnc3nc[nH]c23)c1F
+CHEMBL505187,CCn1cc(-c2ccnc3[nH]ccc23)c(-c2cccc(NC(=O)Nc3ccc(OCc4ccccc4)cc3)c2)n1
+CHEMBL3330255,NS(=O)(=O)c1cccc(-c2n[nH]c3ccc(NC(=O)Cc4ccccc4)cc23)c1
+Bisindolylmaleimide I,CN(C)CCCn1cc(C2=C(c3c[nH]c4ccccc34)C(=O)NC2=O)c2ccccc21
+SCHEMBL2235492,CC(C)CCNc1ccc(-c2cnc3ccc(NC4CCN(C)CC4)nn23)cn1
+CHEMBL188282,CN1C(=O)C(c2c[nH]c3ccccc23)=C(c2cn(CCCN)c3ccccc23)C1=O
+GSK248233A,CCn1c(-c2nonc2N)nc2cnc(Oc3cccc(NC(=O)c4ccc(N(C)C)cc4)c3)cc21
+CHEMBL182419,O=C(Nc1ncnc2oc(-c3cccnc3)cc12)C1CCCC1
+SRT1720,O=C(Nc1ccccc1-c1cn2c(CN3CCNCC3)csc2n1)c1cnc2ccccc2n1
+CHEMBL2425144,Cc1ccc(-n2nc(C(C)(C)C)cc2NC(=O)Nc2ccc(-n3cnc4c(N)ncnc43)cc2)cc1
+GSK994854A,CCCN1CCC=C(c2ccc(Nc3nc(Nc4ccccc4C(N)=O)c4cc[nH]c4n3)c(C)c2)C1
+CHEMBL1164265,CN1CCN(c2ccc(-c3cnc4c(c3)N(Cc3c(F)ccc(F)c3Cl)CCN4)cn2)CC1
+GSK2219385A,COc1cc(C)c(N(C)C(=O)CN(C)C)cc1Nc1nc(Nc2cccc(F)c2C(N)=O)c2cc[nH]c2n1
+GSK1030062A,COc1cc2ncn(-c3cc(OCc4ccccc4C(F)(F)F)c(C(=O)N(C)C)s3)c2cc1OC
+CHEMBL3593290,CCc1cc(NC(=O)Nc2ccc(-c3cnc(Nc4cc(N5CCN(CC)CC5)nc(C)n4)s3)cc2)no1
+GW795493X,Nc1ncnc2occ(-c3ccc(NC(=O)Nc4cccc(C(F)(F)F)c4)cc3)c12
+GW621823A,CCCN(CCS(C)(=O)=O)Cc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(F)c5)c(Cl)c4)c3c2)o1
+GSK269962B,CCn1c(-c2nonc2N)nc2cnc(Oc3cccc(NC(=O)c4ccc(OCCN5CCOCC5)cc4)c3)cc21
+CHEMBL3133770,Cc1noc(C)c1Cn1cc(-c2ccnc(N)n2)c2ccccc21
+CHEMBL384407,CS(=O)(=O)CCN(CC#N)Cc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(F)c5)c(Cl)c4)c3c2)o1
+CHEMBL389745,COc1cc(-c2ccc3c(c2)Nc2ccc(C(C)(C)C(=O)Nc4ccc(N5CCOCC5)cc4)cc2NC3=O)ccc1N
+GSK2213727A,COc1cc(C)c(NC(=O)CN(C)C)cc1Nc1nc(Nc2cccc(F)c2C(N)=O)c2cc[nH]c2n1
+CHEMBL1254209,COc1ccccc1N1CCN(c2ncnc3n[nH]c(Br)c23)CC1
+CHEMBL1271533,Nc1cc(-c2cnn3cc(-c4ccc(OCCN5CCOCC5)cc4)cnc23)ccn1
+CHEMBL1271587,Nc1ccc(-c2cnn3cc(-c4ccc(OCCN5CCOCC5)cc4)cnc23)cn1
+CHEMBL3728396,CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3c2cccc3-c2csc(-c3ccccc3)n2)c1C
+GW461104A,CN(c1ccc(NC(=O)NCCN2CCOCC2)cc1)c1ccnc(Nc2ccc(CS(C)(=O)=O)cc2)n1
+CHEMBL2386796,Cc1cc(-c2cc(NC(=O)c3ccc(CN4CCN(C)CC4)cc3)n[nH]2)ccc1NC(=O)Nc1cc(C(C)(C)C)on1
+CHEMBL524901,c1cnn2ncc(-c3ccnc(NCCCN4CCOCC4)n3)c2c1
+GW768505A,COc1ccc(-c2oc3ncnc(N)c3c2-c2ccc(NC(=O)Nc3cc(C(F)(F)F)ccc3F)cc2)cc1
+GW618013A,CN(C)CCCNc1nccc(-c2c(-c3ccc(F)cc3)nn3cc(C(F)(F)F)ccc23)n1
+CHEMBL207718,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C)C1(C(N)=O)CN(C)C1
+CHEMBL1164180,CN1CCN(c2ccc(-c3cnc4c(c3)N(Cc3cc(Cl)ccc3C(F)(F)F)CCN4)cn2)CC1
+SB-210313,Fc1ccc(-c2ncn(CCCN3CCOCC3)c2-c2ccncc2)cc1
+GW771127A,Cc1c2ccc(N(C)c3ccnc(Nc4cccc(S(N)(=O)=O)c4)n3)cc2nn1C
+GSK1511931A,COc1cc(N2CCN(C(C)C)CC2)ccc1Nc1nc(Nc2cccc3ncccc23)c2cc[nH]c2n1
+CHEMBL3727498,CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3ccc(-c4n[nH]c5ccccc45)cc32)c1C
+GW654652C,CCS(=O)(=O)c1ccc(OC)c(Nc2nccc(N(C)c3ccc4c(C)[nH]nc4c3)n2)c1
+GW282449A,COc1cc2ncnc(Nc3ccc4c(cnn4Cc4ccccc4)c3)c2cc1OC
+GW561436X,N#Cc1ccc2c(-c3ccnc(NC4CC4)n3)c(-c3ccc(F)cc3)nn2c1
+CHEMBL4248525,CN1CCN(CCCOc2cccc(CC(=O)Nc3nc(-c4c[nH]c5ncccc45)cs3)c2)CC1
+CHEMBL1933148,Cn1cc(NC(=O)c2ccc3cc4n(c3c2)CCCNC4=O)cn1
+CHEMBL3732974,CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3c2cccc3-c2cncc(C)c2)c1C
+CHEMBL2063926,CSc1ccccc1Nc1nc(N2CCN(C3CCNCC3)CC2)nc2c(NCC3CC3)ncnc12
+CHEMBL379601,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C)CC(N)=O
+CHEMBL2386802,CC(C)(C)c1cc(NC(=O)NCc2ccc(-c3cc(NC(=O)c4ccc(OCCN5CCOCC5)cc4)n[nH]3)cc2)no1
+GW568326X,Nc1nccc(-c2c(-c3ccc(F)cc3)nn3cc(C(F)(F)F)ccc23)n1
+CHEMBL3730376,CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3ccc(-c4cccnc4)cc32)c1C
+Lapatinib,CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(F)c5)c(Cl)c4)c3c2)o1
+GW574783B,CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5ccccc5)c(Cl)c4)c3c2)o1
+CHEMBL207815,COCCN1CC(C(N)=O)(N(C)Cc2cc3c(Nc4cccc(Cl)c4F)ncnc3cc2OC)C1
+GW827099X,Fc1ccc(-c2nn3ncccc3c2-c2ccnc(Nc3ccc4c(c3)OCCO4)n2)cc1
+CHEMBL208437,c1ccc(-c2[nH]ncc2-c2ccnc(-c3ccc(OCCn4ccnc4)cc3)c2)nc1
+CHEMBL1165499,CN1CCN(c2ccc(-c3cnc4c(c3)N(Cc3cc(F)ccc3F)CCN4)cn2)CC1
+CHEMBL3731842,CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3c2cccc3-c2cccnc2OC)c1C
+SB-686709-A,CCN1CCC(C(=O)Nc2n[nH]c3nnc(-c4cccc(F)c4F)cc23)CC1
+CHEMBL1164181,CN1CCN(c2ccc(-c3cnc4c(c3)N(Cc3cc(Cl)ccc3Cl)CCN4)cn2)CC1
+CHEMBL324153,c1cc(-c2cnn3cc(-c4ccc(OCCN5CCOCC5)cc4)cnc23)ccn1
+GW305178X,NS(=O)(=O)c1ccc(N=Nc2c(=O)[nH]c3ccc4[nH]cccc4c23)cc1
+CHEMBL361237,Nc1nc(-c2ccc(F)cc2)c(-c2ccc3ncccc3n2)s1
+GW580496A,CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5ccccc5)c(Br)c4)c3c2)o1
+GSK561866B,CCn1c(-c2nonc2N)nc2c(C#CCN)ncc(OCCCN)c21
+SB-678557-A,CN1CCC(C(=O)Nc2n[nH]c3nnc(-c4ccccc4)cc23)CC1
+GW461104A,CS(=O)(=O)CCNCc1nc(-c2ccc3ncnc(Nc4ccc(F)c(Cl)c4)c3c2)cs1
+CHEMBL3729638,CCN(CC)CCNC(=O)c1c(C)[nH]c(C=C2C(=O)Nc3cccc(-c4ccc(-c5ccccc5)cc4)c32)c1C
+CHEMBL4062803,Cc1[nH]nc2cc(Nc3nc(NC4CC4)c4occc4n3)ccc12
+CHEMBL425601,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C)C1(C(N)=O)CN(C(C)C)C1
+CHEMBL1233882,CC(C)n1nc(-c2ccc3ncccc3c2)c2c(N)ncnc21
+GW876790X,CCn1c(-c2nonc2N)nc2cncc(C(=O)NCCNC)c21
+GW829115X,COc1ccc(-c2nn3ncccc3c2-c2ccnc(Nc3ccc4c(c3)OCCO4)n2)cc1
+GW799251X,Nc1nccc(C#Cc2cncnc2Nc2ccc(OCc3cccc(F)c3)c(Cl)c2)n1
+AKOS007872819,CC(C)c1cc(C(=O)Nc2cccc(OCc3cn4ccccc4n3)c2)nn1C(C)(C)C
+CHEMBL2017253,CSc1ccccc1Nc1nc(N2CC3(CNC3)C2)nc2c(NCC3CC3)ncnc12
+CHEMBL204420,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN1CCN(C)CC1C(N)=O
+CHEMBL380889,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C)C(CN(C)C)C(N)=O
+CHEMBL513330,Clc1ccc(CNc2nccc(-c3cnn4ncccc34)n2)cc1
+GW806290X,c1cnn2ncc(-c3ccnc(Nc4ccc5c(c4)OCCO5)n3)c2c1
+CHEMBL206783,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN1CCCCC1C(N)=O
+GW458787A,CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5ccccc5)cc4)c3c2)o1
+CHEMBL188268,CN(C)CCCn1c(-c2nonc2N)nc2cnccc21
+GW568377A,CS(=O)(=O)CCNCc1ccoc1-c1ccc2ncnc(Nc3ccc(OCc4ccccc4)cc3)c2c1
+CHEMBL2063681,COc1ccc2c(c1)C(=Cc1c(-c3ccccn3)nc3sccn13)C(=O)N2
+GW574782A,CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5ccccc5)c(C(F)(F)F)c4)c3c2)o1
+CHEMBL188268,NCc1ccc(-n2c(-c3nonc3N)nc3cnccc32)cc1
+CHEMBL380006,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C)C(C)C(=O)N(C)C
+CHEMBL485745,Fc1ccc(-c2nn3ccccc3c2-c2ccncc2)cc1
+GW566221A,CS(=O)(=O)CCNCc1coc(-c2ccc3ncnc(Nc4ccc(OCc5ccccc5)cc4)c3c2)c1
+CHEMBL4209540,Cc1cccc(-c2nc(N)sc2-c2ccc3ncccc3n2)c1
+GW612286X,COc1cc(Nc2nccc(Nc3ccc4c(C)[nH]nc4c3)n2)cc(OC)c1OC
+GSK949675A,CCn1c(-c2nonc2N)nc2c(C#CC(C)(C)O)nc(OCCNC)cc21
+CHEMBL4100387,Cc1c(-c2ccncc2)c[nH]c1C(N)=O
+CHEMBL1271641,O=c1cc(-c2cnn3cc(-c4ccc(OCCN5CCOCC5)cc4)cnc23)cc[nH]1
+AKOS007852427,Cc1cccc(NC(=O)N2CCN(C(=O)c3cnc4c(c3)c(=O)[nH]c(=O)n4C3CC3)CC2)c1
+CHEMBL376967,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(CCN(C)C)C(C)C(N)=O
+CHEMBL188240,CCOc1nccc2c1nc(-c1nonc1N)n2CC
+GW780159X,Nc1nc(-c2cccc(Cl)c2)c(-c2ccc3ncccc3n2)s1
+CHEMBL207674,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN1CCOCC1C(N)=O
+CHEMBL210963,CCOc1nc(NC(=O)Cc2cc(OC)c(S(C)(=O)=O)cc2OC)cc(N)c1C#N
+CHEMBL207445,COCCC(C(N)=O)N(C)Cc1cc2c(Nc3cccc(Cl)c3F)ncnc2cc1OC
+GW644007X,COc1cc(C=NNc2ncnc3c2cnn3C(C)C)ccc1O
+CHEMBL208048,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C(C)C)C(C)C(N)=O
+SB-203580,CS(=O)c1ccc(-c2nc(-c3ccc(F)cc3)c(-c3ccncc3)[nH]2)cc1
+TCS JNK 6o,COc1cc2ncn(-c3cc(OCc4ccccc4S(C)(=O)=O)c(C#N)s3)c2cc1OC
+CHEMBL379905,COCC(C(N)=O)N(C)Cc1cc2c(Nc3cccc(Cl)c3F)ncnc2cc1OC
+CHEMBL212250,O=S(=O)(CCOCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(F)c5)c(Cl)c4)c3c2)o1)c1ccccc1
+GW827102X,FC(F)(F)c1cccc(-c2nn3ncccc3c2-c2ccnc(Nc3ccc4c(c3)OCCO4)n2)c1
+GW578748X,COc1cc(C=NNc2ncnc3[nH]ncc23)ccc1O
+SCHEMBL12282456,COC(C(=O)Nc1ccc2[nH]nc(-c3cccc(S(N)(=O)=O)c3)c2c1)c1ccccc1
+CHEMBL365072,CCc1nccc2c1nc(-c1nonc1N)n2CC
+GW832467X,Cc1ccc2c(-c3ccnc(Nc4ccc5c(c4)OCCO5)n3)c(-c3ccc(C(F)(F)F)cc3)nn2n1
+CHEMBL4066664,FC(F)(F)CNc1nc(Nc2ccc3cn[nH]c3c2)nc2ccoc12
+CHEMBL208286,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CN(C)C(CO)C(N)=O
+CHEMBL211003,CNC(=O)C(C)N(C)Cc1cc2c(Nc3cccc(Cl)c3F)ncnc2cc1OC
+CHEMBL3730041,Cc1[nH]c(C=C2C(=O)Nc3cc(-c4csc(-c5ccccc5)n4)ccc32)c(C)c1C(=O)N1CCOCC1
+GSK614526A,CCn1c(-c2nonc2N)nc2c(C#CC(C)(C)O)ncc(OCC3CCCN3)c21
+GW828525X,FC(F)(F)c1ccc(-c2nn3ncccc3c2-c2ccnc(Nc3ccc4c(c3)OCCO4)n2)cc1
+CHEMBL4069365,CC1(C)OCC(=O)Nc2cc(Nc3nc(NCC(F)(F)F)c4occc4n3)ccc21
+CHEMBL517907,C#Cc1cccc(Nc2ncnc3ccc(OCCCCNCCS(C)(=O)=O)cc23)c1
+CHEMBL189657,CCn1c(-c2nonc2N)nc2cnccc21
+CHEMBL524057,CCc1nn2ncccc2c1-c1ccnc(NC2CC2)n1
+CHEMBL2420899,c1ccc(C2CCNC3(CCN(c4ncnc5nc[nH]c45)CC3)C2)cc1
+CHEMBL2063669,Cc1cn2c(C=C3C(=O)Nc4c3ccc3ccccc43)c(C)nc2s1
+GSK1023156A,NC(=O)c1sc(-n2cnc3ccccc32)cc1OCc1ccccc1Br
+CHEMBL3727949,COc1ncc(-c2cccc3c2C(=Cc2[nH]c(C)cc2C)C(=O)N3)cn1
+CHEMBL378627,COc1cc(S(C)(=O)=O)c(OC)cc1CC(=O)Nc1cc(N)c(C#N)c(OC(C)C)n1
+CHEMBL3775576,CNC(=O)c1ccc2n[nH]c(Cc3ccc4c(cnn4C)c3)c2c1
+GSK554170A,CCn1c(-c2nonc2N)nc2c(C#CC(C)(C)O)ncc(OCC3CCNCC3)c21
+GW284372X,c1ccc(COc2ccc(Nc3ncnc4ccc(-c5ccco5)cc34)cc2)cc1
+CHEMBL382823,COCCN(Cc1cc2c(Nc3cccc(Cl)c3F)ncnc2cc1OC)C(C)C(N)=O
+CHEMBL3319467,COc1ccc(-c2c[nH]c3ncc(-c4ccc(C(=O)N5CCOCC5)c(N)c4)cc23)cc1OC
+CHEMBL1163518,O=C(c1ccc(-c2cnc3c(c2)N(Cc2cc(Cl)ccc2C(F)(F)F)CCN3)cc1)N1CCCCC1
+CHEMBL380386,COc1cc2ncnc(Nc3cccc(Cl)c3F)c2cc1CNC(C)C(N)=O
+SB-736290,Cn1c(-c2nonc2N)nc2cnccc21
+SB 202190,Oc1ccc(-c2nc(-c3ccc(F)cc3)c(-c3ccncc3)[nH]2)cc1
+GW300653X,CC(C)c1ccc2c(N=Nc3ccc(S(N)(=O)=O)cc3)c(O)[nH]c2c1
+GSK579289A,CC(Oc1cc(-n2cnc3ccc(OC4CCN(C)CC4)cc32)sc1C(N)=O)c1ccccc1Cl
+GW680975X,Fc1ccc(-c2cc(-c3cn[nH]c3-c3ccccn3)ccn2)cc1
+GW807930X,CCOc1nc(NC(=O)Cc2cc(OC)ccc2OC)cc(N)c1C#N
+CHEMBL214198,CC(C)c1nnc2ccc(-c3cn[nH]c3-c3cc(F)ccc3F)cn12
+CHEMBL3730933,Cc1cc(C)c(C=C2C(=O)Nc3cccc(-c4cncnc4)c32)[nH]1
+CHEMBL2376143,CC(NC(=O)c1c[nH]c2ncc(-c3cn(C)c4cc(Cl)ccc34)nc12)C(=O)N1CC(C#N)C1
+CHEMBL2376152,CC(NC(=O)c1c[nH]c2ncc(-c3nn(C)c4cc(Cl)cc(F)c34)nc12)C(=O)N1CC(C#N)C1
+CHEMBL2376153,CCC(NC(=O)c1c[nH]c2ncc(-c3nn(C)c4cc(Cl)ccc34)nc12)C(=O)N1CC(C#N)C1
+GW679410X,COc1ccc(-c2cc(-c3cn[nH]c3-c3ccccn3)ccn2)cc1
+GW804482X,COc1cccc(COc2cc(-n3cnc4ccccc43)sc2C(N)=O)c1
+CHEMBL2376144,CC(NC(=O)c1c[nH]c2ncc(-c3nn(C)c4cc(Cl)ccc34)nc12)C(=O)N1CC(C#N)C1
+L-779450,Oc1cc(-c2nc(-c3ccccc3)[nH]c2-c2ccncc2)ccc1Cl
+GW581744X,NC(=O)c1ccc2c(-c3ccnc(NCCCO)n3)c(-c3ccc(F)cc3)nn2c1
+CHEMBL205765,CC(=O)Nc1cccc(C#Cc2cncnc2Nc2ccc(OCc3cccc(F)c3)c(Cl)c2)n1
+CHEMBL62965,Clc1ccc(-n2nncc2-c2ccncc2)cc1
+SB-610251-B,Oc1cccc(-c2nc(-c3ccccc3)[nH]c2-c2ccncc2)c1
+CHEMBL2152768,CC(C)(O)C1CCN(Cc2ccc3nc(-c4c(F)ccc5[nH]ccc45)nc(N4CCOCC4)c3n2)CC1
+RSVA405,CCN(CC)c1ccc(C=NNC(=O)c2ccncc2)c(O)c1
+SB-476429-A,NCc1ccc(-c2nc(-c3ccc(Cl)c(O)c3)c(-c3ccncc3)[nH]2)cc1
+GW852849X,COc1cc2ncn(-c3cc(OCc4ccccc4Cl)c(C(N)=O)s3)c2cc1OC
+CHEMBL2325894,CC(NC(=O)c1c[nH]c2ncc(C3CC3)nc12)C(=O)N1CC(C#N)C1
+CHEMBL303351,Clc1cccc(-n2nncc2-c2ccncc2)c1
+GW569293E,OCCCNc1nccc(-c2c(-c3ccc(F)cc3)nn3cc(C(F)(F)F)ccc23)n1
+CHEMBL3732638,COc1ccc(-c2cccc3c2NC(=O)C3=Cc2[nH]c(C)cc2C)cn1
+GW275944X,Cc1ccc2[nH]c(O)c(N=Nc3ccc(S(N)(=O)=O)cc3)c2c1
+GSK1030061A,CNC(=O)c1sc(-n2cnc3cc(OC)c(OC)cc32)cc1OCc1ccccc1C(F)(F)F
+CHEMBL3730313,Cc1cncc(-c2cccc3c2NC(=O)C3=Cc2[nH]c(C)cc2C)c1
+GW788388,O=C(NC1CCOCC1)c1ccc(-c2cc(-c3cn[nH]c3-c3ccccn3)ccn2)cc1
+CHEMBL2325895,CC(C)(C)C(NC(=O)c1c[nH]c2ncc(C3CC3)nc12)C(=O)N1CC(C#N)C1
+GW410563A,COc1cc2ncnc(Nc3ccc(C)c(O)c3)c2cc1OC
+GW396574X,CC(C)=Cc1cccc2[nH]c(O)c(N=Nc3ccc(S(N)(=O)=O)cc3)c12
+GW567808A,CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(C(F)(F)F)c5)cc4)c3c2)o1
+Tyrphostin AG 1478,COc1cc2ncnc(Nc3cccc(Cl)c3)c2cc1OC
+GI261520A,COc1ccc2ncnc(Nc3ccc(OCc4ccccc4)cc3)c2c1
+SCHEMBL1395428,Cc1cc(C)c(C=C2C(=O)Nc3cccc(-c4ccncc4)c32)[nH]1
+GSK317314A,COc1ccc2ncn(-c3cc(OC(C)c4ccccc4Cl)c(C(N)=O)s3)c2c1
+GW853609X,NC(=O)c1sc(-n2cnc3cc(C(F)(F)F)ccc32)cc1OCc1ccccc1Br
+GW843682X,COc1cc2ncn(-c3cc(OCc4ccccc4C(F)(F)F)c(C(N)=O)s3)c2cc1OC
+GW280670X,NS(=O)(=O)c1ccc(N=Nc2c(O)[nH]c3ccc(Cl)cc23)cc1
+GW853606,NC(=O)c1sc(-n2cnc3ccc(C(F)(F)F)cc32)cc1OCc1ccccc1Br
+GW279320X,Cc1cc(Cl)cc2c(N=Nc3ccc(S(N)(=O)=O)cc3)c(O)[nH]c12
+CHEMBL2420570,CC(C)(NC(=O)c1ccc2nc(NC3CCC(O)CC3)c3nccn3c2c1)c1ccccc1
+GW282536X,Cc1cccc2c(N=Nc3ccc(S(N)(=O)=O)cc3)c(O)[nH]c12
+CHEMBL574646,O=C1C(=Cc2ccccn2)CNCC1=Cc1ccccn1
+GSK317315A,COc1ccc2ncn(-c3cc(OC(C)c4ccccc4C(F)(F)F)c(C(N)=O)s3)c2c1
+CHEMBL495902,Cc1ccc(C(=O)NC2CC2)cc1-c1ccc2[nH]ncc2c1
+CHEMBL3731129,Cc1cc(C)c(C=C2C(=O)Nc3ccc(-c4ccc5cn[nH]c(=O)c5c4)cc32)[nH]1
+CHEMBL3728544,Cc1cc(C)c(C=C2C(=O)Nc3cccc(-c4ccc5cc[nH]c5c4)c32)[nH]1
+CHEMBL2420562,CCC(NC(=O)c1ccc2nc(NC3CCC(O)CC3)c3nccn3c2c1)c1ccccc1
+CHEMBL2420564,O=C(NC(CO)c1ccccc1)c1ccc2nc(NC3CCC(O)CC3)c3nccn3c2c1
+GW305074X,O=C1Nc2ccc(I)cc2C1=Cc1cc(Br)c(O)c(Br)c1
+CHEMBL2420565,CCCC(NC(=O)c1ccc2nc(NC3CCC(O)CC3)c3nccn3c2c1)c1ccccc1
+CHEMBL198801,O=c1cc(N2CCOCC2)oc2cc(-c3cccc4c3sc3ccccc34)ccc12
+CHEMBL1794052,COC(=O)c1ccc2c(c1)C(=Cc1cc(Br)c(O)c(Br)c1)C(=O)N2
+CHEMBL382501,O=c1cc(N2CCOCC2)oc2cc(-c3ccc(OCc4ccccc4)cc3)ccc12
+metformin,CN(C)C(=N)N=C(N)N

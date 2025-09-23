@@ -1,0 +1,5 @@
+LigandID,canonical_smiles
+CHEMBL3983491,CN1CCN(CCCOc2ccc(-c3cc4c(C(=O)O)c[nH]c4cc3Cl)cc2)CC1=O
+CHEMBL4108810,C=CCOC1COC2C(Oc3nc4nc(-c5ccc(-c6ccccc6)cc5)c(Cl)cc4[nH]3)COC12
+CHEMBL4108349,CN=S(=O)(NC)c1ccc(-c2ccc(-c3nc4nc(OC5COC6C(O)COC56)[nH]c4cc3Cl)cc2)cc1
+Metformin,CN(C)C(=N)N=C(N)N
