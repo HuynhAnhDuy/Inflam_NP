@@ -7,8 +7,10 @@ from datetime import datetime
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from rdkit.Chem import AllChem, DataStructs
+from rdkit.Chem.MolStandardize import rdMolStandardize
 import xgboost as xgb
 import time
+from typing import Optional
 
 # ==== 1. Set seed for reproducibility ====
 def set_seed(seed=42):
@@ -16,13 +18,39 @@ def set_seed(seed=42):
     np.random.seed(seed)
     random.seed(seed)
 
-# ==== 2. Scaffold + ECFP generation ====
-def get_scaffold(smiles):
+# ==== 2. Molecule standardization + scaffold extraction ====
+def _standardize_mol(mol: Chem.Mol) -> Optional[Chem.Mol]:
+    """Chuẩn hoá phân tử trước khi lấy scaffold"""
+    if mol is None:
+        return None
+    try:
+        params = rdMolStandardize.CleanupParameters()
+        mol = rdMolStandardize.Cleanup(mol, params)
+        mol = rdMolStandardize.LargestFragmentChooser().choose(mol)     # giữ mảnh lớn nhất
+        mol = rdMolStandardize.Uncharger().uncharge(mol)                # trung hoá điện tích
+        mol = rdMolStandardize.TautomerEnumerator().Canonicalize(mol)   # canonical tautomer
+        return mol
+    except Exception:
+        return None
+
+def get_scaffold(smiles: str) -> Optional[str]:
+    """Trích xuất Murcko scaffold đã chuẩn hoá từ SMILES"""
     mol = Chem.MolFromSmiles(smiles)
-    return Chem.MolToSmiles(MurckoScaffold.GetScaffoldForMol(mol)) if mol else None
+    mol = _standardize_mol(mol)
+    if mol is None:
+        return None
+    try:
+        core = MurckoScaffold.GetScaffoldForMol(mol)
+        if core is None or core.GetNumAtoms() == 0:
+            return None
+        return Chem.MolToSmiles(core, isomericSmiles=False,
+                                kekuleSmiles=False, canonical=True)
+    except Exception:
+        return None
 
 def smiles_to_ecfp(smiles, n_bits=2048):
     mol = Chem.MolFromSmiles(smiles)
+    mol = _standardize_mol(mol)
     if mol:
         fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=n_bits)
         arr = np.zeros((n_bits,), dtype=int)
@@ -33,7 +61,7 @@ def smiles_to_ecfp(smiles, n_bits=2048):
 # ==== 3. Scaffold split ====
 def scaffold_split(df, test_size=0.2, seed=42):
     """Split theo scaffold, để test scaffolds không trùng train"""
-    scaffolds = df['scaffold'].unique()
+    scaffolds = df['scaffold'].dropna().unique()
     rng = np.random.RandomState(seed)
     rng.shuffle(scaffolds)
 

@@ -5,8 +5,8 @@ import pandas as pd
 from typing import Optional
 
 # ==== CONFIG: chỉnh trực tiếp ở đây ====
-INPUT_CSV  = "3.InFlamNat_SHAP.csv"        # CSV input, phải có cột canonical_smiles
-OUTPUT_CSV = "3.InFlamNat_SHAP_with_scaffolds.csv"   # CSV output sau khi thêm scaffold
+INPUT_CSV  = "/home/andy/andy/Inflam_NP/Scaffold_identify/InFlam_full.csv"        # CSV input, phải có cột canonical_smiles
+OUTPUT_CSV = "InFlam_full_with_scaffolds.csv"   # CSV output sau khi thêm scaffold
 SMILES_COL = "canonical_smiles"            # Tên cột chứa SMILES
 # =======================================
 

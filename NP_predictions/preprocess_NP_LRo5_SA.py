@@ -6,8 +6,8 @@ from rdkit.Chem import Descriptors, Crippen, rdMolDescriptors
 from tqdm import tqdm
 
 # ========= CONFIG =========
-INPUT_CSV          = "NPASSv2.0.csv"
-OUTPUT_FILTER_CSV  = "NPASSv2.0_filtering_SA_2.csv"
+INPUT_CSV          = "/home/andy/andy/Inflam_NP/NP_predictions/XGB_shap_compounds_safety.csv"
+OUTPUT_FILTER_CSV  = "XGB_shap_compounds_LRo5_SA_2.csv"
 
 MAX_LIPINSKI_VIOL  = 1       # giữ: số vi phạm RO5 <= 1
 MAX_SA_SCORE       = 2.0     # SA score <= 5
