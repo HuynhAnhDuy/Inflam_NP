@@ -148,7 +148,7 @@ def compute_enrichment(df_rgroup):
     return pd.DataFrame(stats).sort_values('enrichment_score', ascending=False)
 
 df_enrichment = compute_enrichment(df_rgroup)
-df_enrichment.to_csv("rgroup_enrichment_summary_2.csv", index=False)
+df_enrichment.to_csv("rgroup_enrichment_summary.csv", index=False)
 
 # === STEP 4: Gán nhãn enrichment (0/1 theo ngưỡng) ===
 def assign_labels_enrichment(df, threshold_high=2, threshold_low=0.5):

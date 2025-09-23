@@ -1,0 +1,27 @@
+﻿R_group_smiles,R_group_note,mean_shap,n,frac_pos
+*O,Hydroxyl (-OH),1.50135539,757,0.924702774
+*OC(F)F,Other/complex group,1.457843939,33,1
+*CC=C(C)C,Other/complex group,1.141357572,25,1
+*CC=O,Other/complex group,1.052987508,34,0.911764706
+*F,Fluoro (-F),0.845102934,339,0.83480826
+*C(C)=O,Other/complex group,0.826889733,36,0.833333333
+*S(N)(=O)=O,Other/complex group,0.815247501,32,0.9375
+*Cl,Chloro (-Cl),0.779315458,627,0.8261563
+*CO,Other/complex group,0.534319188,429,0.813519814
+*CC(=O)O,Carboxyl (-COOH),0.50560411,63,0.825396825
+*C=CC,Other/complex group,0.432687428,31,0.838709677
+*[N+](=O)[O-],Other/complex group,0.407889444,82,0.865853659
+*N[SH](=O)=O,Other/complex group,0.398659439,23,0.826086957
+*OC,Other/complex group,0.396159355,329,0.778115502
+*CC(C#C)N(O)C(N)=O,Other/complex group,0.383235158,21,0.904761905
+*C(C)(C)C,Other/complex group,0.370557399,20,0.9
+*CC(C)C,Other/complex group,0.345316198,64,0.84375
+*C(F)(F)F,Trifluoromethyl (-CF3),0.339068538,99,0.797979798
+*C(=O)O,Carboxyl (-COOH),0.326282513,81,0.740740741
+*C(N)=O,Other/complex group,0.322160231,72,0.708333333
+*CC,Other/complex group,0.295555821,79,0.683544304
+*C(C)C,Other/complex group,0.221105981,33,0.757575758
+*CNC=O,Other/complex group,0.212319152,24,0.791666667
+*NS(C)(=O)=O,Other/complex group,0.20547374,26,0.615384615
+*N,Amino (-NH2),0.189424973,97,0.680412371
+*C,Methyl (-CH3),0.106216505,1027,0.712755599
