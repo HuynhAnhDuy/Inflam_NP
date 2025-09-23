@@ -13,8 +13,8 @@ df = pd.read_csv(
     encoding='latin-1'
 )
 
-df_all = df.dropna(subset=['canonical_smiles1']).drop_duplicates(subset=['canonical_smiles1'])
-smiles_list = df_all[['canonical_smiles1', 'smiles1_name_ID']].values[:50]
+df_all = df.dropna(subset=['canonical_smiles2']).drop_duplicates(subset=['canonical_smiles2'])
+smiles_list = df_all[['canonical_smiles2', 'smiles2_name_ID']].values[:50]
 
 # === 2. Khai báo scaffold templates chuẩn ===
 templates = {
@@ -89,7 +89,7 @@ def draw_smiles_with_highlighted_scaffold(
                    if bond.GetBeginAtomIdx() in atom_set and bond.GetEndAtomIdx() in atom_set]
 
     # Highlight màu xanh dương đậm
-    color = (0, 0, 0.8)
+    color = (0, 0.6, 0)
     bond_colors = {b: color for b in match_bonds}
 
     # Vẽ SVG
@@ -119,7 +119,7 @@ def draw_smiles_with_highlighted_scaffold(
 
 # === 5. Chạy toàn bộ ===
 for i, (smiles, compound_name) in enumerate(smiles_list, start=1):
-    file_name = f"T_{i}"
+    file_name = f"C_{i}"
     draw_smiles_with_highlighted_scaffold(smiles, compound_name, file_name)
 
 print("🎯 Done: Flavonoid và Chalcone được nhận diện & align bằng template (SMARTS + fallback tên + atomMap).")
