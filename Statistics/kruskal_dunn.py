@@ -6,7 +6,7 @@ import scikit_posthocs as sp
 df = pd.read_csv('InFlam_full_all_metrics_raw.csv')
 
 # List of dependent variables
-dependent_vars = ['Accuracy', 'MCC', 'Sensitivity','Specificity',"AUROC"]
+dependent_vars = ['Accuracy', 'MCC', 'Sensitivity','Specificity',"AUROC", "AUPRC"]
 
 # Specify the independent variable
 independent_var = 'Model'
