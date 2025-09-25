@@ -1,4 +1,4 @@
-canonical_smiles,ID,lipinski_rule_of_five_violations,sa_score,prob_avg,y_pred,scaffold
+canonical_smiles,ID,lipinski_rule_of_five_violations,sa_score,prob_avg,Label,scaffold
 COc1ccc(/C=C/C(=O)c2ccc(O)cc2O)cc1,23757,0,1.934734477,0.995971115,1,O=C(C=Cc1ccccc1)c1ccccc1
 COc1ccc(C=CC(=O)c2ccc(O)cc2O)cc1,27251,0,1.934734477,0.995971115,1,O=C(C=Cc1ccccc1)c1ccccc1
 COc1ccc(C(=O)/C=C/c2ccc(O)cc2)c(O)c1,18565,0,1.961012499,0.99545355,1,O=C(C=Cc1ccccc1)c1ccccc1

@@ -1,10 +1,10 @@
 import pandas as pd
 
 # === Config ===
-file_scaffolds = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250923_131651/scaffold_positive_overlap.csv"  # File 1
-file_dataset   = "/home/andy/andy/Inflam_NP/Scaffold_identify/InFlam_full_with_scaffolds.csv"  # File 2
-output_counts  = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250923_131651/scaffold_positive_overlap_with_counts.csv"
-output_details = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250923_131651/scaffold_positive_overlap_compound_details.csv"
+file_scaffolds = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_XGB_20250925_104144_NPASS/scaffold_shap_summary_test.csv"  # File 1
+file_dataset   = "/home/andy/andy/Inflam_NP/Scaffold_identify/NPASS_candidates_with_scaffolds.csv"  # File 2
+output_counts  = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_XGB_20250925_104144_NPASS/NPASS_with_counts.csv"
+output_details = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_XGB_20250925_104144_NPASS/NPASS_compound_details.csv"
 
 # === Load data ===
 df_scaffolds = pd.read_csv(file_scaffolds)
@@ -33,7 +33,7 @@ df_output.to_csv(output_counts, index=False)
 print(f"Saved: {output_counts}")
 
 # === Tạo file chi tiết compounds (Label = 1) cho từng scaffold ===
-cols_to_keep = ["Index", "canonical_smiles", "Label", "scaffold"]
+cols_to_keep = ["ID", "canonical_smiles", "Label", "scaffold"]
 df_details = df_dataset[cols_to_keep].copy()
 
 # Chỉ lấy compounds thuộc danh sách scaffold trong file 1

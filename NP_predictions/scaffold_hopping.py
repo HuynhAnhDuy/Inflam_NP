@@ -9,7 +9,7 @@ FILE1 = "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_x_train_rdkit.csv"   # o
 FILE2 = "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_candidates_final_rdkit.csv"   # candidate (304 compounds)
 OUTPUT = "scaffold_hopping_topN_rdkit.csv"
 N_NEIGHBORS = 20
-SIM_THRESHOLD = 0.5
+SIM_THRESHOLD = 0.8
 # ====================
 
 # Đọc fingerprint
