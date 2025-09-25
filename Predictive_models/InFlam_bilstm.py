@@ -15,7 +15,7 @@ import os
 from datetime import datetime
 
 # ===== CHỈ CHỈNH 1 DÒNG NÀY =====
-BASE_PREFIX = "InFlam_full"
+BASE_PREFIX = "AISMPred"
 
 # ===== BUILD BiLSTM MODEL =====
 def build_model(input_dim):
@@ -77,8 +77,8 @@ def evaluate_model(x_train, y_train, x_test, y_test, epochs=30, batch_size=32, r
     metrics = {
         "Accuracy Test": acc,
         "Balanced Accuracy Test": balanced_acc,
-        "ROC AUC Test": roc_auc,
-        "PR AUC Test": pr_auc,
+        "AUROC Test": roc_auc,
+        "AUPRC Test": pr_auc,
         "MCC Test": mcc,
         "Precision Test": prec,
         "Sensitivity Test": rec,
@@ -95,7 +95,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
     # === Tạo folder timestamp ===
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    prob_folder = f"Prob_InFlam_full/Prob_{timestamp}"
+    prob_folder = f"Prob_Inflampred_external/Prob_{timestamp}"
     os.makedirs(prob_folder, exist_ok=True)
     print(f"\n📁 Sẽ lưu file xác suất tại: {prob_folder}")
 
@@ -105,9 +105,9 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
         try:
             x_train = pd.read_csv(f"{BASE_PREFIX}_x_train_{fp_file}.csv", index_col=0).values
-            x_test = pd.read_csv(f"AISMPred_x_test_{fp_file}.csv", index_col=0).values
+            x_test = pd.read_csv(f"{BASE_PREFIX}_x_test_{fp_file}.csv", index_col=0).values
             y_train = pd.read_csv(f"{BASE_PREFIX}_y_train.csv", index_col=0).values.ravel()
-            y_test = pd.read_csv(f"AISMPred_y_test.csv", index_col=0).values.ravel()
+            y_test = pd.read_csv(f"{BASE_PREFIX}_y_test.csv", index_col=0).values.ravel()
         except FileNotFoundError as e:
             print(f"[SKIP] ❌ Thiếu file cho {fp}: {e}")
             continue
@@ -168,7 +168,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
 # ===== MAIN =====
 def main():
-    fingerprints = ["ecfp", "estate", "maccs", "phychem", "rdkit"]
+    fingerprints = ["ecfp", "maccs", "rdkit"]
     results_by_fp = run_all_fingerprints(fingerprints, num_runs=3)
 
     # Xuất bảng kết quả tổng hợp

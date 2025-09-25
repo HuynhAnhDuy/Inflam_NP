@@ -9,7 +9,7 @@ def plot_funnel_with_labels(steps, counts, colors=None, save_path="funnel_labels
     - % hiển thị tùy chọn qua show_percent (mặc định = True).
     - Tên bước bên ngoài, có leader line.
         """
-    n = 4   
+    n = 5   
     steps = steps[:n]
     counts = counts[:n]
 
@@ -22,7 +22,7 @@ def plot_funnel_with_labels(steps, counts, colors=None, save_path="funnel_labels
 
     # Màu sắc mặc định
     if colors is None:
-        colors = ["#0D1B2A", "#247B88", "#E0A800", "#8B0000"]
+        colors = ["#0D1B2A", "#247B88", "#E0A800", "#CB8B2C","#8B0000"]
 
 
     fig, ax = plt.subplots(figsize=(9, 5))
@@ -94,8 +94,9 @@ steps = steps = [
     "LRo5 ≤1 violation & SA Score < 2",
     "Non-toxic Predictions\n(Dermal Toxicity and Carcinogenicity)",
     "Active NP Candidates\n(Predicted by Consensus Approach)",
+    "Scaffold hopping",
 ]
-counts = [93592, 2186, 584, 304]
+counts = [93592, 2186, 584, 304, 20]
 
 # Xuất 1 file SVG, bật/tắt % tùy ý
-plot_funnel_with_labels(steps, counts, save_path="NP_funnel_labels.svg", show_percent=True)
+plot_funnel_with_labels(steps, counts, save_path="NP_funnel_labels_2.svg", show_percent=True)

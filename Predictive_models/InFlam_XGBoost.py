@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 
 # ==== Chỉ cần chỉnh 1 dòng này ====
-BASE_PREFIX = "InFlam_full"
+BASE_PREFIX = "AISMPred"
 
 # XGBoost
 try:
@@ -21,24 +21,19 @@ from sklearn.metrics import (
 # === Huấn luyện model ===
 def train_xgboost(
     x_train, x_test, y_train, y_test,
-    n_estimators=500, max_depth=None, random_state=42,
-    class_weight='balanced', n_jobs=-1,
-    learning_rate=0.05, subsample=0.8, colsample_bytree=0.8,
-    reg_alpha=0.0, reg_lambda=0.0, gamma=0.0, min_child_weight=1.0 
+    n_estimators=500, max_depth=6, random_state=42,
+    n_jobs=-1, learning_rate=0.05, subsample=0.8, colsample_bytree=0.8,
+    reg_alpha=0.1, reg_lambda=1.0, gamma=0.1, min_child_weight=1
 ):
     x_train = np.asarray(x_train)
     x_test  = np.asarray(x_test)
     y_train = np.asarray(y_train).ravel()
     y_test  = np.asarray(y_test).ravel()
 
-    if max_depth is None:
-        max_depth = 6  # default của XGBoost
-
-    scale_pos_weight = None
-    if class_weight == 'balanced':
-        pos = np.sum(y_train == 1)
-        neg = np.sum(y_train == 0)
-        scale_pos_weight = float(neg) / float(pos) if pos > 0 else 1.0
+    # Tính scale_pos_weight nếu dữ liệu imbalance
+    n_pos = np.sum(y_train == 1)
+    n_neg = np.sum(y_train == 0)
+    scale_pos_weight = float(n_neg) / float(n_pos) if n_pos > 0 else 1.0
 
     params = dict(
         objective="binary:logistic",
@@ -55,12 +50,16 @@ def train_xgboost(
         n_jobs=n_jobs,
         tree_method="hist",  # hoặc 'gpu_hist' nếu dùng GPU
         eval_metric="logloss",
+        scale_pos_weight=scale_pos_weight,
+        use_label_encoder=False
     )
-    if scale_pos_weight is not None:
-        params["scale_pos_weight"] = scale_pos_weight
 
     clf = XGBClassifier(**params)
-    clf.fit(x_train, y_train)
+    clf.fit(
+        x_train, y_train,
+        eval_set=[(x_test, y_test)],
+        verbose=True
+    )
 
     y_pred = clf.predict(x_test)
     y_prob_test = clf.predict_proba(x_test)[:, 1]
@@ -88,15 +87,15 @@ def train_xgboost(
 
     return {
         "metrics": {
-            "Accuracy Test": accuracy,
-            "Balanced Accuracy Test": balanced_acc,
-            "ROC AUC Test": roc_auc,
-            "PR AUC Test": pr_auc,
-            "MCC Test": mcc,
-            "Precision Test": precision,
-            "Sensitivity Test": recall,
-            "Specificity Test": specificity,
-            "F1 Test": f1
+            "Accuracy": accuracy,
+            "Balanced Accuracy": balanced_acc,
+            "AUROC": roc_auc,
+            "AUPRC": pr_auc,
+            "MCC": mcc,
+            "Precision": precision,
+            "Sensitivity": recall,
+            "Specificity": specificity,
+            "F1": f1
         },
         "y_prob_train": y_prob_train,
         "y_prob_test": y_prob_test,
@@ -111,7 +110,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
     # === Tạo thư mục chứa y_prob theo timestamp ===
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    prob_folder = f"Prob_InFlam_full/Prob_{timestamp}"
+    prob_folder = f"Prob_Inflampred_external/Prob_{timestamp}"
     os.makedirs(prob_folder, exist_ok=True)
     print(f"\n📁 Sẽ lưu y_prob vào: {prob_folder}")
 
@@ -121,16 +120,16 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
         try:
             x_train = pd.read_csv(f"{BASE_PREFIX}_x_train_{fp_file}.csv", index_col=0).values
-            x_test  = pd.read_csv(f"AISMPred_x_test_{fp_file}.csv", index_col=0).values
+            x_test  = pd.read_csv(f"{BASE_PREFIX}_x_test_{fp_file}.csv", index_col=0).values
             y_train = pd.read_csv(f"{BASE_PREFIX}_y_train.csv", index_col=0).values.ravel()
-            y_test  = pd.read_csv(f"AISMPred_y_test.csv", index_col=0).values.ravel()
+            y_test  = pd.read_csv(f"{BASE_PREFIX}_y_test.csv", index_col=0).values.ravel()
         except FileNotFoundError as e:
             print(f"[SKIP] Thiếu file cho {fp.upper()}: {e}")
             continue
 
         metrics_keys = [
-            "Accuracy Test", "Balanced Accuracy Test", "AUROC Test", "AUPRC Test",
-            "MCC Test", "Precision Test", "Sensitivity Test", "Specificity Test", "F1 Test"
+            "Accuracy", "Balanced Accuracy", "AUROC", "AUPRC",
+            "MCC", "Precision", "Sensitivity", "Specificity", "F1"
         ]
         metrics_summary = {k: [] for k in metrics_keys}
 
@@ -138,8 +137,8 @@ def run_all_fingerprints(fingerprints, num_runs=3):
             seed = 42 + run
             result = train_xgboost(
                 x_train, x_test, y_train, y_test,
-                n_estimators=500, max_depth=None, random_state=seed,
-                class_weight='balanced', n_jobs=-1
+                n_estimators=500, max_depth=6, random_state=seed,
+                n_jobs=-1
             )
 
             metrics = result["metrics"]
@@ -175,7 +174,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
         print(f"\n📊 --- {fp.upper()} Results (Mean ± SD over {num_runs} runs) ---")
         for k, (mean_val, std_val) in summary.items():
-            print(f"{k}: {mean_val:.3f} ± {std_val:.3f}")
+            print(f"{k}: {mean_val:.2f} ± {std_val:.2f}")
 
     # Xuất file raw từng run
     df_raw = pd.DataFrame(all_metrics_raw)
@@ -186,12 +185,12 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
 # === Hàm chính ===
 def main():
-    fingerprints = ["ecfp", "estate", "maccs", "phychem", "rdkit"]
+    fingerprints = ["ecfp", "maccs", "rdkit"]
     results_by_fp = run_all_fingerprints(fingerprints, num_runs=3)
 
     # Xuất bảng Mean ± SD
     df_export = pd.DataFrame({
-        fp.upper(): {metric: f"{mean:.3f} ± {std:.3f}" for metric, (mean, std) in metrics.items()}
+        fp.upper(): {metric: f"{mean:.2f} ± {std:.2f}" for metric, (mean, std) in metrics.items()}
         for fp, metrics in results_by_fp.items()
     }).T
     df_export.to_csv(f"{BASE_PREFIX}_XGB_fingerprint_metrics.csv")
