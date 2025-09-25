@@ -36,7 +36,7 @@ def combine_svgs(svg_files, out_file, ncols=4, cell_size=(300,300), scale_factor
     print(f"✅ Saved merged figure: {out_file} ({nrows} rows × {ncols} cols, {n} images)")
 
 # --- Đọc và sort các file ---
-input_folder = "/home/andy/andy/Inflam_NP/Scaffold_identify/chem_svgs"
+input_folder = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_XGB_20250925_104144_NPASS"
 svg_files = glob.glob(os.path.join(input_folder, "*.svg"))
 svg_files = sorted(svg_files, key=extract_num)
 
@@ -46,6 +46,6 @@ part2 = svg_files[8:16]   # 8 hình tiếp theo (8–15)
 part3 = svg_files[16:20]  # 4 hình sau nữa 
 
 # --- Gộp từng nhóm ---
-combine_svgs(part1, "SHAP_compound_part1.svg", ncols=4, cell_size=(300,200), scale_factor=0.85)
-combine_svgs(part2, "SHAP_compound_part2.svg", ncols=4, cell_size=(300,200), scale_factor=0.85)
-combine_svgs(part3, "SHAP_compound_part3.svg", ncols=4, cell_size=(300,200), scale_factor=0.85)
+combine_svgs(part1, "NPASS_scaffold_part1.svg", ncols=4, cell_size=(300,200), scale_factor=0.6)
+combine_svgs(part2, "NPASS_scaffold_part2.svg", ncols=4, cell_size=(300,200), scale_factor=0.6)
+combine_svgs(part3, "NPASS_scaffold_part3.svg", ncols=4, cell_size=(300,200), scale_factor=0.6)

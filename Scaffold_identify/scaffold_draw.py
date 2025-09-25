@@ -5,13 +5,13 @@ import pandas as pd
 import os
 
 # ========= CẤU HÌNH =========
-CSV_PATH = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250923_131651/scaffold_positive_overlap.csv"   # <-- CSV input
+CSV_PATH = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_XGB_20250925_104144_NPASS/scaffold_shap_summary_test.csv"   # <-- CSV input
 ID_COL = "ID"
 SCAFFOLD_COL = "scaffold"
 SHAP_COL = "mean_shap"
 
-N = 15                                # số scaffold muốn vẽ
-OUT_DIR = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_scaffold_split_XGB_20250923_131651"
+N = 20                                # số scaffold muốn vẽ
+OUT_DIR = "/home/andy/andy/Inflam_NP/Scaffold_identify/shap_XGB_20250925_104144_NPASS"
 IMG_SIZE = (500, 250)                 # (width, height) cho ảnh SVG
 
 # ========= ĐỌC CSV =========
@@ -51,7 +51,7 @@ for i, row in scaffolds.iterrows():
     drawer.FinishDrawing()
     svg = drawer.GetDrawingText()
 
-    out_path = os.path.join(OUT_DIR, f"scaffold_{mol_id}.svg")
+    out_path = os.path.join(OUT_DIR, f"Test_scaffold_{mol_id}.svg")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(svg)
 
