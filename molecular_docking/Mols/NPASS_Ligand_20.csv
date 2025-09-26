@@ -1,0 +1,21 @@
+LigandID,canonical_smiles,smiles2_name_ID
+NP1,COc1cc(/C=C/C(=O)CCCCc2ccccc2)ccc1O,Yakuchinone B (C1)
+NP2,O=C(CCCCc1ccc(O)cc1)CCc1ccc(O)cc1,"1,7-bis(4-hydroxyphenyl)heptan-3-one (C2)"
+NP3,COc1cc(/C=C/C(=O)c2ccc(O)cc2)ccc1O,(E)-3-(4-hydroxy-3-methoxyphenyl)-1-(4-hydroxyphenyl)prop-2-en-1-one (C3)
+NP4,COc1ccc(/C=C/C(=O)c2cc(OC)c(OC)c(OC)c2)cc1,"3',4,4',5'-Tetramethoxychalcone (C4)"
+NP5,COc1ccc(C=CC(=O)c2ccc(O)cc2O)cc1,"2a(2),4a(2)-dihydroxy-4-methoxychalcone (C5)"
+NP6,COc1ccc(C=CC(=O)c2ccc(OC)cc2O)cc1,"6'-hydroxy-4,4'-dimethoxychalcone (C6)"
+NP7,COc1ccc(C(=O)C=Cc2ccc(O)cc2)c(O)c1,1-(2-hydroxy-4-methoxyphenyl)-3-(4-hydroxyphenyl)-2-propen-1-one (C7)
+NP8,COc1ccc(C(=O)C=Cc2ccccc2)c(O)c1,4'-methoxy-2'-hydroxy chalcone (C8)
+NP9,COc1ccc(C(=O)C=Cc2ccccc2)c(OC)c1OC,"3-phenyl-1-(2,3,4-trimethoxyphenyl)prop-2-en-1-one (C9)"
+NP10,COc1ccc(-c2cc(=O)c3ccccc3o2)cc1OC,"3',4'-dimethoxyflavone (C10)"
+NP11,COc1cc(OC)cc(-c2cc(=O)c3ccccc3o2)c1,"3',5'-dimethoxyflavone (C11)"
+NP12,COc1ccc(-c2cc(=O)c3ccccc3o2)cc1,4'-methoxyflavone (C12)
+NP13,C1=CC=C(C=C1)C2=CC(=O)C3=C(C=CC=C3O2)O,5-hydroxyflavone (C13)
+NP14,COC1=CC=CC2=C1C(=O)C=C(O2)C3=CC=CC=C3,5-methoxyflavone (C14)
+NP15,O=C1C=C(C2=CC=CC=C2)OC3=CC(OC)=CC(OC)=C13,"5,7-dimethoxyflavone (C15)"
+NP16,COc1ccc(OC)c(-c2cc(=O)c3ccccc3o2)c1,"2',5'-dimethoxyflavone (C16)"
+NP17,COc1ccc(/C=C\c2cc(O)cc(O)c2)cc1,"5-[(Z)-2-(4-methoxyphenyl)ethenyl]benzene-1,3-diol (C17)"
+NP18,COc1cc(O)cc(C=Cc2ccccc2)c1,3-methoxy-5-(2-phenylethenyl)phenol (C18)
+NP19,COc1cc(C=Cc2ccccc2)cc(OC)c1,"1,3-dimethoxy-5-(2-phenylethenyl)benzene (C19)"
+NP20,COc1cc(C=Cc2ccc(O)cc2)cc(OC)c1,"4-(2-(3,5-dimethoxyphenyl)ethenyl)phenol (C20)"

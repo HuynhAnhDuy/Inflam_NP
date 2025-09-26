@@ -6,90 +6,86 @@ import autodock_lowest as al
 import subprocess
 import os
 
+# Đọc dữ liệu
+df = pd.read_csv(os.path.join("Mols", "NPASS_Ligand_20.csv"))
 
-df = pd.read_csv(os.path.join('ampk_dock','ampk_compounds.csv'))
+# Tạo thư mục Ligands
+mol_filepath = os.path.join("Mols", "Ligands")
+os.makedirs(mol_filepath, exist_ok=True)
 
-# Convert SMILES to MOL to PDBQT
+# Convert SMILES -> MOL -> PDBQT
 for index, row in df.iterrows():
-     smiles = row['canonical_smiles']
-     ligand_id = row['LigandID']
-     
-     mol_filepath = os.path.join('ampk_dock', 'mols')
-     
-     # convert smiles to mol
-     mol_file = os.path.join(mol_filepath, f'{ligand_id}.mol')
-     ad.convert_smiles_mol(smiles,mol_file)
-     print(f"Successfully converted {ligand_id} at index {index}")
+    smiles = row['canonical_smiles']
+    ligand_id = row['LigandID']
 
-     # convert mol to pdbqt
-     mol_file = os.path.join(mol_filepath, f'{ligand_id}.mol')
-     pdbqt_file = os.path.join(mol_filepath, f'{ligand_id}.pdbqt')
-     ad.change_mol_pdbqt(mol_file,pdbqt_file)
-     print(f"Successfully converted {ligand_id} at index {index}")
+    mol_file = os.path.join(mol_filepath, f"{ligand_id}.mol")
+    pdbqt_file = os.path.join(mol_filepath, f"{ligand_id}.pdbqt")
 
+    ad.convert_smiles_mol(smiles, mol_file)
+    print(f"[OK] Converted SMILES -> MOL for {ligand_id}")
 
-# Docking Loop
-for index, ligand_id in df['LigandID'].items():
-    
-    print(f'Processing ligand ID: {ligand_id}')
-    receptor_path = 'ampk_dock/protein'
-    input_receptor = 'ampk_prot'
-    ligand_path = os.path.join('ampk_dock','mols')
-    input_ligand = ligand_id
-    output_filepath = os.path.join('ampk_dock', 'autodock')
-    output_txt = os.path.join('ampk_dock', 'txt')
-    
-    # Define the center and box size
-    center_x, center_y, center_z = 89.18, -3597, 36.02
-    search_x, search_y, search_z = 186.36, 158.43, 104.13
-    
-    # Prepare the output file for capturing terminal output
+    ad.change_mol_pdbqt(mol_file, pdbqt_file)
+    print(f"[OK] Converted MOL -> PDBQT for {ligand_id}")
+
+# Docking
+for ligand_id in df['LigandID']:
+    print(f"Processing ligand ID: {ligand_id}")
+
+    receptor_path = "/home/andy/andy/Inflam_NP/molecular_docking/Protein_clean"
+    input_receptor = "COX1_1EQH"
+    ligand_path = mol_filepath
+    output_filepath = os.path.join("InFlam_dock", "autodock")
+    output_txt = os.path.join("InFlam_dock", "txt")
+
+    os.makedirs(output_filepath, exist_ok=True)
+    os.makedirs(output_txt, exist_ok=True)
+
+    # Define the grid
+    center_x, center_y, center_z = 47.46, 27.948, 193.164
+    search_x, search_y, search_z = 35.0, 35.0, 35.0
+
     output_file = os.path.join(output_txt, f"{ligand_id}.txt")
-    
+
     try:
-        # Run docking
-        ad.vina_run(receptor_path, ligand_path, output_filepath, input_receptor, input_ligand,
-                    center_x, center_y, center_z, search_x, search_y, search_z)
-        
-        # Capture terminal output using subprocess
+        ad.vina_run(
+            receptor_path, ligand_path, output_filepath, 
+            input_receptor, ligand_id,
+            center_x, center_y, center_z, search_x, search_y, search_z
+        )
+
+        # Log output
         command = (
             f"from autodock import vina_run; "
-            f"vina_run('{receptor_path}', '{ligand_path}', '{output_filepath}', '{input_receptor}', '{input_ligand}', "
+            f"vina_run('{receptor_path}', '{ligand_path}', '{output_filepath}', "
+            f"'{input_receptor}', '{ligand_id}', "
             f"{center_x}, {center_y}, {center_z}, {search_x}, {search_y}, {search_z})"
         )
-        
         with open(output_file, "w") as outfile:
             subprocess.run(
                 ["python", "-c", command],
                 stdout=outfile,
                 stderr=subprocess.STDOUT
             )
-        
-        print(f"Docking completed for {ligand_id}.")
-    
+
+        print(f"[OK] Docking completed for {ligand_id}")
+
     except RuntimeError as e:
-        if "The ligand is outside the grid box" in str(e):
+        if "outside the grid box" in str(e):
             print(f"Skipping {ligand_id}: {e}")
         else:
-            print(f"Error occurred for {ligand_id}: {e}")
-        continue  # Skip to the next ligand if an error occurs
-    
+            print(f"Error {ligand_id}: {e}")
+        continue
+
     except Exception as e:
-        # Catch any other exceptions
-        print(f"An unexpected error occurred for {ligand_id}: {e}")
-        continue  # Continue to the next ligand
+        print(f"Unexpected error {ligand_id}: {e}")
+        continue
 
-# Save Lowest Affinities
-print("Processing to save the lowest affinity of each compound...")
+# Save Lowest Affinity
+print("Processing lowest affinity...")
 
-# Read ligand IDs from the CSV file
-ligand_ids = pd.read_csv(os.path.join('ampk_dock', 'ampk_compounds.csv'))['LigandID'].dropna().tolist()
+ligand_ids = df['LigandID'].dropna().tolist()
+txt_path = os.path.join("InFlam_dock", "txt")
+lowest_csv = os.path.join("InFlam_dock", "lowest_affinity.csv")
 
-# Directory paths
-txt_path = 'ampk_dock/txt'
-lowest_csv = os.path.join('ampk_dock', 'lowest_affinity.csv')
-
-# Read affinities and find lowest
 affinities = al.read_ligand(ligand_ids, txt_path)
 al.find_lowest(ligand_ids, affinities, lowest_csv)
-
