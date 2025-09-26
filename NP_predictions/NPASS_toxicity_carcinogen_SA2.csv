@@ -1,4 +1,4 @@
-Input_SMILES,Canonical_SMILES,Prob_LightGBM,Prob_RF,Prob_BiLSTM,Average_Probability,Prediction,Assessment
+Input_SMILES,canonical_smiles,Prob_LightGBM,Prob_RF,Prob_BiLSTM,Average_Probability,Prediction,Assessment
 O=CCCCCCCCC(=O)O,O=CCCCCCCCC(=O)O,0.15579715,0.18,0.095224805,0.143673985,non-carcinogen,safety
 CC(=O)CC(=O)c1ccccc1,CC(=O)CC(=O)c1ccccc1,0.012237038,0.216888889,0.304928392,0.178018106,non-carcinogen,safety
 COc1cc2c(cc1OC)-c1ccccc1CCN(C)C2,COc1cc2c(cc1OC)-c1ccccc1CCN(C)C2,0.116607707,0.518,0.428180933,0.35426288,non-carcinogen,safety
