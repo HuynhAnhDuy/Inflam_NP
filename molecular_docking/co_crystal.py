@@ -91,5 +91,5 @@ for pdb_file, resname in ligand_map.items():
         "note": warn
     })
 
-pd.DataFrame(rows).to_csv("grid_centers.csv", index=False)
+pd.DataFrame(rows).to_csv("grid_centers_2.csv", index=False)
 print("\n[DONE] Results saved to grid_centers.csv")
