@@ -7,7 +7,7 @@ protein_dir = "/home/andy/andy/Inflam_NP/molecular_docking/Protein_original"
 
 ligand_map = {
     "COX1_1EQH.pdb": "FLP",
-    "COX2_5IKR.pdb": "ID8",   # kiểm tra lại mã 3-letter trong PDB
+    "COX2_5IKR.pdb": "ID8",  
     "COX2_3LN1.pdb": "CEL",
     "5LOX_6NCF.pdb": "AF7",
     "mPGES1_5TL9.pdb": "JZR"
@@ -76,7 +76,7 @@ for pdb_file, resname in ligand_map.items():
 
     print(f"[OK] {pdb_file} ({resname})  site={best_key}")
     print(f"     Center = ({center[0]:.3f}, {center[1]:.3f}, {center[2]:.3f})")
-    print(f"     Search = ({size[0]:.2f}, {size[1]:.2f}, {size[2]:.2f})  | Volume ~ {volume:.0f} Å^3  [{warn}]")
+    print(f"     Size = ({size[0]:.2f}, {size[1]:.2f}, {size[2]:.2f})  | Volume ~ {volume:.0f} Å^3  [{warn}]")
 
     rows.append({
         "Protein": pdb_file,
@@ -84,9 +84,9 @@ for pdb_file, resname in ligand_map.items():
         "center_x": round(float(center[0]), 3),
         "center_y": round(float(center[1]), 3),
         "center_z": round(float(center[2]), 3),
-        "search_x": round(float(size[0]), 2),
-        "search_y": round(float(size[1]), 2),
-        "search_z": round(float(size[2]), 2),
+        "size_x": round(float(size[0]), 2),
+        "size_y": round(float(size[1]), 2),
+        "size_z": round(float(size[2]), 2),
         "volume": round(volume, 0),
         "note": warn
     })
