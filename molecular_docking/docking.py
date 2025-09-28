@@ -4,18 +4,18 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 # ==== Cấu hình ====
-RECEPTOR = "/home/andy/andy/Inflam_NP/molecular_docking/Protein_clean/COX1_1EQH_clean.pdbqt"
-LIG_DIR = Path("ligands")
-OUT_DIR = Path("COX1_1EQH_out_2")
+RECEPTOR = "/home/andy/andy/Inflam_NP/molecular_docking/Protein_clean/mPGES1_5TL9_clean.pdbqt"
+LIG_DIR = Path("/home/andy/andy/Inflam_NP/molecular_docking/ligands_mPGES1_5TL9")
+OUT_DIR = Path("Docking_results_mPGES1_5TL9")
 OUT_DIR.mkdir(exist_ok=True, parents=True)
 
 # Hộp docking (Å)
-CENTER = (47.467, 27.863, 193.272)
+CENTER = (7.753,-17.372, 28.244)
 SIZE   = (22, 22, 22)
 
 # Tham số Vina
 EXHAUSTIVENESS = 16
-NUM_MODES = 9
+NUM_MODES = 5
 ENERGY_RANGE = 3
 
 # Tên lệnh vina (có thể là 'vina' hoặc 'autodock_vina')
@@ -53,20 +53,24 @@ def run_vina(lig_path: Path):
         with open(out_log, "w") as logf:
             subprocess.run(cmd, check=True, stdout=logf, stderr=subprocess.STDOUT, text=True)
     except subprocess.CalledProcessError:
-        return lig_base, []
+        return lig_base, None
 
-    poses = []
+    best_pose = None
     if out_log.exists():
+        poses = []
         with open(out_log, "r", encoding="utf-8", errors="ignore") as f:
             for line in f:
                 m = re.match(r"\s*(\d+)\s+([-\d\.]+)", line)
                 if m:
                     rank = int(m.group(1))
                     score = float(m.group(2))
-                    if rank <= 3:  # chỉ lấy top 3
-                        Ki = calc_Ki(score)
-                        poses.append((lig_base, rank, score, Ki))
-    return lig_base, poses
+                    poses.append((rank, score))
+        if poses:
+            # Chọn pose có affinity nhỏ nhất (score thấp nhất)
+            best_rank, best_score = min(poses, key=lambda x: x[1])
+            Ki = calc_Ki(best_score)
+            best_pose = (lig_base, best_rank, best_score, Ki)
+    return lig_base, best_pose
 
 def main():
     ligands = sorted(LIG_DIR.glob("*.pdbqt"))
@@ -78,22 +82,22 @@ def main():
     with ThreadPoolExecutor(max_workers=N_THREADS) as ex:
         fut2lig = {ex.submit(run_vina, lig): lig for lig in ligands}
         for fut in as_completed(fut2lig):
-            lig_base, poses = fut.result()
-            if not poses:
+            lig_base, best_pose = fut.result()
+            if not best_pose:
                 print(f"[FAIL] {lig_base}: docking failed.")
             else:
-                for lig, rank, score, Ki in poses:
-                    if Ki:
-                        print(f"[OK] {lig}: pose {rank}, affinity = {score:.3f} kcal/mol, Ki ≈ {Ki:.3e} M")
-                    else:
-                        print(f"[OK] {lig}: pose {rank}, affinity = {score:.3f} kcal/mol")
-                all_results.extend(poses)
+                lig, rank, score, Ki = best_pose
+                if Ki:
+                    print(f"[OK] {lig}: best pose {rank}, affinity = {score:.3f} kcal/mol, Ki ≈ {Ki:.3e} M")
+                else:
+                    print(f"[OK] {lig}: best pose {rank}, affinity = {score:.3f} kcal/mol")
+                all_results.append(best_pose)
 
-    # Xuất CSV
-    csv_path = OUT_DIR / "scores.csv"
+    # Xuất CSV (chỉ pose tốt nhất cho mỗi ligand)
+    csv_path = OUT_DIR / "mPGES1_5TL9_scores.csv"
     with open(csv_path, "w", newline="", encoding="utf-8") as fw:
         writer = csv.writer(fw)
-        writer.writerow(["ligand", "pose_rank", "affinity (kcal/mol)", "Ki_estimated (M)"])
+        writer.writerow(["ligand", "best_pose_rank", "affinity (kcal/mol)", "Ki_estimated (M)"])
         for lig, rank, score, Ki in sorted(all_results):
             writer.writerow([lig, rank, f"{score:.3f}", "" if Ki is None else f"{Ki:.3e}"])
 

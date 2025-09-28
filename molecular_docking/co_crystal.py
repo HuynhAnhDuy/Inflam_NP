@@ -7,10 +7,10 @@ protein_dir = "/home/andy/andy/Inflam_NP/molecular_docking/Protein_original"
 
 ligand_map = {
     "COX1_1EQH.pdb": "FLP",
-    "COX2_5IKR.pdb": "ID8",  
-    "COX2_3LN1.pdb": "CEL",
+    "COX2_5IKR.pdb": "ID8",
+    "COX2_3LN1.pdb": "CEL",    
     "5LOX_6NCF.pdb": "AF7",
-    "mPGES1_5TL9.pdb": "JZR"
+    "mPGES1_5TL9.pdb": "7DN"
 }
 
 buffer_per_side = 4.0  # Å đệm mỗi bên

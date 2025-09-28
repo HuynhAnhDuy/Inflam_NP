@@ -1,0 +1,22 @@
+ligand,best_pose_rank,affinity (kcal/mol),Ki_estimated (M)
+Ligand_15,1,-8.013,1.35E-06
+Ligand_14,1,-7.89,1.67E-06
+Ligand_5,1,-7.864,1.74E-06
+Ligand_6,1,-7.741,2.14E-06
+Ligand_16,1,-7.701,2.29E-06
+Ligand_4,1,-7.673,2.40E-06
+Ligand_3,1,-7.656,2.47E-06
+Ligand_10,1,-7.654,2.48E-06
+Ligand_11,1,-7.645,2.52E-06
+Ligand_20,1,-7.549,2.96E-06
+Ligand_12,1,-7.501,3.21E-06
+Ligand_7,1,-7.499,3.22E-06
+Ligand_9,1,-7.483,3.31E-06
+Ligand_control_ID8,1,-7.448,3.51E-06
+Ligand_8,1,-7.432,3.61E-06
+Ligand_13,1,-7.409,3.75E-06
+Ligand_18,1,-7.352,4.13E-06
+Ligand_1,1,-7.35,4.14E-06
+Ligand_17,1,-7.228,5.09E-06
+Ligand_19,1,-7.204,5.30E-06
+Ligand_2,1,-6.904,8.79E-06
