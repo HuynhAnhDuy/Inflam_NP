@@ -6,7 +6,7 @@ from pathlib import Path
 # ==== Cấu hình ====
 RECEPTOR = "/home/andy/andy/Inflam_NP/molecular_docking/Protein_clean/mPGES1_5TL9_clean.pdbqt"
 LIG_DIR = Path("/home/andy/andy/Inflam_NP/molecular_docking/ligands_mPGES1_5TL9")
-OUT_DIR = Path("Docking_results_mPGES1_5TL9")
+OUT_DIR = Path("Docking_results_mPGES1_5TL9_2")
 OUT_DIR.mkdir(exist_ok=True, parents=True)
 
 # Hộp docking (Å)
@@ -14,7 +14,7 @@ CENTER = (7.753,-17.372, 28.244)
 SIZE   = (22, 22, 22)
 
 # Tham số Vina
-EXHAUSTIVENESS = 16
+EXHAUSTIVENESS = 32
 NUM_MODES = 5
 ENERGY_RANGE = 3
 
