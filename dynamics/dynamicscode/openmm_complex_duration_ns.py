@@ -6,49 +6,56 @@ import sys, time, argparse
 from openff.toolkit import Molecule
 from openmmforcefields.generators import SystemGenerator
 import openmm
-import openmm as mm
-from openmm.app import Simulation
 from openmm import app, unit, LangevinIntegrator, Vec3
 from openmm.app import PDBFile, Simulation, Modeller, PDBReporter, StateDataReporter, DCDReporter
 import argparse
 import os
-import utils
-
+import subprocess
+from openmm import Platform
 
 
 def input_argument():
     parser = argparse.ArgumentParser(description="Molecular simulation script")
     # Set default values so they are not required to be input every time
-    parser.add_argument("-p", "--protein", default=os.path.join('mols',"COX2_3LN1_clean_fixed.pdb"), help="Protein PDB file")
-    parser.add_argument("-l", "--ligand", default=os.path.join('mols',"TheasinensinA1.mol"), help="Ligand molfile") #str(i)+
-    parser.add_argument("-o", "--output", default=os.path.join('outputs',"TheasinensinA1_4xv2"), help="Base name for output files")   #str(i)+
-    parser.add_argument("-s", "--steps", type=int, default=500000, help="Number of steps")
+    parser.add_argument("-p", "--protein", default=os.path.join('openmm',"2AZ5_nomolecule_fixed.pdb"), help="Protein PDB file")
+    parser.add_argument("-l", "--ligand", default=os.path.join('mols',"mitragynine_rotate.mol"), help="Ligand molfile")
+    parser.add_argument("-o", "--output", default=os.path.join('outputs',"complex_mitragynine_rotate_2AZ5"), help="Base name for output files")
+    
+    # Duration vs steps
+    parser.add_argument("-s", "--steps", type=int, help="Number of steps (overrides duration if set)")  #default=500000
+    parser.add_argument("--duration-ns", type=float, default=1.0, help="Target simulation duration in ns")
+    
     parser.add_argument("-z", "--step-size", type=float, default=0.002, help="Step size (ps)")
     parser.add_argument("-f", "--friction-coeff", type=float, default=1.0, help="Friction coefficient (ps)")
-    parser.add_argument("-i", "--interval", type=int, default=100, help="Reporting interval")
+    parser.add_argument("-i", "--interval", type=int, default=500, help="Reporting interval")   #500 (saves disk space_)
     parser.add_argument("-t", "--temperature", type=int, default=300, help="Temperature (K)")
     parser.add_argument("--solvate", action='store_true', default=True, help="Add solvent box")
-    parser.add_argument("--padding", type=float, default=10.0, help="Padding for solvent box (Å)")
+    parser.add_argument("--padding", type=float, default=1.0, help="Padding for solvent box (Å)")
     parser.add_argument("--water-model", default="tip3p",
                         choices=["tip3p", "spce", "tip4pew", "tip5p", "swm4ndp"],
                         help="Water model for solvation")
     parser.add_argument("--positive-ion", default="Na+", help="Positive ion for solvation")
     parser.add_argument("--negative-ion", default="Cl-", help="Negative ion for solvation")
-    parser.add_argument("--ionic-strength", type=float, default=0.15, help="Ionic strength for solvation")
+    parser.add_argument("--ionic-strength", type=float, default=0.0, help="Ionic strength for solvation")
     parser.add_argument("--no-neutralize", action='store_true', default=False, help="Don't add ions to neutralize")
-    parser.add_argument("-e", "--equilibration-steps", type=int, default=100000, help="Number of equilibration steps")
+    parser.add_argument("-e", "--equilibration-steps", type=int, default=200, help="Number of equilibration steps")
     parser.add_argument("--protein-force-field", default='amber/ff14SB.xml', help="Protein force field")
     parser.add_argument("--ligand-force-field", default='gaff-2.11', help="Ligand force field")
     parser.add_argument("--water-force-field", default='amber/tip3p_standard.xml', help="Water force field")
 
     args = parser.parse_args()
+
+    # If steps not provided, calculate from duration and step size
+    if args.steps is None:
+        total_ps = args.duration_ns * 1000.0  # ns -> ps
+        args.steps = int(total_ps / args.step_size)
+
     return args
  
 
 def create_complex(args,mol_in,pdb_in,output_complex):
     # get the chosen or fastest platform
-    #platform = utils.get_platform()
-    platform = mm.Platform.getPlatformByName('CPU') 
+    platform = Platform.getPlatformByName('CPU')
 
     print('Reading ligand')
     ligand_mol = Molecule.from_file(mol_in)
@@ -130,7 +137,7 @@ def create_system(platform,modeller, system_generator, args, ligand_mol, num_ste
     simulation.step(equilibration_steps)
     return simulation,duration
 
-def openmm_function():  #i
+def openmm_run():
     t0 = time.time()
     
     args = input_argument()
@@ -152,10 +159,11 @@ def openmm_function():  #i
     simulation,duration=create_system(platform,modeller, system_generator, args, ligand_mol, num_steps, temperature, equilibration_steps, output_min)
     
     # Run the simulation.
+    simulation.reporters.append(PDBReporter(output_base + '_traj.pdb', reporting_interval)) #new
     simulation.reporters.append(DCDReporter(output_traj_dcd, reporting_interval, enforcePeriodicBox=True))
     simulation.reporters.append(StateDataReporter(sys.stdout, reporting_interval * 5, step=True, potentialEnergy=True, temperature=True))
     print('Starting simulation with', num_steps, 'steps ...')
-    #print(i)
+    
     t1 = time.time()
     simulation.step(num_steps)
     t2 = time.time()
@@ -165,6 +173,4 @@ def openmm_function():  #i
     
     return "Successfully done" #+ str(i)
 
-openmm_function()
-#for i in range(4,10):
-#    openmm_function(str(i))
+openmm_run()

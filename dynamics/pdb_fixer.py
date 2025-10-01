@@ -38,7 +38,7 @@ def main():
     run_openmm will run to calculate the force field and give the output result.
     '''
     # Input file to fix PDB file
-    input_molecule = input("Please type your molecule name ")
+    input_molecule = input("COX2_3LN1_clean")
     input_file = os.path.join(input_molecule+'.pdb')
     output_file = os.path.join(input_molecule+'_fixed.pdb')
     pdb_fixer(input_file,output_file)
