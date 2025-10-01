@@ -28,12 +28,12 @@ def change_mol_pdbqt(input_file, output_file):
 # Main workflow
 # ==========================
 def main():
-    ligand_dir = "/home/andy/andy/Inflam_NP/molecular_docking/Controls"
+    ligand_dir = "/home/andy/andy/Inflam_NP/molecular_docking/Mols"
     os.makedirs(ligand_dir, exist_ok=True)
 
-    df = pd.read_csv("/home/andy/andy/Inflam_NP/molecular_docking/grid_centers_double_check.csv",encoding="latin-1")
+    df = pd.read_csv("/home/andy/andy/Inflam_NP/molecular_docking/Mols/NPASS_Ligand_20.csv",encoding="latin-1")
     for i, smiles in enumerate(df["canonical_smiles"], start=1):
-        ligand_name = f"Ligand_{i}_control"
+        ligand_name = f"Ligand_{i}"
         mol_file = os.path.join(ligand_dir, ligand_name + ".mol")
         pdbqt_file = os.path.join(ligand_dir, ligand_name + ".pdbqt")
 
