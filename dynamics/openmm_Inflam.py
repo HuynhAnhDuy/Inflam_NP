@@ -4,12 +4,14 @@ Run MD for a protein–ligand complex with optional solvation.
 Option B: Input = complex PDB (protein+ligand pose) + ligand.xml
 Phases:
   - Minimization
-  - Equilibration (short)
+  - Equilibration (longer, default 200k steps ~ 400 ps)
   - Production (NPT or NVT)
 Outputs:
   <base>_complex.pdb
   <base>_minimised.pdb
   <base>_traj.dcd
+  <base>_energies.csv
+  <base>_checkpoint.chk
   <base>_timing.csv
 """
 
@@ -17,7 +19,8 @@ import os, sys, time, argparse, csv
 import openmm
 import openmm as mm
 from openmm import app, unit, LangevinIntegrator
-from openmm.app import PDBFile, Modeller, Simulation, DCDReporter, StateDataReporter, ForceField
+from openmm.app import (PDBFile, Modeller, Simulation, 
+                        DCDReporter, StateDataReporter, ForceField, CheckpointReporter)
 
 # -----------------------
 # Argument parsing
@@ -50,8 +53,8 @@ def input_argument():
                    help="Reporting interval (steps) for trajectory/state")
 
     # Equilibration
-    p.add_argument("--equil-steps", type=int, default=2000,
-                   help="Number of equilibration steps before production")
+    p.add_argument("--equil-steps", type=int, default=200000,
+                   help="Number of equilibration steps before production (default 200k ~ 400 ps)")
 
     # Solvation
     p.add_argument("--solvate", action='store_true', default=False, help="Add solvent box")
@@ -164,10 +167,12 @@ def run_md():
     out_min = base + "_minimised.pdb"
     out_traj = base + "_traj.dcd"
     out_csv  = base + "_timing.csv"
+    out_ener = base + "_energies.csv"
+    out_chk  = base + "_checkpoint.chk"
 
     print('Processing complex:', args.complex)
     print('Ligand XML:', args.ligand_xml)
-    print('Outputs:', out_complex, out_min, out_traj, out_csv)
+    print('Outputs:', out_complex, out_min, out_traj, out_csv, out_ener, out_chk)
 
     # Build complex
     platform, modeller, forcefield = create_complex(args, out_complex)
@@ -178,7 +183,7 @@ def run_md():
     # Minimization
     print('--- Minimization ---')
     tmin0 = time.time()
-    simulation.minimizeEnergy()
+    simulation.minimizeEnergy(maxIterations=500)  # giới hạn vòng lặp
     with open(out_min, 'w') as f:
         PDBFile.writeFile(simulation.topology,
                           simulation.context.getState(getPositions=True, enforcePeriodicBox=True).getPositions(),
@@ -206,9 +211,15 @@ def run_md():
     simulation.reporters.append(DCDReporter(out_traj, args.interval, enforcePeriodicBox=True))
     simulation.reporters.append(StateDataReporter(sys.stdout, args.interval*5,
                                                   step=True, potentialEnergy=True,
-                                                  temperature=True, density=True,
-                                                  progress=True, remainingTime=True,
+                                                  temperature=True, pressure=True,
+                                                  density=True, progress=True, remainingTime=True,
                                                   speed=True, totalSteps=prod_steps))
+    simulation.reporters.append(StateDataReporter(out_ener, args.interval,
+                                                  step=True, potentialEnergy=True,
+                                                  totalEnergy=True, temperature=True,
+                                                  pressure=True, density=True, separator=","))
+    simulation.reporters.append(CheckpointReporter(out_chk, args.interval*50))
+
     tprod0 = time.time()
     simulation.step(prod_steps)
     tprod1 = time.time()
