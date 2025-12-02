@@ -11,7 +11,7 @@ We want to select only the cid, acvalue_um (microM), name, assay, and isometric_
 '''
 #Import df_selection
 import pandas as pd
-def remove_missing_data(df, smiles, activity):
+def remove_missing_data(df, smiles, activity=None):
     '''
     This function remove missing data from specific dataframe and columns
     -------
@@ -23,10 +23,13 @@ def remove_missing_data(df, smiles, activity):
     Return:
     new df with no missing from specific columns.
     '''
-    df_select = df.dropna(subset=[smiles, activity])
-    number_row_before = len(df)
-    number_row_after  = len(df_select)
-    print('Remove ', str(number_row_before - number_row_after), ' MISSING data. Only ', number_row_after, ' remaining')
+    subset_cols = [smiles]
+    if activity is not None and activity in df.columns:
+        subset_cols.append(activity)
+
+    df_select = df.dropna(subset=subset_cols)
+
+    print(f"Removed {len(df) - len(df_select)} missing rows. {len(df_select)} remaining.")
     return df_select
 
 def canonical_smiles(df, smiles_col):

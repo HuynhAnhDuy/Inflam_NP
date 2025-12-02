@@ -5,9 +5,9 @@ from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
 
 # ====== CONFIG ======
-FILE1 = "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_x_train_rdkit.csv"   # original (15k compounds)
+FILE1 = "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_x_train_rdkit.csv"  
 FILE2 = "/home/andy/andy/Inflam_NP/NP_predictions/NPASS_candidates_final_rdkit.csv"   # candidate (304 compounds)
-OUTPUT = "scaffold_hopping_topN_rdkit.csv"
+OUTPUT = "scaffold_hopping_topN_paper.csv"
 N_NEIGHBORS = 20
 SIM_THRESHOLD = 0.8
 # ====================
