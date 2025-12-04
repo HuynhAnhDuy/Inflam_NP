@@ -66,7 +66,7 @@ def main(random_state=42):
 
     # === Load and process train/test data ===
     df_train = pd.read_csv("/home/andy/andy/Inflam_NP/Scaffold_identify/InFlam_full_x_train.csv").dropna(subset=['canonical_smiles', 'Label'])
-    df_test = pd.read_csv("/home/andy/andy/Inflam_NP/Scaffold_identify/3.InFlamNat_SHAP_dataset.csv").dropna(subset=['canonical_smiles', 'Label'])
+    df_test = pd.read_csv("/home/andy/andy/Inflam_NP/Scaffold_identify/NPASS_candidates_final_584.csv").dropna(subset=['canonical_smiles', 'Label'])
 
     for df in [df_train, df_test]:
         df['scaffold'] = df['canonical_smiles'].apply(get_scaffold)
