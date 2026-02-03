@@ -7,9 +7,9 @@ from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 
 # ============== CONFIG ==============
-INPUT_CSV = "/home/andy/andy/Inflam_NP/Scaffold_clustering/scaffold_shap_summary_test_TEST_SET.csv"
-OUTPUT_EMBED = "scaffolds_tsne_2d.csv"
-OUTPUT_FIG  = "tsne_mean_shap.svg"
+INPUT_CSV = "/home/andy/andy/Inflam_NP/Scaffold_clustering/scaffold_shap_summary_TEST_SET.csv"
+OUTPUT_EMBED = "scaffolds_tsne_2d_test.csv"
+OUTPUT_FIG  = "tsne_mean_shap_test.svg"
 
 SMILES_COL = "scaffold_smiles"
 SHAP_COL   = "mean_shap"
@@ -78,7 +78,7 @@ sc = plt.scatter(
 
 plt.xlabel("t-SNE 1",fontsize=12, fontweight='bold', fontstyle='italic', family='sans-serif') 
 plt.ylabel("t-SNE 2",fontsize=12, fontweight='bold', fontstyle='italic', family='sans-serif') 
-plt.title("t-SNE visualization of positive scaffolds",fontsize=12, fontweight='bold', family='sans-serif') 
+plt.title("t-SNE visualization of positive scaffolds in the test set",fontsize=12, fontweight='bold', family='sans-serif') 
 plt.colorbar(sc, label="Mean SHAP values")
 plt.tight_layout()
 

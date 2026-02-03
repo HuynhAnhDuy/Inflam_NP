@@ -7,9 +7,9 @@ from umap import UMAP          # 🔹 Đổi từ TSNE sang UMAP
 import matplotlib.pyplot as plt
 
 # ============== CONFIG ==============
-INPUT_CSV = "/home/andy/andy/Inflam_NP/Scaffold_clustering/scaffold_shap_summary_test_TEST_SET.csv"
-OUTPUT_EMBED = "scaffolds_umap_2d.csv"     # 🔹 Đổi tên file cho đúng với UMAP
-OUTPUT_FIG  = "umap_mean_shap.svg"
+INPUT_CSV = "/home/andy/andy/Inflam_NP/Scaffold_clustering/scaffold_shap_summary_TRAIN_SET.csv"
+OUTPUT_EMBED = "scaffolds_umap_2d_train.csv"     # 🔹 Đổi tên file cho đúng với UMAP
+OUTPUT_FIG  = "umap_mean_shap_train.svg"
 
 SMILES_COL = "scaffold_smiles"
 SHAP_COL   = "mean_shap"
