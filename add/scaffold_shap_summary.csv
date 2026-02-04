@@ -1,0 +1,4 @@
+ID,scaffold,mean_shap,effect
+Test: Pos 17,C1CC2=C3CCC4CCCCC4C3CCC2C1,0.002030555,positive
+Train: Pos 14,O=C1NC2CCC3CC4CCC=C4C=CC1C32,0.002298436,positive
+Train: Pos 15,O=C(C1=C2OCCCC23CCCC(C1=O)C3=O)c1ccccc1,0.002298018,positive
