@@ -1,0 +1,11 @@
+﻿cluster_id,n_scaffolds_in_cluster,representative_scaffold,representative_ID,medoid_avg_tanimoto,representative_scaffold_shap,representative_scaffold_heavy_atoms
+1,5,O=C(C=Cc1ccccc1)c1ccccc1,NPASS: Pos 04,0.556172733,0.001441875,16
+6,3,O=C1c2ccccc2C(=O)c2ccccc21,NPASS: Pos 11,0.725,0.0008612,16
+7,1,O=C(c1ccccc1)n1ccc2ccccc21,NPASS: Pos 21,1,0.000609852,17
+4,2,c1ccc2c(c1)[nH]c1ccccc12,NPASS: Pos 26,0.714285714,0.000565936,13
+0,23,c1ccc(CCc2ccccc2)cc1,NPASS: Pos 28,0.441311716,0.000489433,14
+3,4,c1ccc(-c2cccc3ccccc23)cc1,NPASS: Pos 29,0.502813853,0.000411443,16
+9,1,c1ccc2c(Cc3c[nH]c4ccccc34)c[nH]c2c1,NPASS: Pos 39,1,0.000267017,19
+8,1,O=C(c1ccccc1)c1ccccc1-c1nc2ccccc2c(=O)o1,NPASS: Pos 41,1,0.000217266,25
+2,10,O=c1ccc2ccccc2o1,NPASS: Pos 44,0.436392434,0.000169776,11
+5,1,c1ccc2nc3ccccc3nc2c1,NPASS: Pos 45,1,0.000166837,14
