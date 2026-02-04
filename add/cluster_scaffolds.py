@@ -11,7 +11,7 @@ INPUT_CSV = "scaffold_shap_summary_test_NP.csv"
 ID_COL = "ID"
 SCAFF_COL = "scaffold"
 
-OUT_ONE = "cluster_representatives_with_id_code2.csv"
+OUT_ONE = "cluster_representatives_with_id.csv"
 
 # Clustering
 TANIMOTO_THRESHOLD = 0.7
