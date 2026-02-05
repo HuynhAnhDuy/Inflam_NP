@@ -11,7 +11,7 @@ overlap_smiles = set(x_train["canonical_smiles"]) & set(x_test["canonical_smiles
 x_train_modified = x_train[~x_train["canonical_smiles"].isin(overlap_smiles)]
 
 # Export to a new file
-x_train_modified.to_csv("NPASS_test.csv", index=False)
+x_train_modified.to_csv("NPASS_x_train_modified.csv", index=False)
 
 print(f"Number of samples removed: {len(x_train) - len(x_train_modified)}")
 print(f"x_train_modified remaining: {len(x_train_modified)} rows")

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
 # Đọc dữ liệu
-df = pd.read_csv("/home/andy/andy/Inflam_NP/NP_predictions/NPASS_common_scaffold_hopping_annotated.csv")
+df = pd.read_csv("/home/andy/andy/Inflam_NP/NP_predictions/NPASS_common_scaffold_hopping_annotated_done.csv")
 
 # Tạo graph
 G = nx.Graph()
@@ -22,7 +22,7 @@ for _, row in df.iterrows():
     ]:
         if smiles not in node_id_map:
             if ntype == "training":
-                label = f"T{counter_train}"
+                label = f"P{counter_train}"
                 counter_train += 1
             else:
                 label = f"C{counter_cand}"
@@ -52,23 +52,31 @@ edge_widths = [d.get('weight', 1.0) * 2 for (_, _, d) in G.edges(data=True)]
 train_nodes = [n for n, d in G.nodes(data=True) if d["type"] == "training"]
 cand_nodes  = [n for n, d in G.nodes(data=True) if d["type"] == "candidate"]
 
-plt.figure(figsize=(12,10))
-nx.draw_networkx_edges(G, pos, alpha=0.7, width=edge_widths, edge_color="black")
-nx.draw_networkx_nodes(G, pos, nodelist=train_nodes,
-                       node_color="#DDF0A7", edgecolors="#101010",
-                       linewidths=2, node_shape="o", node_size=800)
-nx.draw_networkx_nodes(G, pos, nodelist=cand_nodes,
-                       node_color="#69F0E7", edgecolors="#101010",
-                       linewidths=2, node_shape="s", node_size=800)
-nx.draw_networkx_labels(G, pos, font_size=10, font_color="black")
+PARENT_COLOR = "#F8F8D9"  
+CAND_COLOR   = "#E2D8F3"  
+BORDER_COLOR = "#2B2B2B"   # dark charcoal (nhẹ hơn đen)
+EDGE_COLOR   = "#1C1B1B"   # soft gray
 
+plt.figure(figsize=(10,8))
+nx.draw_networkx_edges(G, pos, alpha=0.6, width=edge_widths, edge_color=EDGE_COLOR)
+
+nx.draw_networkx_nodes(
+    G, pos, nodelist=train_nodes,
+    node_color=PARENT_COLOR, edgecolors=BORDER_COLOR,
+    linewidths=1, node_shape="o", node_size=800
+)
+nx.draw_networkx_nodes(
+    G, pos, nodelist=cand_nodes,
+    node_color=CAND_COLOR, edgecolors=BORDER_COLOR,
+    linewidths=1, node_shape="h", node_size=800
+)
+
+nx.draw_networkx_labels(G, pos, font_size=10, font_color="black", font_weight="bold")
 plt.axis("off")
-plt.title("Scaffold hopping network", fontsize=14,
-          fontweight='bold', fontstyle='italic', family='sans-serif')
 
 legend_elements = [
-    mpatches.Patch(facecolor="#DDF0A7", edgecolor="black", label="Training (T#)"),
-    mpatches.Patch(facecolor="#69F0E7", edgecolor="black", label="Candidate (C#)")
+    mpatches.Patch(facecolor=PARENT_COLOR, edgecolor=BORDER_COLOR, label="Parent (P#)"),
+    mpatches.Patch(facecolor=CAND_COLOR, edgecolor=BORDER_COLOR, label="Candidate (C#)")
 ]
 plt.legend(handles=legend_elements, loc="best")
 
