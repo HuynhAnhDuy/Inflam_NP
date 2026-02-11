@@ -1,0 +1,64 @@
+﻿Index,Compound name,Label,canonical_smiles,scaffold,effect,source_file,_merge
+0,Umbelliferone,1,O=c1ccc2ccc(O)cc2o1,O=c1ccc2ccccc2o1,positive,scaffold_shap_summary_train,both
+1,Esculetin,1,O=c1ccc2cc(O)c(O)cc2o1,O=c1ccc2ccccc2o1,positive,scaffold_shap_summary_train,both
+2,Scopoletin,1,COc1cc2ccc(=O)oc2cc1O,O=c1ccc2ccccc2o1,positive,scaffold_shap_summary_train,both
+3,Fraxetin,1,COc1cc2ccc(=O)oc2c(O)c1O,O=c1ccc2ccccc2o1,positive,scaffold_shap_summary_train,both
+4,Osthole,1,COc1ccc2ccc(=O)oc2c1CC=C(C)C,O=c1ccc2ccccc2o1,positive,scaffold_shap_summary_train,both
+5,Anomalin,1,C/C=C(/C)C(=O)O[C@@H]1c2c(ccc3ccc(=O)oc23)OC(C)(C)[C@@H]1OC(=O)/C(C)=C\C,O=c1ccc2ccc3c(c2o1)CCCO3,,,left_only
+6,Quercetin,1,O=c1c(O)c(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12,O=c1cc(-c2ccccc2)oc2ccccc12,positive,scaffold_shap_summary_train,both
+7,Dihydroresveratrol,1,Oc1ccc(CCc2cc(O)cc(O)c2)cc1,c1ccc(CCc2ccccc2)cc1,positive,scaffold_shap_summary_test,both
+8,Resveratrol-4'-glucuronide,1,O=C(O)[C@H]1O[C@@H](Oc2cc(O)cc(/C=C/c3ccc(O)cc3)c2)[C@H](O)[C@@H](O)[C@@H]1O,C(=Cc1cccc(OC2CCCCO2)c1)c1ccccc1,positive,scaffold_shap_summary_train,both
+11,Artemisinin,1,C[C@@H]1CC[C@H]2[C@@H](C)C(=O)O[C@@H]3O[C@@]4(C)CC[C@@H]1[C@]32OO4,O=C1CC2CCCC3CCC4OOC32C(O1)O4,,,left_only
+12,Andrographolide,1,C=C1CC[C@@H]2[C@](C)(CO)[C@H](O)CC[C@@]2(C)[C@@H]1C/C=C1/C(=O)OC[C@H]1O,C=C1CCC2CCCCC2C1CC=C1CCOC1=O,positive,scaffold_shap_summary_train,both
+13,Calcaratarin D,1,C=C1CC[C@H]2C(C)(C)CCC[C@]2(C)[C@H]1C/C=C1\C(=O)OC[C@H]1O,C=C1CCC2CCCCC2C1CC=C1CCOC1=O,positive,scaffold_shap_summary_train,both
+14,"14-deoxy-11,12-didehydroandrographolide",1,C=C1CC[C@@H]2[C@](C)(CO)[C@H](O)CC[C@@]2(C)[C@@H]1/C=C/C1=CCOC1=O,C=C1CCC2CCCCC2C1C=CC1=CCOC1=O,,,left_only
+15,Andalusol,1,C=CC(=C)CC[C@H]1[C@]2(C)CCC[C@](C)(CO)[C@H]2[C@H](O)C[C@]1(C)O,C1CCC2CCCCC2C1,positive,scaffold_shap_summary_test,both
+17,Parthenolide,1,C=C1C(=O)O[C@H]2[C@H]1CC/C(C)=C/CC[C@@]1(C)O[C@@H]21,C=C1C(=O)OC2C1CCC=CCCC1OC12,positive,scaffold_shap_summary_train,both
+18,Siegesbeckialide I,1,C=C1C(=O)O[C@@H]2C[C@H](COC(=O)/C(C)=C\C)CC/C=C(/CO)C[C@@H](O)[C@@H]12,C=C1C(=O)OC2CCCCC=CCCC12,,,left_only
+20,Berberine,1,COc1ccc2cc3[n+](cc2c1OC)CCc1cc2c(cc1-3)OCO2,c1ccc2c[n+]3c(cc2c1)-c1cc2c(cc1CC3)OCO2,positive,scaffold_shap_summary_train,both
+21,Berberrubine,1,COc1ccc2cc3[n+](cc2c1O)CCc1cc2c(cc1-3)OCO2,c1ccc2c[n+]3c(cc2c1)-c1cc2c(cc1CC3)OCO2,positive,scaffold_shap_summary_train,both
+22,Demethyleneberberine,1,COc1ccc2cc3[n+](cc2c1OC)CCc1cc(O)c(O)cc1-3,c1ccc2c(c1)CC[n+]1cc3ccccc3cc1-2,,,left_only
+23,Palmatine,1,COc1cc2c(cc1OC)-c1cc3ccc(OC)c(OC)c3c[n+]1CC2,c1ccc2c(c1)CC[n+]1cc3ccccc3cc1-2,,,left_only
+24,Jatrorrhizine,1,COc1cc2c(cc1O)CC[n+]1cc3c(OC)c(OC)ccc3cc1-2,c1ccc2c(c1)CC[n+]1cc3ccccc3cc1-2,,,left_only
+25,Columbamine,1,COc1cc2c(cc1O)-c1cc3ccc(OC)c(OC)c3c[n+]1CC2,c1ccc2c(c1)CC[n+]1cc3ccccc3cc1-2,,,left_only
+28,Rutaecarpine,1,O=c1c2ccccc2nc2n1CCc1c-2[nH]c2ccccc12,O=c1c2ccccc2nc2n1CCc1c-2[nH]c2ccccc12,,,left_only
+32,Ganoderic acid A,1,C[C@H](CC(=O)C[C@@H](C)[C@H]1C[C@H](O)[C@@]2(C)C3=C(C(=O)C[C@]12C)[C@@]1(C)CCC(=O)C(C)(C)[C@@H]1C[C@@H]3O)C(=O)O,O=C1CCC2C3=C(CCC2C1)C1CCCC1CC3=O,,,left_only
+33,"Ergosta-4-6-8(14),22-tetraen-3-one",1,CC(C)[C@@H](C)/C=C/[C@@H](C)[C@H]1CCC2=C3C=CC4=CC(=O)CC[C@]4(C)[C@H]3CC[C@@]21C,O=C1C=C2C=CC3=C4CCCC4CCC3C2CC1,,,left_only
+37,Agrocybin,1,NC(=O)C#CC#CC#CCO,nan,,,left_only
+38,Allicin,1,C=CCSS(=O)CC=C,nan,,,left_only
+39,(-)-Myrtenol,1,CC1(C)[C@H]2CC=C(CO)[C@@H]1C2,C1=CC2CC(C1)C2,,,left_only
+40,3-Hydroxyanthranilic acid,1,Nc1c(O)cccc1C(=O)O,c1ccccc1,positive,scaffold_shap_summary_train,both
+41,Oleanolic acid,1,CC1(C)CC[C@]2(C(=O)O)CC[C@]3(C)C(=CC[C@@H]4[C@@]5(C)CC[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@@H]2C1,C1=C2C3CCCCC3CCC2C2CCC3CCCCC3C2C1,positive,scaffold_shap_summary_train,both
+42,Ursolic acid,1,C[C@H]1[C@H](C)CC[C@]2(C(=O)O)CC[C@]3(C)C(=CC[C@@H]4[C@@]5(C)CC[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@H]12,C1=C2C3CCCCC3CCC2C2CCC3CCCCC3C2C1,positive,scaffold_shap_summary_train,both
+43,Cucurbitacin B,1,CC(=O)OC(C)(C)/C=C/C(=O)[C@](C)(O)[C@H]1[C@H](O)C[C@@]2(C)[C@@H]3CC=C4[C@@H](C[C@H](O)C(=O)C4(C)C)[C@]3(C)C(=O)C[C@]12C,O=C1CCC2=CCC3C4CCCC4CC(=O)C3C2C1,positive,scaffold_shap_summary_train,both
+44,"Juglone (5-hydroxy-7-methyl-2-methoxy-1,4-naphthaquinone)",1,O=C1C=CC(=O)c2c(O)cccc21,O=C1C=CC(=O)c2ccccc21,positive,scaffold_shap_summary_train,both
+45,Baicalin,1,O=C(O)[C@H]1O[C@@H](Oc2cc3oc(-c4ccccc4)cc(=O)c3c(O)c2O)[C@H](O)[C@@H](O)[C@@H]1O,O=c1cc(-c2ccccc2)oc2cc(OC3CCCCO3)ccc12,positive,scaffold_shap_summary_train,both
+46,18Beta-Glycyrrhetic Acid,1,CC1(C)C2CC[C@]3(C)[C@H](C(=O)C=C4[C@@H]5C[C@@](C)(C(=O)O)CC[C@]5(C)CC[C@]43C)[C@@]2(C)CC[C@@H]1O,O=C1C=C2C3CCCCC3CCC2C2CCC3CCCCC3C12,positive,scaffold_shap_summary_test,both
+47,Glycyrrhizin,1,CC1(C)[C@@H](O[C@H]2O[C@H](C(=O)O)[C@@H](O)[C@H](O)[C@H]2O[C@@H]2O[C@H](C(=O)O)[C@@H](O)[C@H](O)[C@H]2O)CC[C@]2(C)[C@H]3C(=O)C=C4[C@@H]5C[C@@](C)(C(=O)O)CC[C@]5(C)CC[C@@]4(C)[C@]3(C)CC[C@@H]12,O=C1C=C2C3CCCCC3CCC2C2CCC3CC(OC4OCCCC4OC4CCCCO4)CCC3C12,positive,scaffold_shap_summary_train,both
+48,Cis-Ferulic acid,1,COc1cc(/C=C\C(=O)O)ccc1O,c1ccccc1,positive,scaffold_shap_summary_train,both
+49,Plumbagin,1,CC1=CC(=O)c2c(O)cccc2C1=O,O=C1C=CC(=O)c2ccccc21,positive,scaffold_shap_summary_train,both
+50,(-)-usnic acid,1,CC(=O)c1c(O)c(C)c(O)c2c1OC1=CC(=O)C(C(C)=O)C(=O)C12C,O=C1C=C2Oc3ccccc3C2C(=O)C1,,,left_only
+51,(+)-usnic acid,1,CC(=O)C1=C(O)C=C2Oc3c(C(C)=O)c(O)c(C)c(O)c3[C@@]2(C)C1=O,O=C1C=C2Oc3ccccc3C2C(=O)C1,,,left_only
+52,Isoquercitrin,1,O=c1c(O[C@@H]2O[C@H]([C@H](O)CO)[C@H](O)[C@H]2O)c(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12,O=c1c(OC2CCCO2)c(-c2ccccc2)oc2ccccc12,,,left_only
+53,Rutin,1,C[C@@H]1O[C@@H](OC[C@H]2O[C@@H](Oc3c(-c4ccc(O)c(O)c4)oc4cc(O)cc(O)c4c3=O)[C@H](O)[C@@H](O)[C@@H]2O)[C@H](O)[C@H](O)[C@H]1O,O=c1c(OC2CCCC(COC3CCCCO3)O2)c(-c2ccccc2)oc2ccccc12,positive,scaffold_shap_summary_test,both
+54,Colchicine,1,COc1cc2c(c(OC)c1OC)-c1ccc(OC)c(=O)cc1[C@@H](NC(C)=O)CC2,O=c1cccc2c(c1)CCCc1ccccc1-2,,,left_only
+55,Capsaicin,1,COc1cc(CNC(=O)CCCC/C=C/C(C)C)ccc1O,c1ccccc1,positive,scaffold_shap_summary_train,both
+56,Geraniol,1,CC(C)=CCC/C(C)=C/CO,nan,,,left_only
+57,Ambrosanolide,1,C=C1C(=O)O[C@@H]2[C@H]1CC[C@H](CO)[C@]1(O)CC[C@H](OC(C)=O)[C@@]21C,C=C1C(=O)OC2C1CCCC1CCCC12,,,left_only
+58,Betulinic acid,1,C=C(C)[C@@H]1CC[C@]2(C(=O)O)CC[C@]3(C)[C@H](CC[C@@H]4[C@@]5(C)CC[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@@H]12,C1CCC2C(C1)CCC1C2CCC2C3CCCC3CCC21,positive,scaffold_shap_summary_train,both
+59,Ardisiaquinone G,1,CC(=O)OC1=C(C)C(=O)C(O)=C(CCCCCCCCCCCCCC2=C(OC(C)=O)C(=O)C(C)=C(O)C2=O)C1=O,C(=CCCc1ccccc1)CCCCCCCC=Cc1ccccc1,,,left_only
+60,Calophyllolide,1,C/C=C(\C)C(=O)c1c(OC)c2c(c3c(-c4ccccc4)cc(=O)oc13)OC(C)(C)C=C2,O=c1cc(-c2ccccc2)c2c3c(ccc2o1)C=CCO3,,,left_only
+61,Eugenol,1,C=CCc1ccc(O)c(OC)c1,c1ccccc1,positive,scaffold_shap_summary_train,both
+62,Neorogioltriol,1,C=C([C@H]1CC[C@@](C)(O)[C@@H](Br)C1)[C@H]1[C@H](O)[C@@H]2[C@@H](CC[C@@]2(C)O)C1(C)C,C=C(C1CCCCC1)C1CC2CCCC2C1,,,left_only
+63,Hesperidin,1,COc1ccc([C@@H]2CC(=O)c3c(O)cc(O[C@@H]4O[C@H](CO[C@@H]5O[C@@H](C)[C@H](O)[C@@H](O)[C@H]5O)[C@@H](O)[C@H](O)[C@H]4O)cc3O2)cc1O,O=C1CC(c2ccccc2)Oc2cc(OC3CCCC(COC4CCCCO4)O3)ccc21,positive,scaffold_shap_summary_train,both
+64,Hesperetin,1,COc1ccc([C@@H]2CC(=O)c3c(O)cc(O)cc3O2)cc1O,O=C1CC(c2ccccc2)Oc2ccccc21,positive,scaffold_shap_summary_train,both
+65,Apigenin,1,O=c1cc(-c2ccc(O)cc2)oc2cc(O)cc(O)c12,O=c1cc(-c2ccccc2)oc2ccccc12,positive,scaffold_shap_summary_train,both
+66,Isogarcinol,1,CC(C)=CC[C@H]1C[C@@]23C[C@@H](CC=C(C)C)C(C)(C)[C@@](CC=C(C)C)(C(=O)C(C(=O)c4ccc(O)c(O)c4)=C2OC1(C)C)C3=O,O=C(C1=C2OCCCC23CCCC(C1=O)C3=O)c1ccccc1,positive,scaffold_shap_summary_train,both
+67,Andrograpanin,1,C=C1CC[C@@H]2[C@](C)(CO)CCC[C@@]2(C)[C@@H]1CCC1=CCOC1=O,C=C1CCC2CCCCC2C1CCC1=CCOC1=O,,,left_only
+68,Hinokitiol,1,CC(C)c1cccc(O)c(=O)c1,O=c1cccccc1,,,left_only
+69,Tectorigenin,1,COc1c(O)cc2occ(-c3ccc(O)cc3)c(=O)c2c1O,O=c1c(-c2ccccc2)coc2ccccc12,positive,scaffold_shap_summary_train,both
+70,Schisantherin A,1,COc1cc2c(c(OC)c1OC)-c1c(cc3c(c1OC)OCO3)C[C@H](C)[C@](C)(O)[C@H]2OC(=O)c1ccccc1,O=C(OC1CCCc2cc3c(cc2-c2ccccc21)OCO3)c1ccccc1,positive,scaffold_shap_summary_train,both
+71,Psoralidin,1,CC(C)=CCc1cc2c(cc1O)oc(=O)c1c3ccc(O)cc3oc21,O=c1oc2ccccc2c2oc3ccccc3c12,positive,scaffold_shap_summary_train,both
+72,Isofraxidin,1,COc1cc2ccc(=O)oc2c(OC)c1O,O=c1ccc2ccccc2o1,positive,scaffold_shap_summary_train,both
+73,Maslinic acid,1,CC1(C)CC[C@]2(C(=O)O)CC[C@]3(C)C(=CC[C@@H]4[C@@]5(C)C[C@@H](O)[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@@H]2C1,C1=C2C3CCCCC3CCC2C2CCC3CCCCC3C2C1,positive,scaffold_shap_summary_train,both
+74,Mangiferin,1,O=c1c2cc(O)c(O)cc2oc2cc(O)c([C@@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)c(O)c12,O=c1c2ccccc2oc2ccc(C3CCCCO3)cc12,,,left_only

@@ -9,7 +9,7 @@ TRAIN_PATH = Path("InFlam_full_x_train.csv")
 TEST_PATH  = Path("InFlam_full_x_test.csv")
 EXT_PATH   = Path("External_test_set_NP_external.csv")
 
-OUT_DIR = Path("modified_outputs")
+OUT_DIR = Path("modified_datasets")
 OUT_DIR.mkdir(exist_ok=True, parents=True)
 
 # =========================
