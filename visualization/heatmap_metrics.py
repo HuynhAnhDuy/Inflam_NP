@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 # Bước 1: Load data
 df = pd.read_csv('InFlam_full_all_metrics_heatmap.csv')
-df.set_index('Model', inplace=True)
+df.set_index('Models', inplace=True)
 
 # Chỉ giữ 4 cột mong muốn
 df = df[["Accuracy", "MCC", "Sensitivity", "Specificity"]]
@@ -19,7 +19,7 @@ ax = sns.heatmap(df,
                  fmt=".3f",
                  linewidths=0.5,
                  linecolor="black",
-                 cbar_kws={'label': 'Metric value'})
+                 cbar_kws={'label': 'Metric values'})
 
 # Bước 4: Định dạng text (màu chữ tự động theo giá trị)
 for text in ax.texts:

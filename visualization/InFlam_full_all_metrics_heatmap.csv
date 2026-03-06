@@ -1,4 +1,4 @@
-Model,Accuracy,AUROC,AUPRC,MCC,Sensitivity,Specificity
+Models,Accuracy,AUROC,AUPRC,MCC,Sensitivity,Specificity
 XGB_RDKIT,0.964,0.996,0.995,0.928,0.988,0.939
 XGB_MACCS,0.933,0.986,0.986,0.869,0.971,0.894
 BiLSTM_ECFP,0.931,0.984,0.982,0.868,0.988,0.873
