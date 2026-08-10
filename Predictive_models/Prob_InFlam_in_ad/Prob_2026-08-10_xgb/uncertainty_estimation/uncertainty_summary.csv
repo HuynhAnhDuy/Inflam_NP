@@ -1,0 +1,4 @@
+Feature,Mean_Uncertainty_Std,Median_Uncertainty_Std,Max_Uncertainty_Std
+MACCS,0.0222,0.0166,0.1263
+ECFP,0.0226,0.0188,0.1113
+RDKIT,0.0326,0.0207,0.1936

@@ -1,0 +1,4 @@
+Feature,Brier_Score
+RDKIT,0.159
+MACCS,0.173
+ECFP,0.194

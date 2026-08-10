@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 
 # ==== Chỉ cần chỉnh 1 dòng này ====
-BASE_PREFIX = "InFlam_modified"
+BASE_PREFIX = "InFlam_full"
 
 # XGBoost
 try:
@@ -110,7 +110,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
     # === Tạo thư mục chứa y_prob theo timestamp ===
     timestamp = datetime.now().strftime("%Y-%m-%d")
-    prob_folder = f"Prob_InFlam_modified/Prob_{timestamp}"
+    prob_folder = f"Prob_InFlam_full/Prob_{timestamp}_xgb"
     os.makedirs(prob_folder, exist_ok=True)
     print(f"\n📁 Sẽ lưu y_prob vào: {prob_folder}")
 
@@ -185,12 +185,12 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
 # === Hàm chính ===
 def main():
-    fingerprints = ["ecfp", "maccs", "rdkit"]
+    fingerprints = ["ecfp","maccs","rdkit","phychem","estate"]
     results_by_fp = run_all_fingerprints(fingerprints, num_runs=3)
 
     # Xuất bảng Mean ± SD
     df_export = pd.DataFrame({
-        fp.upper(): {metric: f"{mean:.2f} ± {std:.2f}" for metric, (mean, std) in metrics.items()}
+        fp.upper(): {metric: f"{mean:.3f} ± {std:.3f}" for metric, (mean, std) in metrics.items()}
         for fp, metrics in results_by_fp.items()
     }).T
     df_export.to_csv(f"{BASE_PREFIX}_XGB_fingerprint_metrics.csv")

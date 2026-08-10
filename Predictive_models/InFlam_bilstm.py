@@ -15,7 +15,7 @@ import os
 from datetime import datetime
 
 # ===== CHỈ CHỈNH 1 DÒNG NÀY =====
-BASE_PREFIX = "InFlam_modified"
+BASE_PREFIX = "InFlam_full"
 
 # ===== BUILD BiLSTM MODEL =====
 def build_model(input_dim):
@@ -95,7 +95,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
     # === Tạo folder timestamp ===
     timestamp = datetime.now().strftime("%Y-%m-%d")
-    prob_folder = f"Prob_InFlam_modified/Prob_{timestamp}_BiLSTM"
+    prob_folder = f"Prob_InFlam_full/Prob_{timestamp}_BiLSTM"
     os.makedirs(prob_folder, exist_ok=True)
     print(f"\n📁 Sẽ lưu file xác suất tại: {prob_folder}")
 
@@ -168,7 +168,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
 # ===== MAIN =====
 def main():
-    fingerprints = ["ecfp", "maccs", "rdkit"]
+    fingerprints = ["ecfp","maccs","rdkit","phychem","estate"]
     results_by_fp = run_all_fingerprints(fingerprints, num_runs=3)
 
     # Xuất bảng kết quả tổng hợp

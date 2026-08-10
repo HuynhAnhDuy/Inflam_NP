@@ -9,6 +9,8 @@ feature_types = ["ecfp", "maccs", "phychem", "rdkit", "estate"]
 # Đọc toàn bộ nhãn test gốc
 y_test_df = pd.read_csv("InFlam_full_y_test.csv")
 
+ad_summary_results = []
+
 print("=== ĐANG TRÍCH XUẤT TẬP TEST TRONG MIỀN ÁP DỤNG (IN-AD) ==-\n")
 
 for ft in feature_types:
@@ -47,20 +49,40 @@ for ft in feature_types:
     X_test_in_ad = X_test_ft[in_ad_mask]
     y_test_in_ad = y_test_df[in_ad_mask]
 
+    # Thống kê số lượng
+    total_test = len(X_test_ft)
+    retained_samples = len(X_test_in_ad)
+    retained_percent = (retained_samples / total_test) * 100
+
     # 4. Lưu ra các file CSV mới để đánh giá lại mô hình
-    x_output_name = f"InFlam_full_x_test_{ft}_in_ad.csv"
-    y_output_name = f"InFlam_full_y_test_{ft}_in_ad.csv"
+    x_output_name = f"InFlam_in_ad_x_test_{ft}.csv"
+    y_output_name = f"InFlam_in_ad_y_test_{ft}.csv"
 
     pd.DataFrame(X_test_in_ad).to_csv(x_output_name, index=False)
     y_test_in_ad.to_csv(y_output_name, index=False)
 
     print(f"  > Ngưỡng AD: {ad_threshold:.4f}")
     print(
-        f"  > Số lượng mẫu Test gốc: {len(X_test_ft)} | Số mẫu giữ lại trong AD: {len(X_test_in_ad)} ({len(X_test_in_ad)/len(X_test_ft)*100:.2f}%)"
+        f"  > Số lượng mẫu Test gốc: {total_test} | Số mẫu giữ lại trong AD: {retained_samples} ({retained_percent:.2f}%)"
     )
     print(f"  > Đã xuất file: {x_output_name} và {y_output_name}")
     print("-" * 50)
 
+    # Thu thập kết quả cho bảng tổng hợp
+    ad_summary_results.append(
+        {
+            "Feature": ft.upper(),
+            "AD_Threshold": round(ad_threshold, 4),
+            "Total_Test_Samples": total_test,
+            "Retained_Samples": retained_samples,
+            "Retained_Percent": round(retained_percent, 2),
+        }
+    )
+
+# Lưu bảng tổng hợp kết quả AD ra file CSV chung
+df_ad_summary = pd.DataFrame(ad_summary_results)
+df_ad_summary.to_csv("applicability_domain_summary.csv", index=False)
+
 print(
-    "\nHoàn tất! Bạn có thể dùng các file *_in_ad.csv này để nạp vào mô hình dự đoán và tính lại metrics."
+    "\nHoàn tất! Đã xuất các file dữ liệu In-AD và lưu bảng tổng hợp vào 'applicability_domain_summary.csv'."
 )
