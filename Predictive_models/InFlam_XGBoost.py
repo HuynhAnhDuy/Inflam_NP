@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 
 # ==== Chỉ cần chỉnh 1 dòng này ====
-BASE_PREFIX = "AISMPred"
+BASE_PREFIX = "InFlam_modified"
 
 # XGBoost
 try:
@@ -109,8 +109,8 @@ def run_all_fingerprints(fingerprints, num_runs=3):
     all_metrics_raw = []
 
     # === Tạo thư mục chứa y_prob theo timestamp ===
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    prob_folder = f"Prob_Inflampred_external/Prob_{timestamp}"
+    timestamp = datetime.now().strftime("%Y-%m-%d")
+    prob_folder = f"Prob_InFlam_modified/Prob_{timestamp}"
     os.makedirs(prob_folder, exist_ok=True)
     print(f"\n📁 Sẽ lưu y_prob vào: {prob_folder}")
 
