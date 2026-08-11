@@ -1,0 +1,68 @@
+REMARK  Name = D:\Andy\Inflam_NP\Docking_InFlam\Processed_CoCrystal\temp_ligand.pdb
+REMARK  8 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: O1_1  and  C26_27
+REMARK    2  A    between atoms: C1_5  and  C15_12
+REMARK    3  A    between atoms: N2_13  and  C16_14
+REMARK    4  A    between atoms: C17_18  and  C18_19
+REMARK    5  A    between atoms: C18_19  and  C19_20
+REMARK    6  A    between atoms: C19_20  and  C20_21
+REMARK    7  A    between atoms: C25_26  and  C26_27
+REMARK    8  A    between atoms: C10_35  and  C14_36
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  O   7DN A 201       9.653 -15.825  30.575  0.00  0.00    -0.273 OA
+ATOM      2  C15 7DN A 201       8.443 -15.748  30.403  0.00  0.00    +0.241 C 
+ATOM      3  N2  7DN A 201       7.507 -16.015  31.376  0.00  0.00    -0.207 N 
+ATOM      4  H   7DN A 201       6.552 -15.908  31.160  0.00  0.00    +0.000 HD
+ENDROOT
+BRANCH   2   7
+ATOM      5  C7  7DN A 201       8.878 -16.792  22.840  0.00  0.00    -0.011 C 
+ATOM      6  C6  7DN A 201       8.537 -16.766  24.197  0.00  0.00    +0.044 C 
+ATOM      7  C1  7DN A 201       7.803 -15.385  29.077  0.00  0.00    +0.082 C 
+ATOM      8  N1  7DN A 201       8.398 -14.393  24.136  0.00  0.00    -0.391 NA
+ATOM      9  C5  7DN A 201       8.294 -15.545  24.848  0.00  0.00    +0.183 C 
+ATOM     10  C4  7DN A 201       8.075 -14.144  26.876  0.00  0.00    +0.094 C 
+ATOM     11  C3  7DN A 201       7.140 -16.460  26.872  0.00  0.00    +0.094 C 
+ATOM     12  C2  7DN A 201       7.697 -16.695  28.276  0.00  0.00    +0.031 C 
+ATOM     13  C   7DN A 201       8.594 -14.302  28.309  0.00  0.00    +0.031 C 
+ATOM     14  N   7DN A 201       7.958 -15.451  26.189  0.00  0.00    -0.284 N 
+ATOM     15  C8  7DN A 201       8.975 -15.592  22.124  0.00  0.00    +0.096 C 
+ATOM     16  C9  7DN A 201       8.722 -14.380  22.823  0.00  0.00    +0.114 C 
+ATOM     17  C13 7DN A 201       9.318 -15.569  20.756  0.00  0.00    -0.015 C 
+ATOM     18  C12 7DN A 201       9.403 -14.348  20.077  0.00  0.00    -0.004 C 
+ATOM     19  C11 7DN A 201       9.148 -13.148  20.751  0.00  0.00    -0.002 C 
+ATOM     20  C10 7DN A 201       8.806 -13.155  22.124  0.00  0.00    +0.004 C 
+ATOM     21  C14 7DN A 201       8.527 -11.855  22.840  0.00  0.00    +0.033 C 
+ENDBRANCH   2   7
+BRANCH   3  22
+ATOM     22  C16 7DN A 201       7.883 -16.452  32.720  0.00  0.00    +0.095 C 
+ATOM     23  C29 7DN A 201       7.533 -15.439  33.808  0.00  0.00    +0.022 C 
+ATOM     24  C28 7DN A 201       6.159 -15.828  34.335  0.00  0.00    +0.002 C 
+ATOM     25  C27 7DN A 201       5.893 -17.257  33.875  0.00  0.00    +0.002 C 
+ATOM     26  C17 7DN A 201       7.137 -17.742  33.133  0.00  0.00    +0.020 C 
+BRANCH  26  27
+ATOM     27  C18 7DN A 201       6.756 -18.683  31.988  0.00  0.00    +0.006 C 
+BRANCH  27  28
+ATOM     28  C19 7DN A 201       7.487 -20.023  31.974  0.00  0.00    +0.027 C 
+BRANCH  28  29
+ATOM     29  C20 7DN A 201       7.069 -20.931  30.827  0.00  0.00    -0.016 A 
+ATOM     30  C21 7DN A 201       7.043 -20.385  29.515  0.00  0.00    -0.004 A 
+ATOM     31  C22 7DN A 201       6.679 -21.154  28.401  0.00  0.00    -0.000 A 
+ATOM     32  C23 7DN A 201       6.332 -22.494  28.567  0.00  0.00    +0.000 A 
+ATOM     33  C24 7DN A 201       6.355 -23.063  29.847  0.00  0.00    +0.006 A 
+ATOM     34  C25 7DN A 201       6.722 -22.307  30.994  0.00  0.00    +0.076 A 
+BRANCH  34  36
+ATOM     35  O2  7DN A 201       7.286 -24.167  32.388  0.00  0.00    -0.241 OA
+ATOM     36  C26 7DN A 201       6.708 -23.041  32.322  0.00  0.00    +0.387 C 
+BRANCH  36  37
+ATOM     37  O1  7DN A 201       6.152 -22.459  33.298  0.00  0.00    -0.241 OA
+ATOM     38  H   7DN A 201       5.743 -21.625  33.175  0.00  0.00    +0.000 HD
+ENDBRANCH  36  37
+ENDBRANCH  34  36
+ENDBRANCH  28  29
+ENDBRANCH  27  28
+ENDBRANCH  26  27
+ENDBRANCH   3  22
+TORSDOF 7

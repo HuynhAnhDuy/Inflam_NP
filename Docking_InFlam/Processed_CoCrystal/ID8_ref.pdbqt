@@ -1,0 +1,96 @@
+REMARK  Name = D:\Andy\Inflam_NP\Docking_InFlam\Processed_CoCrystal\temp_ligand.pdb
+REMARK  12 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C14_2  and  O15_3
+REMARK    2  A    between atoms: C14_2  and  C13_4
+REMARK    3  A    between atoms: C8_9  and  N7_10
+REMARK    4  A    between atoms: N7_10  and  C6_11
+REMARK    5  A    between atoms: C1_12  and  C17_13
+REMARK    6  A    between atoms: C2_17  and  C18_18
+REMARK    7  A    between atoms: C14_34  and  O15_35
+REMARK    8  A    between atoms: C14_34  and  C13_36
+REMARK    9  A    between atoms: C8_41  and  N7_42
+REMARK   10  A    between atoms: N7_42  and  C6_43
+REMARK   11  A    between atoms: C1_44  and  C17_45
+REMARK   12  A    between atoms: C2_49  and  C18_50
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C13 ID8 A 601      36.664   3.527  60.062  0.00  0.00    +0.084 A 
+ATOM      2  C12 ID8 A 601      36.331   3.875  58.784  0.00  0.00    +0.017 A 
+ATOM      3  C11 ID8 A 601      37.213   3.792  57.767  0.00  0.00    +0.001 A 
+ATOM      4  C10 ID8 A 601      38.470   3.364  58.016  0.00  0.00    +0.002 A 
+ATOM      5  C9  ID8 A 601      38.817   3.024  59.271  0.00  0.00    +0.024 A 
+ATOM      6  C8  ID8 A 601      37.942   3.072  60.297  0.00  0.00    +0.046 A 
+ENDROOT
+BRANCH   1   8
+ATOM      7  O16 ID8 A 601      34.553   4.169  60.792  0.00  0.00    -0.241 OA
+ATOM      8  C14 ID8 A 601      35.576   3.664  61.088  0.00  0.00    +0.388 C 
+BRANCH   8   9
+ATOM      9  O15 ID8 A 601      35.580   3.229  62.210  0.00  0.00    -0.241 OA
+ATOM     10  H   ID8 A 601      36.346   2.807  62.546  0.00  0.00    +0.000 HD
+ENDBRANCH   8   9
+ENDBRANCH   1   8
+BRANCH   6  11
+ATOM     11  N7  ID8 A 601      38.296   2.622  61.494  0.00  0.00    -0.314 N 
+ATOM     12  H7  ID8 A 601      37.827   2.965  62.140  0.00  0.00    +0.152 HD
+BRANCH  11  13
+ATOM     13  C6  ID8 A 601      39.253   1.783  61.876  0.00  0.00    +0.035 A 
+ATOM     14  C1  ID8 A 601      39.810   1.943  63.116  0.00  0.00    -0.026 A 
+ATOM     15  C17 ID8 A 601      39.297   2.942  64.068  0.00  0.00    +0.046 C 
+ATOM     16  C5  ID8 A 601      39.783   0.850  61.026  0.00  0.00    +0.023 A 
+ATOM     17  C4  ID8 A 601      40.847   0.093  61.393  0.00  0.00    +0.002 A 
+ATOM     18  C3  ID8 A 601      41.387   0.264  62.618  0.00  0.00    +0.004 A 
+ATOM     19  C2  ID8 A 601      40.884   1.179  63.471  0.00  0.00    -0.046 A 
+ATOM     20  C18 ID8 A 601      41.531   1.322  64.792  0.00  0.00    +0.044 C 
+ENDBRANCH  11  13
+ENDBRANCH   6  11
+TORSDOF 4
+REMARK  Name = D:\Andy\Inflam_NP\Docking_InFlam\Processed_CoCrystal\temp_ligand.pdb
+REMARK  12 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C14_2  and  O15_3
+REMARK    2  A    between atoms: C14_2  and  C13_4
+REMARK    3  A    between atoms: C8_9  and  N7_10
+REMARK    4  A    between atoms: N7_10  and  C6_11
+REMARK    5  A    between atoms: C1_12  and  C17_13
+REMARK    6  A    between atoms: C2_17  and  C18_18
+REMARK    7  A    between atoms: C14_34  and  O15_35
+REMARK    8  A    between atoms: C14_34  and  C13_36
+REMARK    9  A    between atoms: C8_41  and  N7_42
+REMARK   10  A    between atoms: N7_42  and  C6_43
+REMARK   11  A    between atoms: C1_44  and  C17_45
+REMARK   12  A    between atoms: C2_49  and  C18_50
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C13 ID8 B 602      38.426  39.307  85.155  0.00  0.00    +0.084 A 
+ATOM      2  C12 ID8 B 602      37.149  39.669  85.506  0.00  0.00    +0.017 A 
+ATOM      3  C11 ID8 B 602      36.667  39.575  86.766  0.00  0.00    +0.001 A 
+ATOM      4  C10 ID8 B 602      37.482  39.091  87.722  0.00  0.00    +0.002 A 
+ATOM      5  C9  ID8 B 602      38.754  38.726  87.423  0.00  0.00    +0.024 A 
+ATOM      6  C8  ID8 B 602      39.270  38.849  86.162  0.00  0.00    +0.046 A 
+ENDROOT
+BRANCH   1   8
+ATOM      7  O16 ID8 B 602      37.910  39.936  82.938  0.00  0.00    -0.241 OA
+ATOM      8  C14 ID8 B 602      38.750  39.499  83.688  0.00  0.00    +0.388 C 
+BRANCH   8   9
+ATOM      9  O15 ID8 B 602      39.800  39.276  83.125  0.00  0.00    -0.241 OA
+ATOM     10  H   ID8 B 602      40.527  38.934  83.607  0.00  0.00    +0.000 HD
+ENDBRANCH   8   9
+ENDBRANCH   1   8
+BRANCH   6  11
+ATOM     11  N7  ID8 B 602      40.550  38.569  85.902  0.00  0.00    -0.314 N 
+ATOM     12  H7  ID8 B 602      40.704  38.426  85.023  0.00  0.00    +0.152 HD
+BRANCH  11  13
+ATOM     13  C6  ID8 B 602      41.606  38.412  86.709  0.00  0.00    +0.035 A 
+ATOM     14  C1  ID8 B 602      42.640  37.596  86.313  0.00  0.00    -0.026 A 
+ATOM     15  C17 ID8 B 602      42.656  36.984  84.957  0.00  0.00    +0.046 C 
+ATOM     16  C5  ID8 B 602      41.660  38.964  87.957  0.00  0.00    +0.023 A 
+ATOM     17  C4  ID8 B 602      42.667  38.682  88.818  0.00  0.00    +0.002 A 
+ATOM     18  C3  ID8 B 602      43.680  37.869  88.423  0.00  0.00    +0.004 A 
+ATOM     19  C2  ID8 B 602      43.666  37.323  87.181  0.00  0.00    -0.046 A 
+ATOM     20  C18 ID8 B 602      44.815  36.443  86.825  0.00  0.00    +0.044 C 
+ENDBRANCH  11  13
+ENDBRANCH   6  11
+TORSDOF 4

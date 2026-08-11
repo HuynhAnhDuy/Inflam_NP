@@ -1,0 +1,2 @@
+ligand,role,best_pose_rank,affinity (kcal/mol),Ki_estimated (M),RMSD_to_Ref (A)
+ID8_ref,Reference,1,-7.095,6.366e-06,2.110

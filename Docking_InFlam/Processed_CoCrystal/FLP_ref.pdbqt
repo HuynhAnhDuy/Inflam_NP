@@ -1,0 +1,90 @@
+REMARK  Name = D:\Andy\Inflam_NP\Docking_InFlam\Processed_CoCrystal\temp_ligand.pdb
+REMARK  10 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C2_3  and  C6_7
+REMARK    2  A    between atoms: C9_10  and  C12_13
+REMARK    3  A    between atoms: C12_13  and  C13_14
+REMARK    4  A    between atoms: C12_13  and  C14_15
+REMARK    5  A    between atoms: C14_15  and  O_16
+REMARK    6  A    between atoms: C2_21  and  C6_25
+REMARK    7  A    between atoms: C9_28  and  C12_31
+REMARK    8  A    between atoms: C12_31  and  C13_32
+REMARK    9  A    between atoms: C12_31  and  C14_33
+REMARK   10  A    between atoms: C14_33  and  O_34
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C6  FLP A 701      26.641  34.163 198.147  0.00  0.00    +0.027 A 
+ATOM      2  C7  FLP A 701      28.021  33.992 198.592  0.00  0.00    +0.002 A 
+ATOM      3  C8  FLP A 701      28.274  33.282 199.815  0.00  0.00    -0.004 A 
+ATOM      4  C9  FLP A 701      27.188  32.746 200.599  0.00  0.00    -0.010 A 
+ATOM      5  C10 FLP A 701      25.869  32.913 200.175  0.00  0.00    +0.026 A 
+ATOM      6  C11 FLP A 701      25.618  33.597 198.993  0.00  0.00    +0.140 A 
+ATOM      7  F   FLP A 701      24.309  33.703 198.664  0.00  0.00    -0.204 F 
+ENDROOT
+BRANCH   1  10
+ATOM      8  C   FLP A 701      25.184  34.970 194.640  0.00  0.00    +0.000 A 
+ATOM      9  C1  FLP A 701      25.461  34.269 195.854  0.00  0.00    +0.000 A 
+ATOM     10  C2  FLP A 701      26.319  34.893 196.856  0.00  0.00    +0.002 A 
+ATOM     11  C3  FLP A 701      26.864  36.189 196.602  0.00  0.00    +0.000 A 
+ATOM     12  C4  FLP A 701      26.566  36.859 195.374  0.00  0.00    +0.000 A 
+ATOM     13  C5  FLP A 701      25.730  36.239 194.407  0.00  0.00    +0.000 A 
+ENDBRANCH   1  10
+BRANCH   4  14
+ATOM     14  C12 FLP A 701      27.372  31.962 201.918  0.00  0.00    +0.126 C 
+ATOM     15  C13 FLP A 701      28.516  32.501 202.787  0.00  0.00    +0.017 C 
+BRANCH  14  16
+ATOM     16  C14 FLP A 701      27.507  30.510 201.505  0.00  0.00    +0.368 C 
+ATOM     17  O1  FLP A 701      28.485  30.039 200.995  0.00  0.00    -0.245 OA
+BRANCH  16  18
+ATOM     18  O   FLP A 701      26.449  29.824 201.747  0.00  0.00    -0.245 OA
+ATOM     19  H   FLP A 701      25.707  30.233 202.147  0.00  0.00    +0.000 HD
+ENDBRANCH  16  18
+ENDBRANCH  14  16
+ENDBRANCH   4  14
+TORSDOF 4
+REMARK  Name = D:\Andy\Inflam_NP\Docking_InFlam\Processed_CoCrystal\temp_ligand.pdb
+REMARK  10 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C2_3  and  C6_7
+REMARK    2  A    between atoms: C9_10  and  C12_13
+REMARK    3  A    between atoms: C12_13  and  C13_14
+REMARK    4  A    between atoms: C12_13  and  C14_15
+REMARK    5  A    between atoms: C14_15  and  O_16
+REMARK    6  A    between atoms: C2_21  and  C6_25
+REMARK    7  A    between atoms: C9_28  and  C12_31
+REMARK    8  A    between atoms: C12_31  and  C13_32
+REMARK    9  A    between atoms: C12_31  and  C14_33
+REMARK   10  A    between atoms: C14_33  and  O_34
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C6  FLP B1701      68.182  22.842 186.752  0.00  0.00    +0.027 A 
+ATOM      2  C7  FLP B1701      66.857  22.371 187.138  0.00  0.00    +0.002 A 
+ATOM      3  C8  FLP B1701      66.753  21.349 188.147  0.00  0.00    -0.004 A 
+ATOM      4  C9  FLP B1701      67.930  20.792 188.774  0.00  0.00    -0.010 A 
+ATOM      5  C10 FLP B1701      69.195  21.237 188.403  0.00  0.00    +0.026 A 
+ATOM      6  C11 FLP B1701      69.307  22.228 187.426  0.00  0.00    +0.140 A 
+ATOM      7  F   FLP B1701      70.582  22.604 187.133  0.00  0.00    -0.204 F 
+ENDROOT
+BRANCH   1  10
+ATOM      8  C   FLP B1701      69.299  26.123 184.993  0.00  0.00    +0.000 A 
+ATOM      9  C1  FLP B1701      69.161  25.101 185.996  0.00  0.00    +0.000 A 
+ATOM     10  C2  FLP B1701      68.352  23.921 185.707  0.00  0.00    +0.002 A 
+ATOM     11  C3  FLP B1701      67.714  23.804 184.435  0.00  0.00    +0.000 A 
+ATOM     12  C4  FLP B1701      67.873  24.844 183.458  0.00  0.00    +0.000 A 
+ATOM     13  C5  FLP B1701      68.666  25.996 183.751  0.00  0.00    +0.000 A 
+ENDBRANCH   1  10
+BRANCH   4  14
+ATOM     14  C12 FLP B1701      67.903  19.701 189.868  0.00  0.00    +0.126 C 
+ATOM     15  C13 FLP B1701      66.799  18.662 189.651  0.00  0.00    +0.017 C 
+BRANCH  14  16
+ATOM     16  C14 FLP B1701      67.829  20.448 191.183  0.00  0.00    +0.368 C 
+ATOM     17  O1  FLP B1701      66.841  20.987 191.592  0.00  0.00    -0.245 OA
+BRANCH  16  18
+ATOM     18  O   FLP B1701      68.947  20.457 191.826  0.00  0.00    -0.245 OA
+ATOM     19  H   FLP B1701      69.696  20.022 191.469  0.00  0.00    +0.000 HD
+ENDBRANCH  16  18
+ENDBRANCH  14  16
+ENDBRANCH   4  14
+TORSDOF 4

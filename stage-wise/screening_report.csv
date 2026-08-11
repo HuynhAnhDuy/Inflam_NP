@@ -1,0 +1,10 @@
+Stage,Status,Total_Samples,Positive_Samples,Negative_Samples
+Initial Data,Input,3186,1591,1595
+Step 1 (Lipinski RO5),Dropped,161,104,57
+Step 1 (Lipinski RO5),Kept,3025,1487,1538
+Step 2 (SA Score),Dropped,0,0,0
+Step 2 (SA Score),Kept,0,0,0
+Step 3 (skin toxicity),Dropped,,,
+Step 3 (skin toxicity),Kept,,,
+Step 4 (carcinogenicity),Dropped,,,
+Step 4 (carcinogenicity),Kept,,,

@@ -1,0 +1,22 @@
+ligand,role,best_pose_rank,affinity (kcal/mol),Ki_estimated (M),RMSD_to_Ref (A)
+Ligand_control_ID8,Reference,1,-8.512,5.836e-07,2.522
+Ligand_14,Test,1,-9.049,2.359e-07,N/A
+Ligand_15,Test,1,-8.405,6.989e-07,N/A
+Ligand_18,Test,1,-8.117,1.136e-06,N/A
+Ligand_3,Test,1,-8.089,1.191e-06,N/A
+Ligand_1,Test,1,-7.961,1.478e-06,N/A
+Ligand_2,Test,1,-7.844,1.800e-06,N/A
+Ligand_19,Test,1,-7.785,1.988e-06,N/A
+Ligand_20,Test,1,-7.647,2.509e-06,N/A
+Ligand_8,Test,1,-7.605,2.694e-06,N/A
+Ligand_7,Test,1,-7.564,2.886e-06,N/A
+Ligand_13,Test,1,-7.549,2.960e-06,N/A
+Ligand_4,Test,1,-7.544,2.985e-06,N/A
+Ligand_5,Test,1,-7.534,3.036e-06,N/A
+Ligand_6,Test,1,-7.507,3.178e-06,N/A
+Ligand_9,Test,1,-7.318,4.370e-06,N/A
+Ligand_10,Test,1,-7.097,6.344e-06,N/A
+Ligand_12,Test,1,-7.087,6.452e-06,N/A
+Ligand_11,Test,1,-6.976,7.780e-06,N/A
+Ligand_16,Test,1,-6.817,1.017e-05,N/A
+Ligand_17,Test,1,-6.532,1.645e-05,N/A

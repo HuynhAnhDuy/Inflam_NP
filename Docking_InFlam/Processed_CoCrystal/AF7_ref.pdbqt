@@ -1,0 +1,66 @@
+REMARK  Name = D:\Andy\Inflam_NP\Docking_InFlam\Processed_CoCrystal\temp_ligand.pdb
+REMARK  12 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C17_4  and  C32_22
+REMARK    2  A    between atoms: C17_4  and  C33_23
+REMARK    3  A    between atoms: C21_6  and  C06_10
+REMARK    4  A    between atoms: C22_7  and  C34_24
+REMARK    5  A    between atoms: C24_8  and  C07_11
+REMARK    6  A    between atoms: C08_12  and  C25_29
+REMARK    7  A    between atoms: C14_15  and  C31_21
+REMARK    8  A    between atoms: C23_19  and  O01_33
+REMARK    9  A    between atoms: C33_23  and  O04_36
+REMARK   10  A    between atoms: C35_25  and  C29_32
+REMARK   11  A    between atoms: C36_26  and  C37_27
+REMARK   12  A    between atoms: C36_26  and  O01_33
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C10 AF7 B 702      13.433 -22.585 -19.996  0.00  0.00    +0.016 C 
+ATOM      2  C13 AF7 B 702       8.279 -22.295 -17.897  0.00  0.00    -0.056 C 
+ATOM      3  C15 AF7 B 702      12.410 -22.217 -21.105  0.00  0.00    +0.006 C 
+ATOM      4  C17 AF7 B 702      14.941 -21.945 -20.251  0.00  0.00    +0.109 C 
+ATOM      5  C20 AF7 B 702      10.690 -22.240 -17.044  0.00  0.00    +0.160 C 
+ATOM      6  C21 AF7 B 702      10.246 -20.681 -19.666  0.00  0.00    +0.013 C 
+ATOM      7  C22 AF7 B 702       5.857 -22.914 -16.682  0.00  0.00    -0.004 C 
+ATOM      8  C24 AF7 B 702       8.918 -24.261 -19.556  0.00  0.00    +0.016 C 
+ATOM      9  C28 AF7 B 702       5.365 -23.083 -19.532  0.00  0.00    +0.007 C 
+ATOM     10  C06 AF7 B 702      10.364 -22.216 -19.557  0.00  0.00    -0.013 C 
+ATOM     11  C07 AF7 B 702       8.870 -22.741 -19.322  0.00  0.00    -0.004 C 
+ATOM     12  C08 AF7 B 702      12.860 -22.259 -18.586  0.00  0.00    -0.018 C 
+ATOM     13  C09 AF7 B 702      11.327 -22.707 -18.382  0.00  0.00    +0.073 C 
+ATOM     14  C11 AF7 B 702      10.986 -22.717 -20.886  0.00  0.00    +0.008 C 
+ATOM     15  C14 AF7 B 702       5.962 -21.699 -19.003  0.00  0.00    -0.025 C 
+ATOM     16  C16 AF7 B 702       7.954 -22.133 -20.444  0.00  0.00    +0.012 C 
+ATOM     17  C18 AF7 B 702      13.844 -22.942 -17.620  0.00  0.00    +0.011 C 
+ATOM     18  C19 AF7 B 702       7.011 -21.089 -19.944  0.00  0.00    +0.008 C 
+ATOM     19  C23 AF7 B 702      15.969 -22.191 -19.034  0.00  0.00    +0.193 C 
+ATOM     20  C30 AF7 B 702       4.417 -23.768 -18.557  0.00  0.00    +0.004 C 
+ATOM     21  C31 AF7 B 702       4.838 -20.607 -18.916  0.00  0.00    +0.012 C 
+ATOM     22  C32 AF7 B 702      15.522 -22.548 -21.524  0.00  0.00    +0.027 C 
+ATOM     23  C34 AF7 B 702       5.836 -22.470 -15.178  0.00  0.00    +0.008 C 
+ATOM     24  C35 AF7 B 702       3.562 -23.773 -16.000  0.00  0.00    +0.008 C 
+ATOM     25  C12 AF7 B 702       6.716 -21.937 -17.631  0.00  0.00    +0.025 C 
+ATOM     26  C25 AF7 B 702      12.876 -20.752 -18.368  0.00  0.00    +0.012 C 
+ATOM     27  C26 AF7 B 702       9.164 -22.201 -16.881  0.00  0.00    +0.046 C 
+ATOM     28  C27 AF7 B 702      15.255 -22.261 -17.619  0.00  0.00    +0.046 C 
+ATOM     29  C29 AF7 B 702       4.382 -23.075 -17.140  0.00  0.00    -0.011 C 
+ATOM     30  O02 AF7 B 702      11.412 -21.871 -16.095  0.00  0.00    -0.292 OA
+ENDROOT
+BRANCH   4  31
+ATOM     31  C33 AF7 B 702      14.836 -20.367 -20.548  0.00  0.00    +0.366 C 
+ATOM     32  O03 AF7 B 702      14.302 -20.032 -21.638  0.00  0.00    -0.246 OA
+BRANCH  31  33
+ATOM     33  O04 AF7 B 702      15.292 -19.521 -19.715  0.00  0.00    -0.246 OA
+ATOM     34  H   AF7 B 702      15.682 -19.814 -18.915  0.00  0.00    +0.000 HD
+ENDBRANCH  31  33
+ENDBRANCH   4  31
+BRANCH  19  35
+ATOM     35  O01 AF7 B 702      16.842 -23.330 -19.270  0.00  0.00    -0.460 OA
+BRANCH  35  36
+ATOM     36  C36 AF7 B 702      18.133 -23.068 -19.700  0.00  0.00    +0.304 C 
+ATOM     37  C37 AF7 B 702      18.523 -23.284 -21.173  0.00  0.00    +0.136 C 
+ATOM     38  O05 AF7 B 702      18.991 -22.649 -18.930  0.00  0.00    -0.251 OA
+ENDBRANCH  35  36
+ENDBRANCH  19  35
+TORSDOF 4
