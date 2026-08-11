@@ -82,14 +82,14 @@ def evaluate_metrics(y_true, y_prob):
 
   mcc = matthews_corrcoef(y_true, y_pred)
   brier = brier_score_loss(y_true, y_prob)
-  confidence = np.mean(2 * np.abs(y_prob - 0.5))
+  certainty = np.mean(2 * np.abs(y_prob - 0.5))
 
   return {
       "AUROC": round(auroc, 4),
       "AUPRC": round(auprc, 4),
       "MCC": round(mcc, 4),
       "Brier_Score": round(brier, 4),
-      "Prediction_Confidence": round(confidence, 4),
+      "Prediction_Certainty": round(certainty, 4),
   }
 
 
@@ -148,7 +148,7 @@ for r in range(2, len(model_names) + 1):
 if len(all_evaluations) > 0:
   df_results = pd.DataFrame(all_evaluations)
   
-  cols = ["Model_Type", "Framework", "N_Samples", "AUROC", "AUPRC", "MCC", "Brier_Score", "Prediction_Confidence"]
+  cols = ["Model_Type", "Framework", "N_Samples", "AUROC", "AUPRC", "MCC", "Brier_Score", "Prediction_Certainty"]
   df_results = df_results[[c for c in cols if c in df_results.columns]]
 
   output_csv = "consensus_ad_combos_evaluation_summary.csv"
