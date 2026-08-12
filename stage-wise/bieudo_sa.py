@@ -31,18 +31,17 @@ sns.set_theme(style="whitegrid", context="talk")
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(14, 13), sharex=True, gridspec_kw={'height_ratios': [3, 1.2]})
 
 # --- Subplot 1: Stacked Bar Chart (Kept vs Dropped) ---
-ax1.bar(df["SA_Threshold"], df["Kept_Positive"], label="Kept Positive", color="#4C72B0")
-ax1.bar(df["SA_Threshold"], df["Kept_Negative"], bottom=df["Kept_Positive"], label="Kept Negative", color="#55A868")
-ax1.bar(df["SA_Threshold"], df["Dropped_Positive"], bottom=df["Kept_Positive"] + df["Kept_Negative"], label="Dropped Positive", color="#C44E52", alpha=0.6)
-ax1.bar(df["SA_Threshold"], df["Dropped_Negative"], bottom=df["Kept_Positive"] + df["Kept_Negative"] + df["Dropped_Positive"], label="Dropped Negative", color="#8172B3", alpha=0.6)
+ax1.bar(df["SA_Threshold"], df["Kept_Positive"], label="Kept positive", color="#4C72B0")
+ax1.bar(df["SA_Threshold"], df["Kept_Negative"], bottom=df["Kept_Positive"], label="Kept negative", color="#55A868")
+ax1.bar(df["SA_Threshold"], df["Dropped_Positive"], bottom=df["Kept_Positive"] + df["Kept_Negative"], label="Dropped positive", color="#C44E52", alpha=0.7)
+ax1.bar(df["SA_Threshold"], df["Dropped_Negative"], bottom=df["Kept_Positive"] + df["Kept_Negative"] + df["Dropped_Positive"], label="Dropped negative", color="#8172B3", alpha=0.7)
 
-ax1.set_title("Dataset Distribution and Ratios by SA Threshold", fontsize=18, fontweight='bold')
-ax1.set_ylabel("Number of Samples", fontsize=14)
+ax1.set_ylabel("Number of samples", fontsize=14,fontweight="bold", fontstyle="italic")
 ax1.legend(loc="upper left", bbox_to_anchor=(1, 1))
 
 # --- Subplot 2: Line Chart for Ratios with Dual Annotations ---
-ax2.plot(df["SA_Threshold"], df["Kept_Positive_Ratio"], marker='o', linestyle='-', linewidth=2.5, color="#D95F02", label="Kept Positive Ratio (%)")
-ax2.plot(df["SA_Threshold"], df["Total_Kept_Ratio"], marker='s', linestyle='--', linewidth=2.5, color="#7570B3", label="Total Kept Ratio (%)")
+ax2.plot(df["SA_Threshold"], df["Kept_Positive_Ratio"], marker='o', linestyle='-', linewidth=2.5, color="#D90258", label="Kept positive ratio (%)")
+ax2.plot(df["SA_Threshold"], df["Total_Kept_Ratio"], marker='s', linestyle='--', linewidth=2.5, color="#1F11E2", label="Total kept ratio (%)")
 
 # Annotate Kept Positive Ratio values (Placed above the marker)
 for i, txt in enumerate(df["Kept_Positive_Ratio"]):
@@ -51,26 +50,25 @@ for i, txt in enumerate(df["Kept_Positive_Ratio"]):
                  textcoords="offset points", 
                  xytext=(0, 10), 
                  ha='center', 
-                 fontsize=9, 
+                 fontsize=10, 
                  fontweight='bold',
-                 color="#D95F02")
+                 color="#101010")
 
 # Annotate Total Kept Ratio values (Placed below the marker to avoid overlapping)
 for i, txt in enumerate(df["Total_Kept_Ratio"]):
     ax2.annotate(f"{txt:.1f}%", 
                  (df["SA_Threshold"][i], df["Total_Kept_Ratio"][i]),
                  textcoords="offset points", 
-                 xytext=(0, -15), 
+                 xytext=(20, -15), 
                  ha='center', 
-                 fontsize=9, 
+                 fontsize=10, 
                  fontweight='bold',
-                 color="#7570B3")
+                 color="#0C0C0D")
 
-ax2.set_xlabel("SA Score Threshold", fontsize=14)
-ax2.set_ylabel("Percentage (%)", fontsize=14)
+ax2.set_xlabel("SA score threshold", fontsize=14,fontweight="bold", fontstyle="italic")
+ax2.set_ylabel("Percentage (%)", fontsize=14,fontweight="bold", fontstyle="italic")
 ax2.set_xticks(range(1, 11))
 ax2.set_ylim(-5, 115) # Mở rộng trục y xuống một chút để hiển thị nhãn phía dưới rõ hơn
-ax2.axhline(50, color='gray', linestyle=':', alpha=0.7, label='50% Reference')
 ax2.legend(loc="upper left", bbox_to_anchor=(1, 1))
 
 plt.tight_layout()
