@@ -1,5 +1,5 @@
 ligand,role,best_pose_rank,affinity (kcal/mol),Ki_estimated (M),RMSD_to_Ref (A)
-Ligand_control_AF7,Reference,1,-9.459,6.49E-08,1.046
+Ligand_control_AF7,Reference,1,-9.814,6.49E-08,0.783
 Ligand_2,Test,1,-7.419,3.69E-06,N/A
 Ligand_5,Test,1,-7.189,5.43E-06,N/A
 Ligand_14,Test,1,-7.147,5.83E-06,N/A

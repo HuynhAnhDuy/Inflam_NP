@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 # ==== Cấu hình ====
-PROTEIN_FILE = Path("/home/andy/andy/Inflam_NP/molecular_docking/Protein_clean/COX1_1EQH_clean.pdb")   # file protein đã chuẩn bị
+PROTEIN_FILE = Path(r"D:\Andy\Inflam_NP\Docking_InFlam\Protein_clean\5LOX_6NCF_clean.pdb")   # file protein đã chuẩn bị
 LIGAND_DIR   = Path("Selection")       # thư mục chứa ligand_out.pdb
 OUTPUT_DIR   = Path("Complexes")           # thư mục xuất complex.pdb
 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -34,7 +34,7 @@ def main():
         return
     
     for lig in ligands:
-        out_name = lig.stem + "_complex_COX1_1EQH.pdb"
+        out_name = lig.stem + "_complex_5LOX.pdb"
         out_file = OUTPUT_DIR / out_name
         merge_protein_ligand(PROTEIN_FILE, lig, out_file)
 

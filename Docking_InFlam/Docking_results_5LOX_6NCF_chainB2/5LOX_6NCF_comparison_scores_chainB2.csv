@@ -1,0 +1,2 @@
+ligand,role,best_pose_rank,affinity (kcal/mol),Ki_estimated (M),All_Poses_Affinity_and_RMSD
+AF7_ref,Reference,1,-9.459,1.182e-07,"Pose 1: -9.459 kcal/mol, RMSD 1.046A | Pose 2: -9.164 kcal/mol, RMSD 0.000A | Pose 3: -9.139 kcal/mol, RMSD 0.000A | Pose 4: -8.897 kcal/mol, RMSD 0.000A | Pose 5: -8.709 kcal/mol, RMSD 0.000A | Pose 6: -8.655 kcal/mol, RMSD 0.000A | Pose 7: -8.632 kcal/mol, RMSD 0.000A | Pose 8: -8.502 kcal/mol, RMSD 0.000A | Pose 9: -8.406 kcal/mol, RMSD 0.000A | Pose 10: -8.273 kcal/mol, RMSD 0.000A"
