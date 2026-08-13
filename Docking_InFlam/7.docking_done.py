@@ -8,15 +8,15 @@ from pathlib import Path
 # =====================================================================
 
 # --- ĐƯỜNG DẪN INPUT & OUTPUT ---
-RECEPTOR = Path(r"D:\Andy\Inflam_NP\Docking_InFlam\Protein_prepared\5LOX_6NCF_clean.pdbqt")
-LIG_DIR = Path(r"D:\Andy\Inflam_NP\Docking_InFlam\ligands_5LOX_6NCF_Copy")
-REF_LIGAND_FILENAME = "AF7_ref.pdbqt" 
-OUT_DIR = Path("Docking_results_5LOX_6NCF_chainB2")
-CSV_OUTPUT_NAME = "5LOX_6NCF_comparison_scores_chainB2.csv"
+RECEPTOR = Path(r"D:\Andy\Inflam_NP\Docking_InFlam\Protein_prepared\COX2_5KIR_clean.pdbqt")
+LIG_DIR = Path(r"D:\Andy\Inflam_NP\Docking_InFlam\ligands_COX2_5KIR_stage_wise")
+REF_LIGAND_FILENAME = "RCX_Ref_1.pdbqt" 
+OUT_DIR = Path("Docking_results_COX2_5KIR_chainA_stage_wise")
+CSV_OUTPUT_NAME = "COX2_5KIR_comparison_scores_chainA_stage_wise.csv"
 
 # --- THÔNG SỐ HỘP GRID BOX (Å) ---
-CENTER = (10.326, -22.333, -18.927)
-SIZE   = (60, 60, 60)
+CENTER = (23.206, 1.318, 34.259)
+SIZE   = (40, 40, 40)
 
 # --- THAM SỐ CHẠY VINA ---
 EXHAUSTIVENESS = 32
