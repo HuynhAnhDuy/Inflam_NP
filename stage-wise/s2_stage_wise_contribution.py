@@ -1,14 +1,19 @@
+# -*- coding: utf-8 -*-
 import pandas as pd
 
-# 1. Đọc file dữ liệu
+# 1. Đọc file dữ liệu hiện tại (có 3025 mẫu)
 df = pd.read_csv("full_processed_data_SA2_affinity.csv")
 
-total_initial = len(df)
+TOTAL_INITIAL_RAW = 3186  # Tổng số mẫu gốc ban đầu trước khi lọc druglikeness
+total_current = len(df)   # 3025 mẫu hiện tại trong file
 actives_initial = int(df['True label'].sum())
 
 # ==========================================================
 # PHẦN 1: TÍNH ĐÓNG GÓP ĐỘC LẬP (Independent Contribution)
+# Tính dựa trên tổng số mẫu ban đầu là 3186
 # ==========================================================
+# Số lượng mẫu bị loại bởi bước druglikeness là 161 mẫu (3186 - 3025)
+ind_drug_removed = TOTAL_INITIAL_RAW - total_current
 ind_ml_removed = (df['pass_ml'] != 'yes').sum()
 ind_sa2_removed = (df['pass_sa_2'] != 'yes').sum()
 ind_tox_removed = (df['pass_toxicity'] != 'yes').sum()
@@ -16,30 +21,40 @@ ind_dock_removed = (df['affinity (kcal/mol)'] >= -7.0).sum()
 
 df_independent = pd.DataFrame([
     {
+        "Filter component": "Druglikeness filter",
+        "Total removed": ind_drug_removed,
+        "Independent rejection rate (%)": f"{(ind_drug_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
+    },
+    {
         "Filter component": "ML consensus",
         "Total removed": ind_ml_removed,
-        "Independent rejection rate (%)": f"{(ind_ml_removed / total_initial) * 100:.1f}%"
+        "Independent rejection rate (%)": f"{(ind_ml_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "SA threshold of 2",
         "Total removed": ind_sa2_removed,
-        "Independent rejection rate (%)": f"{(ind_sa2_removed / total_initial) * 100:.1f}%"
+        "Independent rejection rate (%)": f"{(ind_sa2_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "Toxicity filter",
         "Total removed": ind_tox_removed,
-        "Independent rejection rate (%)": f"{(ind_tox_removed / total_initial) * 100:.1f}%"
+        "Independent rejection rate (%)": f"{(ind_tox_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "Final docking (affinity < -7.0)",
         "Total removed": ind_dock_removed,
-        "Independent rejection rate (%)": f"{(ind_dock_removed / total_initial) * 100:.1f}%"
+        "Independent rejection rate (%)": f"{(ind_dock_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     }
 ])
 
 print("--- ĐÓNG GÓP ĐỘC LẬP (Independent Contribution) ---")
 print(df_independent.to_string(index=False))
 print("\n" + "="*70 + "\n")
+# Sắp xếp lại theo số lượng mẫu bị loại giảm dần để gán thứ hạng
+df_independent = df_independent.sort_values(by="Total removed", ascending=False).reset_index(drop=True)
+
+# Thêm cột Rank
+df_independent.insert(0, "Rank", range(1, len(df_independent) + 1))
 
 # Lưu kết quả độc lập ra CSV
 df_independent.to_csv("independent_contribution_report.csv", index=False)
@@ -47,6 +62,7 @@ df_independent.to_csv("independent_contribution_report.csv", index=False)
 
 # ==========================================================
 # PHẦN 2: TÍNH ĐÓNG GÓP TUẦN TỰ (Sequential Contribution)
+# Giữ nguyên cấu trúc gốc của code cũ (bắt đầu với 3025 mẫu hiện tại)
 # ==========================================================
 
 # --- HƯỚNG 1: ML -> SA2 -> Toxicity -> Docking ---

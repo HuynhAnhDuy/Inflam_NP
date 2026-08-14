@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-df = pd.read_csv("consensus_ad_combos_evaluation_summary.csv")
+df = pd.read_csv("consensus_ad_combos.csv")
 
 plt.figure(figsize=(8, 5))
 
@@ -20,18 +20,18 @@ scatter = sns.scatterplot(
 
 # === THÊM CÁC ĐƯỜNG THRESHOLD (NGƯỠNG MÀU ĐỎ CHO AUPRC = 0.7 VÀ AUROC = 0.7) ===
 plt.axvline(
-    x=0.7,
+    x=0.8,
     color="#13578B",
     linestyle="--",
     linewidth=1.2,
-    label="AUROC threshold = 0.7",
+    label="AUROC threshold = 0.8",
 )
 plt.axhline(
-    y=0.7,
+    y=0.8,
     color="#942A7F",
     linestyle="-.",
     linewidth=1.2,
-    label="AUPRC threshold = 0.7",
+    label="AUPRC threshold = 0.8",
 )
 
 plt.xlabel(
@@ -51,5 +51,4 @@ plt.legend(bbox_to_anchor=(1.05, 1), loc="upper left", fontsize=9)
 plt.grid(True, linestyle="--", alpha=0.5)
 
 plt.tight_layout()
-plt.savefig("models_tradeoff_comparison_auroc_auprc.svg", format="svg", dpi=300)
-plt.show()
+plt.savefig("tradeoff_auroc.svg", format="svg", dpi=300)

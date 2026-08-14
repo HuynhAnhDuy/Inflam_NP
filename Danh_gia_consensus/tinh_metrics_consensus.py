@@ -11,8 +11,8 @@ from sklearn.metrics import (
 )
 
 # === 1. Cấu hình đường dẫn ===
-xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_in_ad\Prob_2026-08-10_xgb"
-bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_in_ad\Prob_2026-08-10_BiLSTM"
+xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_xgb"
+bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_BiLSTM"
 
 model_keys = [
     ("xgb", "rdkit"),
@@ -32,9 +32,9 @@ for algo, ft in model_keys:
 
   try:
     # Đường dẫn 3 file run
-    path1 = os.path.join(folder, f"InFlam_in_ad_test_prob_{ft}_run1.csv")
-    path2 = os.path.join(folder, f"InFlam_in_ad_test_prob_{ft}_run2.csv")
-    path3 = os.path.join(folder, f"InFlam_in_ad_test_prob_{ft}_run3.csv")
+    path1 = os.path.join(folder, f"InFlam_full_test_prob_{ft}_run1.csv")
+    path2 = os.path.join(folder, f"InFlam_full_test_prob_{ft}_run2.csv")
+    path3 = os.path.join(folder, f"InFlam_full_test_prob_{ft}_run3.csv")
 
     if not (os.path.exists(path1) and os.path.exists(path2) and os.path.exists(path3)):
       print(f"[THIẾU FILE CHO {name}] Bỏ qua.")
@@ -99,7 +99,7 @@ all_evaluations = []
 print("\nĐang tính toán metrics cho Single Models...")
 for name, df in model_data.items():
   res = evaluate_metrics(df["y_true"].values, df["y_prob"].values)
-  res["Model_Type"] = "Single Model"
+  res["Model_Type"] = "Single model"
   res["Framework"] = name
   res["N_Samples"] = len(df)
   all_evaluations.append(res)
@@ -151,7 +151,7 @@ if len(all_evaluations) > 0:
   cols = ["Model_Type", "Framework", "N_Samples", "AUROC", "AUPRC", "MCC", "Brier_Score", "Prediction_Certainty"]
   df_results = df_results[[c for c in cols if c in df_results.columns]]
 
-  output_csv = "consensus_ad_combos_evaluation_summary.csv"
+  output_csv = "consensus_ad_combos.csv"
   df_results.to_csv(output_csv, index=False)
   print(f"\n=== THÀNH CÔNG! Đã lưu kết quả tại: {output_csv} ===")
   print(df_results.sort_values(by="AUROC", ascending=False).head(10))

@@ -1,19 +1,23 @@
 import pandas as pd
 
 # 1. Đọc hai file dữ liệu
-df_main = pd.read_csv("full_processed_data_SA2.csv")
-df_docking = pd.read_csv("COX2_docking_SA2.csv")
+df_main = pd.read_csv("full_processed_data_SA2_affinity.csv")
+df_x = pd.read_csv("x.csv")
 
-# 2. Kiểm tra xem cột 'Index' có cùng kiểu dữ liệu không (tránh lỗi không khớp do một bên là chuỗi, một bên là số)
+# Đảm bảo cột Index có cùng kiểu dữ liệu (tránh lỗi lệch kiểu int/str) để match chính xác
 df_main['Index'] = df_main['Index'].astype(str)
-df_docking['Index'] = df_docking['Index'].astype(str)
+df_x['Index'] = df_x['Index'].astype(str)
 
-# 3. Sử dụng merge (tương tự như VLOOKUP trong Excel)
-# how='left' giúp giữ lại toàn bộ dòng của file chính, chỉ thêm cột affinity nếu tìm thấy Index khớp
-df_merged = pd.merge(df_main, df_docking[['Index', 'affinity (kcal/mol)']], on='Index', how='left')
+# 2. Merge (kết hợp) dữ liệu dựa vào cột 'Index' (sử dụng left join để giữ nguyên toàn bộ file gốc)
+df_merged = pd.merge(df_main, df_x[['Index', 'Druglikeness']], on='Index', how='left')
 
-# 4. Lưu kết quả ra file mới
-df_merged.to_csv("full_processed_data_SA2_affinity.csv", index=False)
+# 3. Điền giá trị 'no' cho các mẫu không match được (các ô bị NaN)
+df_merged['Druglikeness'] = df_merged['Druglikeness'].fillna('no')
 
-print("Đã gán thành công giá trị affinity!")
-print("File mới đã được lưu là: full_processed_data_with_affinity.csv")
+# 4. Lưu lại file kết quả (ghi đè file gốc hoặc lưu ra file mới tùy bạn chọn)
+output_filename = "full_processed_data_SA2_affinity_2.csv"
+df_merged.to_csv(output_filename, index=False)
+
+print(f"Đã tích hợp thành công! File mới đã được lưu vào: {output_filename}")
+print(f"Số lượng mẫu sau khi tích hợp: {len(df_merged)}")
+print(f"Số lượng mẫu có Druglikeness khác 'no': (df_merged['Druglikeness'] != 'no').sum()")
