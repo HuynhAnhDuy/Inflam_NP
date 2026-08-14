@@ -1,0 +1,5 @@
+Filter component,Total removed,Independent rejection rate (%)
+ML consensus,2180,72.10%
+SA threshold of 2,2726,90.10%
+Toxicity filter,1689,55.80%
+Final docking (affinity < -7.0),18,0.60%

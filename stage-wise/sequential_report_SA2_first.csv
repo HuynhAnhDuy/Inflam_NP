@@ -1,0 +1,6 @@
+Workflow stage,Remaining compounds,Actives retained,Active retention rate (%),Inactives left,Active ratio (%)
+1. Initial,3025,1487,100.0%,1538,49.2%
+2. After SA2,299,118,7.9%,181,39.5%
+3. After SA2 + toxicity,101,50,3.4%,51,49.5%
+4. After SA2 + toxicity + ML,28,28,1.9%,0,100.0%
+5. After final docking,10,10,0.7%,0,100.0%

@@ -19,7 +19,7 @@ AutoDock Vina v1.2.7
 
 Scoring function : vina
 Rigid receptor: D:\Andy\Inflam_NP\Docking_InFlam\Protein_prepared\COX2_5KIR_clean.pdbqt
-Ligand: D:\Andy\Inflam_NP\Docking_InFlam\ligands_COX2_5KIR_stage_wise\RCX_Ref_1.pdbqt
+Ligand: D:\Andy\Inflam_NP\Docking_InFlam\ligands_COX2_5KIR_stage_wise\stage_wise22_3892.pdbqt
 Grid center: X 23.206 Y 1.318 Z 34.259
 Grid size  : X 40 Y 40 Z 40
 Grid space : 0.375
@@ -29,7 +29,7 @@ Verbosity: 1
 
 WARNING: Search space volume is greater than 27000 Angstrom^3 (See FAQ)
 Computing Vina grid ... done.
-Performing docking (random seed: 928226178) ... 
+Performing docking (random seed: -86306054) ... 
 0%   10   20   30   40   50   60   70   80   90   100%
 |----|----|----|----|----|----|----|----|----|----|
 ***************************************************
@@ -37,13 +37,13 @@ Performing docking (random seed: 928226178) ...
 mode |   affinity | dist from best mode
      | (kcal/mol) | rmsd l.b.| rmsd u.b.
 -----+------------+----------+----------
-   1       -10.05          0          0
-   2       -8.005      11.61       14.5
-   3       -7.663      1.522      3.784
-   4       -7.645      11.46      14.29
-   5       -7.619      10.82      13.39
-   6       -7.552      11.81      14.22
-   7        -7.45      12.18      14.97
-   8        -7.34      12.16      14.85
-   9       -7.211      14.34      17.26
-  10        3.205      19.86      22.29
+   1       -6.239          0          0
+   2       -6.202      4.055      7.134
+   3       -6.076      3.549      6.964
+   4       -5.932      28.93      31.12
+   5       -5.931       28.5      30.85
+   6       -5.929      25.76       27.8
+   7        -5.87      29.04      31.84
+   8       -5.866      3.087      5.437
+   9       -5.802      28.71      30.76
+  10       -5.771      28.12      30.87

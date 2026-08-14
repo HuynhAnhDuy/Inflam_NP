@@ -1,2 +1,30 @@
 ligand,role,best_pose_rank,affinity (kcal/mol),Ki_estimated (M),All_Poses_Affinity_and_RMSD
-RCX_Ref_1,Reference,1,-10.130,3.812e-08,"Pose 1: -10.13 kcal/mol, RMSD 1.004A | Pose 2: -8.125 kcal/mol, RMSD 0.000A | Pose 3: -7.773 kcal/mol, RMSD 0.000A | Pose 4: -7.755 kcal/mol, RMSD 0.000A | Pose 5: -7.69 kcal/mol, RMSD 0.000A | Pose 6: -7.549 kcal/mol, RMSD 0.000A | Pose 7: -7.494 kcal/mol, RMSD 0.000A | Pose 8: -7.478 kcal/mol, RMSD 0.000A | Pose 9: -7.395 kcal/mol, RMSD 0.000A | Pose 10: -7.349 kcal/mol, RMSD 0.000A"
+RCX_Ref_1,Reference,1,-10.050,4.362e-08,"Pose 1: -10.05 kcal/mol, RMSD 1.019A | Pose 2: -8.005 kcal/mol, RMSD 0.000A | Pose 3: -7.663 kcal/mol, RMSD 0.000A | Pose 4: -7.645 kcal/mol, RMSD 0.000A | Pose 5: -7.619 kcal/mol, RMSD 0.000A | Pose 6: -7.552 kcal/mol, RMSD 0.000A | Pose 7: -7.45 kcal/mol, RMSD 0.000A | Pose 8: -7.34 kcal/mol, RMSD 0.000A | Pose 9: -7.211 kcal/mol, RMSD 0.000A | Pose 10: 3.205 kcal/mol, RMSD 0.000A"
+stage_wise6_2515,Test,1,-8.766,3.802e-07,N/A
+stage_wise3_3591,Test,1,-8.584,5.168e-07,N/A
+stage_wise26_765,Test,1,-8.080,1.209e-06,N/A
+stage_wise17_4438,Test,1,-7.603,2.703e-06,N/A
+stage_wise8_3859,Test,1,-7.600,2.716e-06,N/A
+stage_wise25_26,Test,1,-7.377,3.957e-06,N/A
+stage_wise14_4421,Test,1,-7.275,4.699e-06,N/A
+stage_wise21_5651,Test,1,-7.135,5.950e-06,N/A
+stage_wise18_4456,Test,1,-7.107,6.238e-06,N/A
+stage_wise2_1705,Test,1,-7.105,6.259e-06,N/A
+stage_wise23_4186,Test,1,-6.970,7.859e-06,N/A
+stage_wise7_2706,Test,1,-6.968,7.886e-06,N/A
+stage_wise24_4328,Test,1,-6.916,8.609e-06,N/A
+stage_wise12_4077,Test,1,-6.855,9.541e-06,N/A
+stage_wise27_1353,Test,1,-6.838,9.819e-06,N/A
+stage_wise4_1338,Test,1,-6.805,1.038e-05,N/A
+stage_wise9_3864,Test,1,-6.784,1.076e-05,N/A
+stage_wise28_1521,Test,1,-6.749,1.141e-05,N/A
+stage_wise5_2369,Test,1,-6.727,1.184e-05,N/A
+stage_wise1_6668,Test,1,-6.592,1.487e-05,N/A
+stage_wise10_3900,Test,1,-6.581,1.515e-05,N/A
+stage_wise20_4501,Test,1,-6.299,2.437e-05,N/A
+stage_wise22_3892,Test,1,-6.239,2.696e-05,N/A
+stage_wise15_4422,Test,1,-6.236,2.710e-05,N/A
+stage_wise16_4427,Test,1,-6.235,2.714e-05,N/A
+stage_wise13_4420,Test,1,-6.190,2.928e-05,N/A
+stage_wise11_4053,Test,1,-6.136,3.208e-05,N/A
+stage_wise19_4467,Test,1,-6.081,3.519e-05,N/A

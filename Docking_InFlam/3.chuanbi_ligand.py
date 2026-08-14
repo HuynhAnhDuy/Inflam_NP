@@ -70,7 +70,7 @@ def convert_smiles_to_pdbqt(smiles, output_pdbqt, ligand_name):
 def main():
     # Thư mục gốc chứa file CSV của bạn
     base_dir = "D:\Andy\Inflam_NP\Docking_InFlam\compounds_original"
-    csv_path = os.path.join(base_dir, "compounds_for_docking_SA4.csv")
+    csv_path = os.path.join(base_dir, "compounds_for_docking_SA2.csv")
     
     # Thư mục con chứa file PDBQT kết quả
     output_dir = os.path.join(base_dir, "ligands_pdbqt")
