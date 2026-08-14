@@ -66,11 +66,7 @@ for ft in feature_types:
         palette={"Train": "#2117D8", "Test": "#CE3E40"},
         alpha=0.7,
         s=20,
-    )
-    plt.title(
-        f"Chemical Space of ({ft.upper()}) - Partitions",
-        fontsize=13,
-        fontweight="bold",
+        rasterized=True,
     )
     plt.xlabel(
         "UMAP 1", fontsize=12, fontweight="bold", fontstyle="italic"
@@ -78,7 +74,7 @@ for ft in feature_types:
     plt.ylabel(
         "UMAP 2", fontsize=12, fontweight="bold", fontstyle="italic"
     )
-    plt.legend(title="Partition")
+    plt.legend(title="Partition",fontsize=12)
     plt.tight_layout()
     plt.savefig(f"chemical_space_{ft}_partitions.svg", format="svg", dpi=300)
     plt.close()
