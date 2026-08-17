@@ -1,5 +1,6 @@
 import os
 import re
+import glob
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,46 +8,63 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix, accuracy_score
 
 # ====== Cấu hình ======
-csv_path = "/home/andy/andy/Inflam_NP/visualization/InFlam_full_test_all_probs.csv"
-output_folder = "/home/andy/andy/Inflam_NP/visualization/confusion_top4"
+base_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_full"
+output_folder = r"D:\Andy\Inflam_NP\visualization\confusion_6models"
 threshold = 0.5
 labels = ['Negative', 'Positive']
+
+# Cấu hình cụ thể 6 mô hình cần vẽ (XGB và BiLSTM + RdKit, ECFP, MACCS)
+target_models = {
+    'XGB': [os.path.join(base_dir, "Prob_XGB")],
+    'BiLSTM': [os.path.join(base_dir, "Prob_BiLSTM")]
+}
+features_to_include = ['rdkit', 'ecfp', 'maccs']
 # =======================
 
 os.makedirs(output_folder, exist_ok=True)
-
-# Đọc dữ liệu
-df = pd.read_csv(csv_path)
-models = df['model'].unique()
-
-# Tính accuracy cho mỗi mô hình
-model_acc = {}
-for model in models:
-    data = df[df['model'] == model]
-    y_true = data['y_true'].astype(int)
-    y_pred = (data['y_prob'] >= threshold).astype(int)
-    acc = accuracy_score(y_true, y_pred)
-    model_acc[model] = acc
-
-# Lấy 4 model có accuracy cao nhất
-top4 = sorted(model_acc.items(), key=lambda x: x[1], reverse=True)[:6]
 
 # Hàm làm sạch tên file an toàn
 def safe_name(s: str) -> str:
     s = re.sub(r"[^\w\-_. ]", "_", s)
     return s.strip().replace(" ", "_")
 
-# Vẽ và lưu từng hình độc lập
-for model, acc in top4:
-    data = df[df['model'] == model]
+# Thu thập dữ liệu từ các thư mục tương ứng
+model_data_dict = {}
+
+for model_name, folders in target_models.items():
+    for folder_path in folders:
+        if not os.path.exists(folder_path):
+            print(f"⚠️ Cảnh báo: Không tìm thấy thư mục {folder_path}")
+            continue
+            
+        for feat in features_to_include:
+            # Tìm kiếm file qua 3 lần run (ví dụ: InFlam_full_test_prob_ecfp_run1.csv)
+            search_pattern = os.path.join(folder_path, f"InFlam_full_test_prob_{feat}_run*.csv")
+            run_files = glob.glob(search_pattern)
+            
+            if run_files:
+                dfs = []
+                for f in run_files:
+                    temp_df = pd.read_csv(f)
+                    dfs.append(temp_df)
+                
+                # Tính trung bình xác suất y_prob qua 3 lần run
+                combined_df = dfs[0].copy()
+                if 'y_prob' in combined_df.columns:
+                    combined_df['y_prob'] = sum(d['y_prob'] for d in dfs) / len(dfs)
+                
+                display_name = f"{model_name} + {feat.upper()}"
+                model_data_dict[display_name] = combined_df
+
+# Vẽ và lưu từng hình độc lập cho 6 mô hình
+for model_label, data in model_data_dict.items():
     y_true = data['y_true'].astype(int)
     y_pred = (data['y_prob'] >= threshold).astype(int)
 
     cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
+    
     # ==== % THEO TỪNG HÀNG (row-wise) ====
-    # row_sums: tổng mỗi hàng (True 0 và True 1)
     row_sums = cm.sum(axis=1, keepdims=True)
-    # Chia an toàn: nếu hàng = 0 thì cho 0%
     cm_percent = np.divide(cm, row_sums, out=np.zeros_like(cm, dtype=float), where=row_sums != 0) * 100.0
     # =====================================
 
@@ -70,19 +88,17 @@ for model, acc in top4:
         annot_kws={"fontsize": 11, "weight": "bold"}
     )
 
-    # Đảo màu chữ tùy theo nền (nền tối thì chữ trắng, nền sáng thì chữ đen)
-    # Lấy giá trị max để tính ngưỡng
+    # Đảo màu chữ tùy theo độ đậm của ô
     vmax = cm.max()
-    threshold_val = vmax / 2
+    threshold_val = vmax / 2 if vmax > 0 else 0
     for text, val in zip(ax.texts, cm.flatten()):
         text.set_color("white" if val > threshold_val else "black")
 
     plt.xlabel('Predicted', fontsize=12, fontweight='bold', fontstyle='italic', family='sans-serif')
     plt.ylabel('Actual', fontsize=12, fontweight='bold', fontstyle='italic', family='sans-serif')
-    plt.title(f'{model}', fontsize=12, fontweight='bold')
     plt.tight_layout()
 
-    out_path = os.path.join(output_folder, f"confusion_matrix_{safe_name(model)}.svg")
-    plt.savefig(out_path, format="svg")
+    out_path = os.path.join(output_folder, f"confusion_matrix_{safe_name(model_label)}.svg")
+    plt.savefig(out_path, format="svg", dpi=300)
     plt.close()
     print(f"✅ Đã lưu: {out_path}")

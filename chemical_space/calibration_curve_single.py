@@ -12,8 +12,8 @@ from sklearn.metrics import (
 )
 
 # === 1. Cấu hình đường dẫn ===
-xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_xgb"
-bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_BiLSTM"
+xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_XGB"
+bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_BiLSTM"
 
 model_keys = [
     ("xgb", "rdkit"),
@@ -121,12 +121,12 @@ for algo, ft in model_keys:
         plt.plot([0, 1], [0, 1], "k--", label="Perfectly calibrated", alpha=0.7)
         
         # Hiển thị Brier dạng Mean ± SD lên Legend của biểu đồ
-        label_text = f"{name} (Brier = {brier_text_sd})"
+        label_text = f"{name} (Brier score = {brier_text_sd})"
         plt.plot(mean_predicted_value, fraction_of_positives, marker='o', linewidth=2, color='b', label=label_text)
         
-        plt.xlabel("Mean Predicted Probability", fontsize=11, fontweight='bold')
-        plt.ylabel("Fraction of Positives", fontsize=11, fontweight='bold')
-        plt.title(f"Calibration Curve - {name}", fontsize=12, fontweight='bold')
+        plt.xlabel("Mean predicted probability", fontsize=12, fontweight='bold', fontstyle='italic')
+        plt.ylabel("Fraction of positives", fontsize=12, fontweight='bold',fontstyle='italic')
+        plt.title(f"Calibration curve - {name}", fontsize=12, fontweight='bold')
         plt.legend(loc="lower right", fontsize=9, frameon=True)
         plt.grid(True, linestyle=":", alpha=0.6)
         plt.xlim([0.0, 1.0])

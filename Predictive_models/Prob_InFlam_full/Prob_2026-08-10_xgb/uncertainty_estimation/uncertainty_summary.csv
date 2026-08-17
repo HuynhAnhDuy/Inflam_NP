@@ -1,6 +1,0 @@
-Feature,Mean_Uncertainty_Std,Median_Uncertainty_Std,Max_Uncertainty_Std
-ECFP,0.0234,0.0193,0.1288
-MACCS,0.0231,0.0172,0.1357
-PHYCHEM,0.0234,0.0193,0.118
-RDKIT,0.0347,0.0226,0.1936
-ESTATE,0.019,0.0148,0.1247

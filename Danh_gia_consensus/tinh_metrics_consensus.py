@@ -11,8 +11,8 @@ from sklearn.metrics import (
 )
 
 # === 1. Cấu hình đường dẫn ===
-xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_xgb"
-bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_BiLSTM"
+xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_XGB"
+bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_BiLSTM"
 
 model_keys = [
     ("xgb", "rdkit"),
@@ -99,7 +99,7 @@ all_evaluations = []
 print("\nĐang tính toán metrics cho Single Models...")
 for name, df in model_data.items():
   res = evaluate_metrics(df["y_true"].values, df["y_prob"].values)
-  res["Model_Type"] = "Single model"
+  res["Model_Type"] = "Individual model"
   res["Framework"] = name
   res["N_Samples"] = len(df)
   all_evaluations.append(res)
@@ -139,7 +139,7 @@ for r in range(2, len(model_names) + 1):
     consensus_probs = df_combo_probs.mean(axis=1).values
 
     res = evaluate_metrics(y_true_combo, consensus_probs)
-    res["Model_Type"] = f"Combo {r}"
+    res["Model_Type"] = f"Consensus {r}"
     res["Framework"] = " + ".join(combo)
     res["N_Samples"] = n_samples
     all_evaluations.append(res)

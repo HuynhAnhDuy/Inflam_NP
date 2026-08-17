@@ -120,7 +120,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
   all_metrics_raw = []
 
   timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-  prob_folder = f"Prob_InFlam_full/Prob_{timestamp}_LGBM"
+  prob_folder = f"Prob_InFlam_full/Prob_LGBM"
   os.makedirs(prob_folder, exist_ok=True)
   print(f"\n📁 Sẽ lưu y_prob vào thư mục: {prob_folder}")
 

@@ -5,11 +5,19 @@ import glob
 import os
 
 # Step 1: Get list of CSV files
-input_dir = "/home/andy/andy/Inflam_NP/Statistics/"
+import glob
+import os
+
+# Sửa lại đặt chữ r ở ngoài dấu nháy
+input_dir = r"D:\Andy\Inflam_NP\Statistics"
+
 file_list = glob.glob(os.path.join(input_dir, "InFlam_full_dunn_*.csv"))
 
+# Kiểm tra xem có tìm thấy file nào không
+print("Các file tìm thấy:", file_list)
+
 # Target model
-target_model = "XGB_RDKIT"
+target_model = "BiLSTM_RDKIT"
 
 # Define colors (consistent for bars + legend)
 colors = {

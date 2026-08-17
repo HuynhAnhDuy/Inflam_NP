@@ -99,7 +99,7 @@ def run_all_fingerprints(fingerprints, num_runs=3):
 
   # Tạo thư mục Prob/Prob_YYYY-MM-DD_HH-MM-SS/
   timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-  prob_folder = f"Prob_InFlam_full/Prob_{timestamp}_RF"
+  prob_folder = f"Prob_InFlam_full/Prob_RF"
   os.makedirs(prob_folder, exist_ok=True)
   print(f"\n📁 Sẽ lưu y_prob vào thư mục: {prob_folder}")
 

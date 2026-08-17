@@ -6,17 +6,17 @@ from sklearn.calibration import calibration_curve
 from sklearn.metrics import brier_score_loss
 
 # === 1. Cấu hình đường dẫn ===
-xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_xgb"
-bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_2026-08-10_BiLSTM"
+xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_XGB"
+bilstm_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_BiLSTM"
 
 # Định nghĩa 6 cấu hình bạn yêu cầu
 configs_to_plot = {
     "XGB_RDKIT": [("xgb", "rdkit")],
-    "Combo 2": [("xgb", "rdkit"), ("xgb", "ecfp")],
-    "Combo 3": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs")],
-    "Combo 4": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit")],
-    "Combo 5": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit"), ("bilstm", "ecfp")],
-    "Combo 6": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit"), ("bilstm", "ecfp"), ("bilstm", "maccs")]
+    "Consensus 2": [("xgb", "rdkit"), ("xgb", "ecfp")],
+    "Consensus 3": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs")],
+    "Consensus 4": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit")],
+    "Consensus 5": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit"), ("bilstm", "ecfp")],
+    "Consensus 6": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit"), ("bilstm", "ecfp"), ("bilstm", "maccs")]
 }
 
 # === 2. Tính toán, lấy Brier Score dạng Mean ± SD và xuất từng file .svg riêng biệt ===
