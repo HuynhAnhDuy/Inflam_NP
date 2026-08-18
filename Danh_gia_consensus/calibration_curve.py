@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.calibration import calibration_curve
 from sklearn.metrics import brier_score_loss
+from sklearn.linear_model import LogisticRegression
+from statsmodels.nonparametric.smoothers_lowess import lowess
 
 # === 1. Cấu hình đường dẫn ===
 xgb_dir = r"D:\Andy\Inflam_NP\Predictive_models\Prob_InFlam_Full\Prob_XGB"
@@ -19,9 +21,15 @@ configs_to_plot = {
     "Consensus 6": [("xgb", "rdkit"), ("xgb", "ecfp"), ("xgb", "maccs"), ("bilstm", "rdkit"), ("bilstm", "ecfp"), ("bilstm", "maccs")]
 }
 
-# === 2. Tính toán, lấy Brier Score dạng Mean ± SD và xuất từng file .svg riêng biệt ===
+# Danh sách lưu kết quả để xuất ra CSV
+results_summary = []
+
+# === 2. Tính toán các metrics và xuất file .svg & .csv ===
 for config_name, model_list in configs_to_plot.items():
     run_briers = []
+    run_intercepts = []
+    run_slopes = []
+    run_icis = []
     run_ensemble_probs = []
     y_true_ref = None
     
@@ -55,50 +63,105 @@ for config_name, model_list in configs_to_plot.items():
         mean_run_prob = prob_sum / count
         run_ensemble_probs.append(mean_run_prob)
         
-        # Tính Brier score cho riêng run này
+        # 1. Brier score
         brier_run = brier_score_loss(y_true_ref, mean_run_prob)
         run_briers.append(brier_run)
         
-    if success and len(run_briers) == 3:
-        # Tính Mean và SD của Brier Score qua 3 runs
-        brier_mean = np.mean(run_briers)
-        brier_std = np.std(run_briers)
-        brier_text_sd = f"{brier_mean:.3f} ± {brier_std:.3f}"
+        # Chuẩn bị dữ liệu cho Intercept & Slope (tránh log(0))
+        eps = 1e-15
+        p_clipped = np.clip(mean_run_prob, eps, 1 - eps)
+        logit_p = np.log(p_clipped / (1 - p_clipped)).reshape(-1, 1)
         
-        # Lấy xác suất trung bình của 3 runs (để vẽ đường cong mượt mà đại diện)
+        # 2. Calibration Intercept & Slope
+        lr_full = LogisticRegression(penalty=None, solver='lbfgs', max_iter=1000)
+        lr_full.fit(logit_p, y_true_ref)
+        
+        intercept_run = lr_full.intercept_[0]
+        slope_run = lr_full.coef_[0][0]
+        
+        run_intercepts.append(intercept_run)
+        run_slopes.append(slope_run)
+        
+        # 3. Integrated Calibration Index (ICI)
+        sorted_idx = np.argsort(mean_run_prob)
+        p_sorted = mean_run_prob[sorted_idx]
+        y_sorted = y_true_ref[sorted_idx]
+        
+        smoothed = lowess(y_sorted, p_sorted, return_sorted=False, frac=0.3)
+        ici_run = np.mean(np.abs(p_sorted - smoothed))
+        run_icis.append(ici_run)
+        
+    if success and len(run_briers) == 3:
+        # Tính Mean và SD qua 3 runs
+        brier_mean, brier_std = np.mean(run_briers), np.std(run_briers)
+        intercept_mean, intercept_std = np.mean(run_intercepts), np.std(run_intercepts)
+        slope_mean, slope_std = np.mean(run_slopes), np.std(run_slopes)
+        ici_mean, ici_std = np.mean(run_icis), np.std(run_icis)
+        
+        brier_text_sd = f"{brier_mean:.3f} ± {brier_std:.3f}"
+        slope_text_sd = f"{slope_mean:.3f} ± {slope_std:.3f}"
+        
+        # Lưu vào danh sách tổng hợp
+        results_summary.append({
+            "Configuration": config_name,
+            "Brier_Score": f"{brier_mean:.3f} ± {brier_std:.3f}",
+            "Calibration_Intercept": f"{intercept_mean:.3f} ± {intercept_std:.3f}",
+            "Calibration_Slope": f"{slope_mean:.3f} ± {slope_std:.3f}",
+            "ICI": f"{ici_mean:.3f} ± {ici_std:.3f}",
+            "Brier_Mean": brier_mean, "Brier_Std": brier_std,
+            "Intercept_Mean": intercept_mean, "Intercept_Std": intercept_std,
+            "Slope_Mean": slope_mean, "Slope_Std": slope_std,
+            "ICI_Mean": ici_mean, "ICI_Std": ici_std
+        })
+        
+        # Lấy xác suất trung bình của 3 runs để vẽ biểu đồ
         mean_ensemble_prob = np.mean(run_ensemble_probs, axis=0)
         
-        # Tính toán điểm trên calibration curve
         fraction_of_positives, mean_predicted_value = calibration_curve(
             y_true_ref, mean_ensemble_prob, n_bins=10, strategy='uniform'
         )
         
-        # Vẽ biểu đồ cho từng cấu hình
+        # Vẽ biểu đồ
         plt.figure(figsize=(6, 6))
         plt.plot([0, 1], [0, 1], "k--", label="Perfectly calibrated", alpha=0.7)
         
-        # Đưa Brier Score dạng Mean ± SD vào nhãn (legend) của đường vẽ
-        label_text = f"{config_name} (Brier score = {brier_text_sd})"
+        # Thêm Calibration Slope vào nhãn (legend) bên cạnh Brier score
+        label_text = f"{config_name}\nBrier score = {brier_text_sd}\nCalibration slope = {slope_text_sd}"
         plt.plot(mean_predicted_value, fraction_of_positives, marker='o', linewidth=2, color='b', label=label_text)
         
-        plt.xlabel("Mean predicted probability", fontsize=14, fontweight='bold',fontstyle="italic")
-        plt.ylabel("Fraction of positives", fontsize=14, fontweight='bold',fontstyle="italic")
+        plt.xlabel("Mean predicted probability", fontsize=14, fontweight='bold', fontstyle="italic")
+        plt.ylabel("Fraction of positives", fontsize=14, fontweight='bold', fontstyle="italic")
         
-        plt.legend(loc="lower right", fontsize=12, frameon=True)
+        plt.legend(loc="lower right", fontsize=13, frameon=True)
         plt.grid(True, linestyle=":", alpha=0.6)
         plt.xlim([0.0, 1.0])
         plt.ylim([0.0, 1.0])
         
         plt.tight_layout()
         
-        # Đặt tên file an toàn và lưu dạng SVG
         safe_name = config_name.replace(' ', '_').replace('+', 'and')
         filename = f"calibration_{safe_name}.svg"
-        plt.savefig(filename, format='svg', dpi=300)
-        plt.close() # Đóng figure để giải phóng bộ nhớ
         
-        print(f"Đã xuất thành công: {filename} (Brier Score: {brier_text_sd})")
+        # Lưu vào thư mục chứa code
+        current_script_dir = os.path.dirname(os.path.abspath(__file__))
+        svg_filepath = os.path.join(current_script_dir, filename)
+        
+        plt.savefig(svg_filepath, format='svg', dpi=300)
+        plt.close()
+        
+        print(f"Đã xuất biểu đồ: {svg_filepath}")
+        print(f"  -> Brier Score: {brier_mean:.3f} ± {brier_std:.3f}")
+        print(f"  -> Calibration Slope: {slope_mean:.3f} ± {slope_std:.3f}\n")
     else:
-        print(f"[{config_name}] Thiếu dữ liệu file ở một số run, bỏ qua vẽ biểu đồ này.")
+        print(f"[{config_name}] Thiếu dữ liệu file ở một số run, bỏ qua.")
 
-print("\nHoàn tất! Đã tạo và lưu đủ các file hình ảnh SVG có kèm Brier Score dạng Mean ± SD.")
+# === 3. Xuất toàn bộ kết quả ra file CSV tại thư mục chứa code ===
+if results_summary:
+    df_results = pd.DataFrame(results_summary)
+    current_script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_filename = os.path.join(current_script_dir, "consensus_calibration_metrics.csv")
+    
+    df_results.to_csv(csv_filename, index=False)
+    print(f"\nĐã lưu thành công file CSV tại: {csv_filename}")
+
+print("\nHoàn tất!")
