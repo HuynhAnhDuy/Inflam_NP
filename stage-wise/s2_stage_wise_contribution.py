@@ -10,55 +10,64 @@ actives_initial = int(df['True label'].sum())
 
 # ==========================================================
 # PHẦN 1: TÍNH ĐÓNG GÓP ĐỘC LẬP (Independent Contribution)
-# Tính dựa trên tổng số mẫu ban đầu là 3186
 # ==========================================================
-# Số lượng mẫu bị loại bởi bước druglikeness là 161 mẫu (3186 - 3025)
+# Tính tổng số mẫu bị loại
 ind_drug_removed = TOTAL_INITIAL_RAW - total_current
 ind_ml_removed = (df['pass_ml'] != 'yes').sum()
 ind_sa2_removed = (df['pass_sa_2'] != 'yes').sum()
 ind_tox_removed = (df['pass_toxicity'] != 'yes').sum()
 ind_dock_removed = (df['affinity (kcal/mol)'] >= -7.0).sum()
 
+# Tính số True Actives bị loại độc lập
+ind_drug_act_removed = 0 # (Vì dữ liệu đã lọc trước khi đọc file này)
+ind_ml_act_removed = len(df[(df['True label'] == 1) & (df['pass_ml'] != 'yes')])
+ind_sa2_act_removed = len(df[(df['True label'] == 1) & (df['pass_sa_2'] != 'yes')])
+ind_tox_act_removed = len(df[(df['True label'] == 1) & (df['pass_toxicity'] != 'yes')])
+ind_dock_act_removed = len(df[(df['True label'] == 1) & (df['affinity (kcal/mol)'] >= -7.0)])
+
 df_independent = pd.DataFrame([
     {
         "Filter component": "Druglikeness filter",
         "Total removed": ind_drug_removed,
-        "Independent rejection rate (%)": f"{(ind_drug_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
+        "Actives removed": ind_drug_act_removed,
+        "Actives rejection rate (%)": f"{(ind_drug_act_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "ML consensus",
         "Total removed": ind_ml_removed,
-        "Independent rejection rate (%)": f"{(ind_ml_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
+        "Actives removed": ind_ml_act_removed,
+        "Actives rejection rate (%)": f"{(ind_ml_act_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "SA threshold of 2",
         "Total removed": ind_sa2_removed,
-        "Independent rejection rate (%)": f"{(ind_sa2_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
+        "Actives removed": ind_sa2_act_removed,
+        "Actives rejection rate (%)": f"{(ind_sa2_act_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "Toxicity filter",
         "Total removed": ind_tox_removed,
-        "Independent rejection rate (%)": f"{(ind_tox_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
+        "Actives removed": ind_tox_act_removed,
+        "Actives rejection rate (%)": f"{(ind_tox_act_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     },
     {
         "Filter component": "Final docking (affinity < -7.0)",
         "Total removed": ind_dock_removed,
-        "Independent rejection rate (%)": f"{(ind_dock_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
+        "Actives removed": ind_dock_act_removed,
+        "Actives rejection rate (%)": f"{(ind_dock_act_removed / TOTAL_INITIAL_RAW) * 100:.1f}%"
     }
 ])
 
-print("--- ĐÓNG GÓP ĐỘC LẬP (Independent Contribution) ---")
-print(df_independent.to_string(index=False))
-print("\n" + "="*70 + "\n")
-# Sắp xếp lại theo số lượng mẫu bị loại giảm dần để gán thứ hạng
-df_independent = df_independent.sort_values(by="Total removed", ascending=False).reset_index(drop=True)
+# Sắp xếp theo số lượng True Actives bị loại giảm dần
+df_independent = df_independent.sort_values(by="Actives removed", ascending=False).reset_index(drop=True)
 
-# Thêm cột Rank
+# THÊM LẠI DÒNG NÀY ĐỂ TẠO CỘT RANK:
 df_independent.insert(0, "Rank", range(1, len(df_independent) + 1))
 
-# Lưu kết quả độc lập ra CSV
+# Lưu kết quả
+print("--- ĐÓNG GÓP ĐỘC LẬP (Independent Contribution) ---")
+print(df_independent.to_string(index=False))
 df_independent.to_csv("independent_contribution_report.csv", index=False)
-
 
 # ==========================================================
 # PHẦN 2: TÍNH ĐÓNG GÓP TUẦN TỰ (Sequential Contribution)
