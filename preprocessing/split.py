@@ -31,7 +31,7 @@ def main():
     test_size = 0.2
     train_size = float(1-test_size)
     print("Your test set is ", test_size, " and your train set is ", train_size)
-    df = pd.read_csv('1.Baibao_preprocess.csv')
+    df = pd.read_csv('new_data2.csv')
     print(df[smiles])
     print(df[group])
     
@@ -40,10 +40,10 @@ def main():
     print("No of compounds in x_test = ",  len(x_test), "No of compounds in y_test ", len(y_test))
 
     #save
-    x_train.to_csv("Baibao_full_x_train.csv")
-    x_test.to_csv("Baibao_full_x_test.csv")
-    y_train.to_csv("Baibao_full_y_train.csv")
-    y_test.to_csv("Baibao_full_y_test.csv")
+    x_train.to_csv("new_data2_x_train.csv")
+    x_test.to_csv("new_data2_x_test.csv")
+    y_train.to_csv("new_data2_y_train.csv")
+    y_test.to_csv("new_data2_y_test.csv")
 
     print("#"*100)
     print('Finished!')

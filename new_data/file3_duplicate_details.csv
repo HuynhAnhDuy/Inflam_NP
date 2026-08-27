@@ -1,0 +1,8 @@
+Name,canonical_smiles,y_label_file3,in_file1,y_label_file1,in_file2,y_label_file2,is_duplicate,y_label_match,note
+Betulinic acid,C=C(C)[C@@H]1CC[C@]2(C(=O)O)CC[C@]3(C)[C@H](CC[C@@H]4[C@@]5(C)CC[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@@H]12,1,True,1.0,False,,True,True,Consistent (Matching y_label)
+Plumbagin,CC1=CC(=O)c2c(O)cccc2C1=O,1,True,1.0,False,,True,True,Consistent (Matching y_label)
+Piplartine,COc1cc(/C=C/C(=O)N2CCC=CC2=O)cc(OC)c1OC,1,True,1.0,False,,True,True,Consistent (Matching y_label)
+Dihydroxanthohumol,COc1cc(O)c(CC=C(C)C)c(O)c1C(=O)CCc1ccc(O)cc1,0,True,1.0,False,,True,False,Conflicting (Different y_label)
+Cardamomin,COc1cc(O)cc(O)c1C(=O)/C=C/c1ccccc1,1,True,1.0,False,,True,True,Consistent (Matching y_label)
+Naringin,C[C@@H]1O[C@@H](O[C@H]2[C@H](Oc3cc(O)c4c(c3)O[C@H](c3ccc(O)cc3)CC4=O)O[C@H](CO)[C@@H](O)[C@@H]2O)[C@H](O)[C@H](O)[C@H]1O,0,False,,True,0.0,True,True,Consistent (Matching y_label)
+Cryptotanshinone,C[C@H]1COC2=C1C(=O)C(=O)c1c2ccc2c1CCCC2(C)C,1,True,1.0,False,,True,True,Consistent (Matching y_label)
